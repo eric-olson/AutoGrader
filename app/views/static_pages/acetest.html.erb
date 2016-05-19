@@ -23,9 +23,15 @@
 }</div>
 
 <script>
+    $( document ).ready(function() {
+        config = require("ace/config")
+        config.set("modePath", "/ace-config");
+        config.set("themePath", "/ace-config");
+        
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
+    });
 </script>
 </body>
 </html>
