@@ -1,18 +1,21 @@
-<h1>StaticPages#acetest</h1>
-<p>Find me in app/views/static_pages/acetest.html.erb</p>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>ACE in Action</title>
 <style type="text/css" media="screen">
-    #editor { 
+    #editor {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
     }
+    .ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 800px;
+		width: 650px;
+	}
 </style>
 </head>
 <body>
@@ -30,7 +33,7 @@ int main() {
         config = require("ace/config")
         config.set("modePath", "/ace-config");
         config.set("themePath", "/ace-config");
-        
+
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/c_cpp");
