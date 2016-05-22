@@ -83,12 +83,18 @@
   </div>
 
   <div class="col-md-8">
-  	<div class="panel panel-default">
-			<div class="panel-heading">
-    		<h3 class="panel-title">Code</h3>
-  		</div>
-  		<div class="panel-body">
 
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#1" data-toggle="tab">Write</a>
+      </li>
+      <li>
+        <a href="#2" data-toggle="tab">Upload</a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="1">
         <style type="text/css" media="screen">
           #editor {
               height: 300px;
@@ -115,9 +121,13 @@ int main() {
                 editor.getSession().setMode("ace/mode/c_cpp");
             });
         </script>
-    		  
-  		</div>
-		</div>
+      </div>
+
+      <div class="tab-pane" id="2">
+        <p>Interface to upload code</p>
+      </div>
+      
+    </div>
   </div>
 </div>
 
