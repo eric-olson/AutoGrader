@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Multipass:</strong>
+  <%= @user.multipass_id %>
+</p>
+
+<p>
+  <strong>Code path:</strong>
+  <%= @user.code_path %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
