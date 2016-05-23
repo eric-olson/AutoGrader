@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Hailstone</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Hailstone</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Function</h3>
+<pre>
+     string sequence(int n) {
+          // fill in code here
+     }
+</pre>
+</div>
+<h2>Problem Statement</h2> 
+<p>
+Take a number, <i>n</i>.  If <i>n</i> is even, divide it by 2.  If odd, multiply by 3 and add 1.  Repeat with the new number, forever or until you get the number 1.  For instance, suppose you start with the number 3:  
+</p>
+<ul>
+<li>Since 3 is odd, you multiply by 3 and add 1 to get 9 + 1 = 10.
+<li>Since 10 is even, you divide by 2 to get 5.
+<li>Since 5 is odd, you multiply by 3 and add 1 to get 16.
+<li>Since 16 is a power of 2, you will repeatedly divide by 2, getting 8, 4, 2, and 1 in that order.
+</ul>
+
+<p>The sequence of numbers produced by this procedure is known as a <i>hailstone sequence</i>.  The hailstone sequence beginning with 3 is therefore "3 10 5 16 8 4 2 1".
+The Collatz conjecture, proposed by Lothar Collatz in 1937, is that the hailstone sequence for any starting number always terminates; that is, it always reaches 1.  This conjecture is unproven at this time, but is easy to verify for small <i>n</i>.</p>
+<p>Your task for this lab is to produce the hailstone sequence for an arbitrary starting value.  You are given an <code>int</code> value <code>n</code>, and asked to return a <code>string</code> containing the hailstone sequence beginning at <code>n</code>.  The string should contain each number in the sequence in order, separated by single spaces.  There should be no leading or trailing spaces.
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<LI> The input <code>n</code> will be between 1 and 100, inclusive.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+1
+
+Returns: "1"
+
+</PRE>
+
+<P>
+<li class="example-even">
+<PRE>
+
+2
+
+Returns: "2 1"
+
+</PRE>
+
+<P>
+<li class="example-odd">
+<PRE>
+3
+
+ Returns: "3 10 5 16 8 4 2 1"
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+ 7
+
+ Returns: "7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1"
+ 
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+
+  </body>
+</html>

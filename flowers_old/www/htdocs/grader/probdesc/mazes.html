@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Mazes</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Mazes</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    bool has_solution(vector&lt;string&gt; maze) {
+        // fill in this method (and others you can write)
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+In short, your job is to discover if there is a way to successfully solve a rectangular
+maze (see example below):
+<P>
+<PRE>
+########
+#.##..*#
+#.##.###
+#.#..###
+#.##...#
+#o...#.#
+########
+
+</PRE>
+In the maze, the start and end points are notated as 'o' and '*'.  The '#' character
+represents a wall.  Movement is up, right, down, or left; no diagonal moves allowed!
+The above maze is solvable; here is one which is not solvable:
+
+<pre>
+...#.*
+.#..##
+.#...#
+o#....
+</pre>
+Note that the only legal routes are those within the maze boundaries - even if there
+are no walls around the maze.
+<P>
+Create a function has_solution, which takes a vector of strings <code>maze</code>
+and returns true if the maze has a solution, and false otherwise.
+
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI>Mazes are allowed to contain looping paths; don't get lost looping forever!
+<P>
+<LI>The only legal moves are up, down, left, and right on squares marked with 
+a period, the character 'o', or the character '*'.
+<P>
+<LI> There are between 1 and 16 rows in the maze, inclusive.
+<P>
+<LI> There are between 1 and 16 columns in the maze, inclusive.
+<P>
+<LI> 
+The maze is perfectly rectangular. That is, each element of 
+ <code>maze</code> will be of the same length.
+<P>
+<LI> There are between 0 and (rows*columns-2) walls in the maze,
+inclusive.
+<P>
+<LI> There is exactly one 'o'.
+<P>
+<LI> There is exactly one '*'.
+<P>
+<LI> Each character in each element of 
+<code>maze</code> can only be one of the following: a period (representing a space),
+a '#' (representing a wall), an 'o' (the starting point), or a '*'
+(the exit).
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+{"#####",
+ "#o.*#",
+ "#####"}
+
+return true
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+{"..*",
+ "o##"}
+
+return true
+
+</PRE>
+
+<li class="example-odd">
+<PRE>
+{"o#*"}
+
+return false
+
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+  </body>
+</html>

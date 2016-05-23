@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+<course>
+<problemset num="0" comment="In class example">
+	<problem>DigitSum</problem>
+</problemset>
+
+<problemset num="1" comment="Some warm up exercises">
+	<problem>CountAppearances</problem>
+	<problem>AccessLevel</problem>
+	<problem>TippingWaiters</problem>
+</problemset>
+
+</course>

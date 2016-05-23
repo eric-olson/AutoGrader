@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Word Ladder</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Word Ladder</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    int shortest(Vector&lt;string&gt; words, string from, string to) {
+        // fill in code here
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+A <em>word ladder</em> is a sequence of words in which each word can be
+transformed into the next word by changing one letter. For example, the
+word ladder below changes 'lot' to 'log'.
+<PRE>
+   lot dot dog log
+</PRE>
+This is not the shortest word-ladder between 'lot' and 'log' since the
+    former can be immediately changed to the latter yielding a word
+    ladder of length two:
+<PRE>
+  lot log
+</PRE>
+The first and last words in a word ladder are the <em>anchor rungs</em>
+    of the ladder. Any other words are <em>interior rungs</em>. For
+    example, there are three interior rungs in the ladder below
+between 'smile' and 'evote'.
+<PRE>
+   smile smite smote emote evote
+</PRE>
+In this problem you'll write a method that has parameters representing
+potential interior rungs: a Vector of strings (these may by nonsense or
+English words), and the anchor rungs --- two strings.  Your code must
+determine the shortest word ladder between the anchor rungs that uses at
+least one interior rung. Return the length of the shortest valid word
+ladder. If there are no valid ladders return 0.
+
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI>The parameters <code>from</code> 
+and <code>to</code> are the anchor rungs, they
+    must be connected by at least one interior rung from <code>words</code>
+    or there are no valid word ladders.
+<P>
+<LI> <code>words</code> contains at most 50 words.
+<P>
+<LI> All strings contain only lowercase, alphabetic characters.
+<P>
+<LI> All strings in <code>word</code> are the same length and are the
+same length as <code>from</code> and <code>to</code>.
+<P>
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+words = [hot, dot, dog] 
+from = hit 
+to = cog 
+
+Returns: 5
+
+</PRE>
+The only ladder is <tt>hit hot dot dog cog</tt> which has length five.
+<P>
+<li class="example-even">
+<PRE>
+
+words = [hot, dot, dog, lot, log] 
+from = hit 
+to = cog 
+
+Returns: 5
+
+</PRE>
+Now there are two length-five ladders:
+<PRE>
+  hit hot dot dog cog
+  hit hot lot log cog
+</PRE>
+<P>
+<li class="example-odd">
+<PRE>
+
+words = [rain, ruin, gain, grin, grit, main, pain, pair, pail, mail] 
+from = sail 
+to = ruip 
+
+Returns: 6
+
+</PRE>
+<P>
+There are two ladders of length six and no shorter ladders.
+<PRE>
+  sail mail main rain ruin ruip
+  sail pail pain rain ruin ruip
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+words = [most, mist, fist, fish] 
+from = lost 
+to = cost 
+
+Returns: 3
+
+</PRE>
+<P>
+Although <tt>lost</tt> is directly connected to <tt>cost</tt>, a
+valid word ladder must contain an interior rung so the shortest ladder
+	  is
+<PRE>
+   lost most cost
+</PRE>
+<P>
+<li class="example-odd">
+<PRE>
+
+words = [mist, fist, fish] 
+from = lost 
+to = cost 
+
+Returns: 0
+
+</PRE>
+Although <tt>lost</tt> is directly connected to <tt>cost</tt>, a valid
+word ladder must contain an interior rung, and there is no such ladder.
+
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Owen Astrachan and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+
+  </body>
+</html>

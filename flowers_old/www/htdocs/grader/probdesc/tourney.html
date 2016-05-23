@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Tourney</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Tourney</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   string winner(Vector&lt;string&gt; bracket, string results) {
+      // fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+In a single-elimination tournament, the schedule is determined by
+placing the teams in a vertical list called "the tournament bracket". In
+the first round the top two teams in the bracket play each other, then
+the next two, etc. In the second round the top two remaining teams play
+each other, then the next two, etc. This continues until there is only
+one team left -- the tournament winner.
+<P>
+The number of teams in the tournament should be a power of 2 -- if it
+isn't, byes are added to the bracket. Byes are never placed so that they
+will "play" each other. When a team's opponent is "bye", there is no
+game played and the team automatically advances as if it had won a
+game. Here is an example with a bracket of length 4 containing one bye
+(see Example 0).
+<PRE>
+             ROUND 1       ROUND 2
+      DUKE
+          |--------- DUKE
+      UCLA              |
+                        |-------- MIT
+      bye               |
+          |---------- MIT
+      MIT
+</PRE>
+<P>
+We have the tournament bracket (including any byes) from a previous year's
+tournament. We also have a list of the results of the games in the order
+in which they were played. We want to figure out who won the 
+tournament. Create a function winner that is
+given a Vector of strings <code>bracket</code> and a string <code>results</code>
+and that returns the name of the winning team as a
+<code>string</code>. The bracket is given in order from top to bottom,
+and the results are given as a string of 'H' or 'L' indicating for each
+game (in the order in which the games were played) whether the Higher or
+Lower team from the bracket won that game. The string results contains
+a character for each real game, but not for byes.  
+</div>
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI> It is possible that two teams with the same name could be in the
+tournament.
+<P>
+<LI> the number of elements in <code>bracket</code> will be a power of 2 between 2 and
+32 inclusive
+<P>
+<LI> each element in <code>bracket</code> will have length between 1 and 50 inclusive
+<P>
+<LI> each element in <code>bracket</code> will contain only uppercase characters
+'A'-'Z', or will be "bye"
+<P>
+<LI> no two bye elements will be placed such that they would play each
+other
+<P>
+<LI> the length of <code>results</code> will be exactly one less than the number of
+non-bye elements in <code>bracket</code>
+<P>
+<LI> each character of <code>results</code> will be uppercase 'H' or uppercase 'L'
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+bracket = {"DUKE","UCLA","bye","MIT"}
+
+results = "HL"
+
+Returns:  "MIT"
+
+</PRE>
+DUKE played UCLA in the first round and MIT advanced with a bye. DUKE
+won since the first game was won by the team higher on the bracket. In
+the second round, MIT beat DUKE since the second game was won by the
+lower team.
+<P>
+<li class="example-even">
+<PRE>
+
+bracket = {"A","B","C","bye","D","E","F","bye"}
+
+results = "LHHLH"
+
+Returns "B"
+
+
+</PRE>
+
+  Round 1: B beat A, D beat E <br>
+  Round 2: B beat C, F beat D <br>
+  Round 3: B beat F <br>
+<P>
+<li class="example-odd">
+<PRE>
+
+bracket = {"MIT","bye"}	
+
+results = ""
+
+Returns: "MIT"
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+bracket = {"STANFORD","bye","STANFORD","bye"}
+
+results = "L"
+
+Returns: "STANFORD"
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</div>
+
+  </body>
+</html>

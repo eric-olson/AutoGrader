@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Lab: Simple Encryption</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Simple Encryption</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   string encrypt(string message){
+       // you write code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+John is obsessed with security. He is writing a letter to his friend
+Brus and he wants nobody else to be able to read it. He uses a simple
+substitution cipher to encode his message. Each letter in the message is
+replaced with its corresponding letter in a substitution alphabet. A
+substitution alphabet is a permutation of all the letters in the
+original alphabet. In this problem, the alphabet will consist of only
+lowercase letters ('a'-'z').
+<P>
+For example, if John's message is "hello" and his cipher maps 'h' to
+'d', 'e' to 'i', 'l' to 'p' and 'o' to 'y', the encoded message will be
+"dippy". If the cipher maps 'h' to 'a', 'e' to 'b', 'l' to 'c' and 'o'
+to 'd', then the encoded message will be "abccd".
+<P>
+Given the original message, determine the cipher that will produce the
+encoded string that comes earliest alphabetically. Return this encoded
+string. In the example above, the second cipher produces the
+alphabetically earliest encoded string ("abccd").
+ </div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<li> If A and B are two strings of the same length, then A comes earlier
+	  alphabetically than B if it contains a smaller character at
+	  the first position where the strings differ.
+<P>
+<li> <code>message</code> will contain between 1 and 50 characters, inclusive.
+<P><LI> <code>message</code> will contain only lowercase letters ('a'-'z').
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+"hello"
+
+Returns: "abccd"
+
+</PRE>
+The example from the statement.
+<P>
+<li class="example-even">
+<PRE>
+
+"abcd"
+
+Returns: "abcd"
+
+</PRE>
+Here the message is encoded to itself.
+<P>
+<li class="example-odd">
+<PRE>
+
+"topcoder"
+
+Returns: "abcdbefg"
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+"encryption"
+
+Returns: "abcdefghib"
+
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2006, TopCoder, Inc. All rights reserved.
+</div>
+
+  </body>
+</html>

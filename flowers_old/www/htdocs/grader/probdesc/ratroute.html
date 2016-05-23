@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: RatRoute</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: RatRoute</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    int num_routes(Vector&lt;string&gt; enc) {
+        // fill in this method (and others you can write)
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+A psychologist wants to study instinctive route-making behavior in lab
+rats. She builds a two-dimensional enclosure and places blocks (each one
+foot wide and one foot deep) at random points inside the enclosure. She
+then places a piece of cheese at a random point in the enclosure and a
+lab rat at another random point. Here is an example setup, where a
+square foot of space is represented by a period, a block is represented
+by an X, the rat is represented by an R, and the piece of cheese is
+represented by a C (spaces are added for easy reading):
+<P>
+<PRE>
+. R . . .
+. . X . .
+. . . . X
+X . X . X
+. . . C .
+
+</PRE>
+
+Before putting the rat in the enclosure, the psychologist shows the
+location of the piece of cheese to the rat. Naturally, the rat will
+attempt to take a path with the shortest possible distance to the
+cheese. But the rat isn't that intelligent so the rat will only move
+towards the cheese and never move away from the cheese. Assume that the
+rat can only move horizontally or vertically, one point at a time.  In
+the above example, there are 3 possible routes the rat can take to get
+to the cheese:
+<P>
+<OL>
+<LI> East 2 points, South 4 points
+<LI> South 2 points, East 2 points, South 2 points
+<LI> South 4 points, East 2 points
+</OL>
+
+Create a function num_routes, which takes
+a Vector of strings representing the configuration of the
+test (each string represents one row of the maze), and returns an int
+representing the number of possible routes the rat can take to get to
+the cheese without ever increasing the distance between itself and the
+cheese at any point on its path (see first NOTE).
+
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI>The distance between the rat and the cheese is the Euclidean
+distance.  For example if the cheese is 4 points North of the rat and 3
+points East of the rat, the distance between the rat and the cheese is
+5.
+<P>
+<LI>
+The rat cannot pass through, over or under the blocks that are in place.
+<P>
+<LI>
+It is possible to have a configuration in which the rat can not reach
+the cheese by moving only towards it (horizontally or vertically) but
+could reach the cheese if it were to move away from the cheese. In such
+cases, return 0.
+<P>
+<LI> There are between 1 and 10 rows in the enclosure, inclusive.
+<P>
+<LI> There are between 1 and 10 columns in the enclosure, inclusive.
+<P>
+<LI> 
+The enclosure is perfectly rectangular. That is, each element of 
+ enc will be of the same length.
+<P>
+<LI> There are between 0 and (rows*columns-2) blocks in the enclosure,
+inclusive.
+<P>
+<LI> There is exactly one rat.
+<P>
+<LI> There is exactly one piece of cheese.
+<P>
+<LI> Each character in each element of 
+enc can only be one of the following: a period (representing a space),
+an X (representing a block), an R (representing the rat), or a C
+(representing the cheese).
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+enc = {
+".R...",
+"..X..",
+"....X",
+"X.X.X",
+"...C."}
+
+return 3
+
+</PRE>
+The example shown above.
+<P>
+<li class="example-even">
+<PRE>
+
+enc = {
+"...X.C",
+"R....."}
+
+return 2
+
+</PRE>
+There are 2 possible routes:
+<OL>
+<LI> East 5 points, North 1 point
+<LI> East 4 points, North 1 point, East 1 point
+</OL>
+
+<P>
+
+<li class="example-odd">
+<PRE>
+
+enc = {
+"C..X.",
+".....",
+"X..R.",
+"....."}
+
+ return 8
+</PRE>
+<P>
+<OL>
+<LI> North 1 point, West 1 point, North 1 point, West 2 points
+<LI> North 1 point, West 2 points, North 1 point, West 1 point
+<LI> North 1 point, West 3 points, North 1 point
+<LI> West 1 point, North 2 points, West 2 points
+<LI> West 1 point, North 1 point, West 1 point, North 1 point, West 1 point
+<LI> West 1 point, North 1 point, West 2 points, North 1 point
+<LI> West 2 points, North 2 points, West 1 point
+<LI> West 2 points, North 1 point, West 1 point, North 1 point
+</OL>
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+enc = {
+"C........R",
+".........."}
+
+  return 1
+
+</PRE>
+<li class="example-odd">
+<PRE>
+
+"C",
+".",
+".",
+".",
+".",
+".",
+".",
+"X",
+".",
+"R"}
+
+return 0
+
+</PRE>
+<p>
+<li class="example-even">
+<PRE>
+
+enc = {
+"....X",
+".CXX.",
+".XX..",
+"....R"}
+
+return 0
+
+</PRE>
+The only way the rat can get to the cheese is to go West 4 points, North
+2 points, and East 1 point.  However, when the rat moves into the
+lower-left corner, it increases the distance between itself and the
+cheese, so this route does not count.
+
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. &copy; 2002, TopCoder, Inc. All rights reserved.
+</div>
+
+  </body>
+</html>

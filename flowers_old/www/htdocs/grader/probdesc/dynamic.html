@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>Lab Dynamic</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab Dynamic</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Functions</h3>
+<pre>
+   int* allocate_int(); 
+   int* allocate_int(int x); 
+   int* allocate_array(int sz, int val); 
+   string* allocate_string(char a, char b, char c);
+   double** allocate_2d_array(int m, int n, double val);
+
+   void deallocate_int(int* p);
+   void deallocate_array(int* p);
+   void deallocate_2d_array(double** pp, int m);
+</pre>
+</div>
+
+<h2>Problem Statement</h2>
+
+<p>
+    This lab will give you an opportunity to practice with the basics of dynamic memory allocation.  You will implement each of the functions whose signatures are provided at the right.  Most of these functions will be almost trivially simple!
+</p>
+<p>
+    To start with, you will want to create function "stubs" for all of the functions above (in a single source file), just so your code can be uploaded to the server (otherwise the code will not compile).  A stub is simply a function returning some value consistent with the return type (or doing nothing, for a void function).  The result will be incorrect (usually), but at least there is something there for the compiler to work with.  Once you have all your stubs in place and your code compiles, you can start making the functions work correctly.  For example, your stub for the first function might look like:
+</p>
+<pre>
+    int* allocate_int() { return NULL; }
+</pre>
+<p>
+    The function above should allocate a single integer and return a pointer to the newly allocated memory.  It should <b>not</b> deallocate!  (Don't worry, the test code will deallocate it for you.)
+</p>
+<p>
+    Here is documentation for the rest of the functions:
+</p>
+<ul>
+    <li>
+        allocate_int (overloaded): allocates a single integer and sets it to the value passed in; returns a pointer to the allocated integer.  The point of this test is to get comfortable with modifying values via a pointer.
+    </li>
+    <li>
+        allocate_array: allocates an integer array of the specified size, and initializes all of its elements to the specified value.  Return a pointer to the allocated array.  Practice working with pointers as arrays.
+    </li>
+    <li>
+        allocate_string: allocate a single empty string object, then one at a time, append the provided characters onto the string.  Return a pointer to the allocated string.  Practice calling methods on an object through a pointer to the object.
+    </li>
+    <li>
+        allocate_2d_array: allocate a 2-d array of doubles using the method given in the class notes.  That is, allocate an outer array of pointers to double, then assign to each pointer in the array a dynmically allocated array of doubles.  The dimensions of the outer and inner arrays are provided, as well as a value to initialize the array elements to.  Return the pointer to the outer array.
+    </li>
+    <li>
+        deallocate_int: you are given a pointer to a dynamically allocated int.  Deallocate it.  That's it!
+    </li>
+    <li>
+        deallocate_array: ditto, but for an int array.
+    </li>
+    <li>
+        deallocate_2d_array: deallocate the 2-d array of doubles provided.  The outer array size is given (you do not need to know the sizes of the inner arrays to deallocate them).  Deallocate the inner arrays, then deallocate the outer array.
+    </li>
+</ul>
+<p>
+    The tests for this lab differ significantly from the tests in the other labs you have seen so far.  These tests do not simply compare outputs for given inputs; instead, they test different indicators to infer whether or not you have correctly implemented the described functions.  Accordingly, error messages have been provided to help interpret the meaning of test failures.
+</p>
+<p></p>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+  </body>
+</html>
+

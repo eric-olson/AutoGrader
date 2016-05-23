@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: LinkedCompress</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: LinkedCompress</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    // this class is provided for you - do not copy into your code
+    class node {
+    public:
+        string data;
+        node* next;    
+    };
+    
+    // write this function
+    node* compress(node* head) {
+        // fill in this method (and others you can write)
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+This problem has you modify a linked lists composed of node objects chained together via node pointers.
+Each node has a next pointer which points to the next node in the chain.  The last node is  
+identified by having a <code>NULL</code> next pointer.
+<p>
+The linked lists for this lab store string data.  Some of the strings in the linked lists repeat,
+and we'd like to eliminate this repetition.  Specifically, if a string repeats, we want to eliminate
+the duplicates so that the resulting linked  list only has one copy of a string in a row.  (The 
+string can repeat later in the linked list, as long as some other string occurs in between.)
+<p>
+Create a function <code>compress</code>, which takes in a pointer to the head of the linked list,
+and returns a pointer to the head of a linked list in which repetition has been eliminated.
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI>The linked list starting at <code>head</code> contains between 1 and 25 nodes, inclusive.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+"apple"->NULL
+
+return "apple"->NULL
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+"apple"->"apple"->NULL
+
+return "apple"->NULL
+</PRE>
+
+<li class="example-odd">
+<PRE>
+"green"->"green"->"blue"->"red"->"green"->NULL
+
+return "green"->"blue"->"red"->"green"->NULL
+</PRE>
+
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Access Level</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Access Level</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   string can_access(Vector&lt;int&gt; &amp;user_rights, int min_permission) {
+        // fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+<p>
+In many computer systems and networks, different users are granted different
+levels of access to different resources. In this case, you are given a <code>Vector&lt;int&gt;
+user_rights</code>, indicating the privilege level of each user to use some 
+system resource.  You are also given <code>int min_permission</code>, which 
+is the minimum permission a user must have to use this resource.
+<p>
+You are to return a <code>string</code> indicating which users can and 
+cannot access this resource. Each character in the return value corresponds 
+to the element of users with the same index. <code>'A'</code> indicates the 
+user is allowed access, while <code>'D'</code> indicates the user is denied 
+access.
+
+
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<li> <code>user_rights</code> will contain between 0 and 50 elements (0 &le; user_rights.size() &le; 50), inclusive.
+<li> Each element of <code>user_rights</code> will be between 0 and 100, inclusive.
+<li> <code>min_permission</code> will be between 0 and 100, inclusive.
+</ul>
+<P>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+{0,1,2,3,4,5}   2
+
+</PRE>
+Returns: "DDAAAA"
+
+Here, the first two users don't have sufficient privileges, but the remainder do.
+
+<li class="example-even">
+<PRE>
+
+{5,3,2,10,0}   20
+
+</PRE>
+Returns: "DDDDD"
+<p>
+Unfortunately, nobody has sufficient access.
+
+<P>
+
+<li class="example-odd">
+<PRE>
+{}   20
+
+</PRE>
+
+Returns: ""
+<p>
+It makes no difference what permission is required, since there are no users to check.
+
+<P>
+
+<li class="example-even">
+<PRE>
+
+{34,78,9,52,11,1}   49
+
+</PRE>
+
+Returns: "DADADD"
+<P>
+
+<P>
+
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2006, TopCoder, Inc. All rights reserved.
+
+</div>
+
+  </body>
+</html>

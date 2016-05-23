@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Nesting</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Nesting</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    bool is_valid(string expr, string left, string right) {
+        // fill in this method (and others you can write)
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+In many contexts, certain delimiting characters or sequences occur in pairs.  For instance,
+in mathematics, parentheses always occur in pairs: a left parenthesis with a right
+parenthesis.  In books, it is common to have left and right quotation marks for
+setting off quotes.  XML and other strict markup languages typically have special
+markers for the beginning and end of a piece of formatted text (e.g., "&lt;b&gt;", "&lt;/b&gt;" 
+are put around text to make it bold in HTML).
+<p>
+In more complex mathematical expressions it is common to 
+have multiple types of delimiters to help keep things orderly; thus square brackets ("[]"),
+curly brackets ("{}") and more are employed.  An important property of these delimiters
+is that they are always properly nested; you cannot have a left delimiter of one type
+between a pair of delimiters of another type without also having the right delimiter.
+<P>
+More specifically, we can talk about the appearance of a left delimiter as creating a new
+<emph>context</emph> of a type specific to that delimiter.  Each left delimiter takes us
+into a new, inner context.  We can only leave the context specific to the most recent left
+delimiter, not any outer context.  Additional rules for delimiter pairs are that they
+must occur in pairs in the proper order; you cannot have a left delimiter without a matching
+right delimiter, and vice versa, and you cannot have a pair in which the right delimiter comes
+first.
+<p>
+Create a function is_valid, which takes three strings, <code>expr</code>, <code>left</code>, 
+and <code>right</code>, and returns true if <code>expr</code> represents a valid expression
+as regards the proper nesting of the left and right delimiters contained in <code>left</code> and
+<code>right</code>.  Here the delimiters are all single characters, so each index in <code>left</code>
+and <code>right</code> corresponds to one delimiter pair.
+
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI><code>expr</code> contains between 0 and 50 characters, inclusive.
+<P>
+<li>Each character in <code>left</code> represents
+the left delimiter of a pair, and the corresponding character in <code>right</code> is the 
+associated right delimiter.
+<p> 
+<LI><code>left</code> and <code>right</code> contain between 0 and 5 characters, inclusive,
+and contain the same number of characters.  
+<p>
+<li><code>left</code> contains none of the same characters as <code>right</code>, and there are
+no duplicates in either string.
+<p>
+<li>Characters other than the delimiters are irrelevant to the problem and can be ignored.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+"(easy)"
+"("
+")"
+
+return true
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+"{(x + y) * z}"
+"({"
+")}"
+
+return true
+</PRE>
+
+<li class="example-odd">
+<PRE>
+"hello, world!"
+""
+""
+
+return true
+</PRE>
+<li class="example-even">
+<pre>
+"abcdxDCBA"
+"abcd"
+"ABCD"
+
+return true
+</pre>
+<li class="example-odd">
+<PRE>
+"(())())"
+"("
+")"
+
+return false
+</PRE>
+
+There is a right delimiter with no matching left delimiter.
+<li class="example-even">
+<pre>
+"({oops)}"
+"({"
+")}"
+
+return false
+</pre>
+
+Improper nesting - the context opened by the left parenthesis closes before the
+inner context opened by the left curly brace.
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+  </body>
+</html>

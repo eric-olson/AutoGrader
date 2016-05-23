@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Linked List</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Linked List</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   class list {
+   public:
+	   list();	             
+	   list(const list&);     
+	   ~list();
+
+	   void operator =(const list&);
+
+	   int size();
+	   int get(int position);
+	   void add(int);
+	   void insert(int n, int position);
+	   void erase(int position);
+   };
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+<p>
+You are to create a functioning list class using a linked list for storage.
+This list class will store integers only.  The required public functions are shown in the
+specification block.  Note that these are a minimum requirement, and you can add any public
+or private member functions or variables as you need to make these public functions work
+as specified.
+</p><p>
+The required public member functions are:
+<ul>
+	<li><code>list()</code> - the default constructor.</li>
+	<li><code>int size()</code> - returns the current count of elements stored in the list.</li>
+	<li><code>int get(int position)</code> - returns the element stored at index <code>position</code>;
+	if <code>position</code> is greater than the size of the list, returns 0.</li>
+	<li><code>void add(int)</code> - adds an element to the end of the list.</li>
+	<li><code>void insert(int n, int position)</code> - inserts an element before the element 
+	at index <code>position</code>.  E.g., if the list is <code>1 2 3 4</code>, then <code>insert(17,2)</code>
+	results in <code>1 2 17 3 4</code>.  The method does nothing if <code>position</code> is greater 
+	than the size of the list.</li>
+	<li><code>void erase(int position)</code> - removes the element at index <code>position</code>.
+	E.g., if the list is <code>1 2 3 4</code>, then <code>erase(2)</code> should result in
+	<code>1 2 4</code>.  The method does nothing if <code>position</code> is greater than or 
+	equal to the size of the list.</li>
+</ul>
+</p><p>
+In addition, for full credit you will need to implement the "big 3":
+<ul>
+	<li><code>list(const list&)</code> - the copy constructor.</li>
+	<li><code>~list()</code> - the destructor</li>
+	<li><code>void operator =(const list&)</code> - the assignment operator.</li>
+</ul>
+</p>
+<p>
+A couple of implementation notes: first, the specification for this class
+is identical to the one for the Array List problem; however, the tests for
+the linked list emphasize operations which are cheap for linked lists but
+expensive for array lists, such as inserting and erasing from the front of
+the list.  So if you try submitting an array list solution, expect it to time
+out!  Second, heavy use is made of the add function; to avoid timing out
+with your linked list it is essential that you use a tail pointer for 
+efficient adding.
+</p>
+</div> 
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+
+
+  </body>
+</html>

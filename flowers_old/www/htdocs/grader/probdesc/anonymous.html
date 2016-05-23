@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Anonymous</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Anonymous</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   int how_many(Vector&lt;string&gt; headlines, Vector&lt;string&gt; messages) {
+       // fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+If you want to write a message anonymously, one way to do it is to cut
+out letters from headlines in a newspaper and paste them onto a blank
+piece of paper to form the message you want to write. Given several
+headlines that you have cut out, determine how many messages from a list
+you can write using the letters from the headlines. You should only
+consider each message by itself and not in conjunction with the others,
+see example 2.
+<P>
+
+Write the function 
+<tt>how_many</tt> which takes as parameters a
+<code>Vector&lt;string&gt; headlines</code>
+containing the
+headlines which you have cut out as well as a
+<code>Vector&lt;string&gt; messages</code>
+with the messages you
+may want to write, and returns an int which is the total number of
+messages you can write.
+ <P>
+
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+
+<LI> All letters that you cut out can be used both as upper or lower case in
+    a message.
+<P><LI> Spaces should be ignored in elements in both headlines
+    and messages. 
+<P><LI> <code>headlines</code> will contain between 1 and 50 elements, inclusive.
+<P><LI> <code>messages</code>
+    will contain between 1 and 50 elements, inclusive.
+<P><LI> The length of
+    each element in <code>headlines</code> will be between 1 and 50 characters,
+    inclusive.
+<P><LI> The length of each element in <code>messages</code> will be between 1
+    and 50 characters, inclusive.
+<P><LI> Each element in <code>headlines</code> will only
+    contain the letters 'A'-'Z', 'a'-'z' and space.
+<P><LI> Each element in
+    <code>messages</code> will only contain the letters 'A'-'Z', 'a'-'z' and space. 
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+headlines =
+
+{"Earthquake in San Francisco",
+ "Burglary at musuem in Sweden",
+ "Poverty"}
+
+messages =
+
+{"Give me my money back",
+ "I am the best coder",
+ "TOPCODER"}
+
+Returns: 2
+</PRE>
+<P>
+In the first message we have three 'm's, but there are only two 'm's
+among the headlines (both in the word "museum"), so this message can't
+be written.
+<P>
+The second message can be written. Note that the first letter, 'I', only
+appears as lower case in the headlines, but that's allowed. The last
+message can also be written, so the method should return 2.  
+<P>
+<li class="example-even">
+<PRE>
+
+headlines = 
+
+        {"Programming is fun"}
+
+messages = 
+
+        {"program","programmer","gaming","sing","NO FUN"}
+
+Returns: 4
+</PRE>
+<P>
+The messages "program", "gaming", "sing" and "NO FUN" can all be written
+    but not "programmer" (no 'e's exist). The method should return 4.
+<P>
+<li class="example-odd">
+<PRE>
+
+headlines = 
+
+   {"abcdef","abcdef"}
+
+messages = 
+
+   {"AaBbCc","aabbbcc","   ","FADE"}
+
+Returns: 3
+</PRE>
+<P>
+All messages except the second one can be written, because it contains
+three 'b's but there are only two 'b's available. Also note the message
+only containing spaces - such a message can of course always be written.
+<P>
+
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. &copy;2002, TopCoder, Inc. All rights reserved.
+</div>
+
+  </body>
+</html>

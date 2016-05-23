@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: CG ratio</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: CG ratio</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Function</h3>
+<pre>
+     double ratio(string dna) {
+          // fill in code here
+     }
+</pre>
+</div>
+<h2>Problem Statement</h2> Regions of a DNA genome that code for a
+protein have a relatively high ratio of CG content.  Given a strand of
+DNA determine the percentage of cytosine and guanine nucleotides present
+in the genome.  Your method should return the percentage (between 0.0
+and 1.0) of 'c' (cytosine) and 'g' (guanine) in the genome. For example,
+if half of the nucleotides are either 'c' or 'g' your method should
+return 0.5 --- see the examples for more detail.
+<P>
+
+The DNA strand will contain only cytosine, guanine, thymine, and
+	  adenine, represented by the characters 'c', 'g', 't', and 'a',
+	  respectively.
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<LI> The string <code>dna</code> contains only the
+characters 'a', 'g', 't', 'c' (lowercase).
+<P>
+<LI> The string <code>dna</code> is between 0 and 1000 characters long
+(inclusive).
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+"agatc"
+
+Returns:0.40
+
+</PRE>
+There is one guanine and one cytosine for two out of five or 40% (which
+is 0.4)
+<P>
+<li class="example-even">
+<PRE>
+
+"catatggatatc"
+
+Returns: 0.3333333 
+
+</PRE>
+Don't worry about round off problems, if your answer
+	is close---within 10<sup>-6</sup>---it will be correct.
+<P>
+<li class="example-odd">
+<PRE>
+ "aattaattttaat"
+
+ Returns: 0.0
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+ "cgggggcccgggcgcgcccgggggg"
+
+ Returns: 1.0
+ 
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Owen Astrachan and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+
+  </body>
+</html>

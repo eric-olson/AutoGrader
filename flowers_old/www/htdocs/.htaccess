@@ -1,0 +1,6 @@
+#AuthType shibboleth
+#ShibRequestSetting requireSession 1
+#require valid-user
+#require shib-attr unscoped-affiliation student
+#require shib-attr unscoped-affiliation faculty
+#require shib-attr unscoped-affiliation staff

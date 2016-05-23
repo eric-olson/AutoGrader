@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Lab: Isomorphic Words</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Isomorphic Words</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   int count_pairs(Vector&lt;string&gt; words) {
+      // fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+Two words are called isomorphic if the letters in one word can be
+remapped to get the second word. Remapping a letter means replacing all
+occurrences of it with another letter. The ordering of the letters
+remains unchanged. No two letters may map to the same letter, but a
+letter may map to itself.
+<P>
+For example, the words "abca" and "zbxz" are isomorphic because we can
+map 'a' to 'z', 'b' to 'b' and 'c' to 'x'.
+<P>
+Given a <code>Vector&lt;string&gt; words</code>, return how many (unordered) pairs
+of words are isomorphic.
+<P> 
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+
+<LI>	<code>words</code> will contain between 2 and 50 elements, inclusive.
+<P>
+<li>	Each element of <code>words</code> will contain between 1 and 50
+	lowercase letters ('a'-'z'), inclusive.
+<P>
+<li>	All elements of <code>words</code> will have the same length.
+<P>
+<li>	There will be no duplicates in <code>words</code>.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+{"abca", "zbxz", "opqr"}
+
+Returns: 1
+
+</pre>
+"abca" and "zbxz" are isomorphic, but none of the two is isomorphic with
+"opqr".
+<P>
+<li class="example-even">
+<PRE>
+
+{"aa", "ab", "bb", "cc", "cd"}
+
+Returns: 4
+
+</PRE>
+The four isomorphic pairs are {"aa", "bb"}, {"aa", "cc"}, {"bb", "cc"} and {"ab", "cd"}.
+<P>
+<li class="example-odd">
+<PRE>
+
+{ "cacccdaabc", "cdcccaddbc", "dcdddbccad", "bdbbbaddcb",
+  "bdbcadbbdc", "abaadcbbda", "babcdabbac", "cacdbaccad",
+  "dcddabccad", "cacccbaadb", "bbcdcbcbdd", "bcbadcbbca" }
+
+Returns: 13
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2008, TopCoder, Inc. All rights reserved.
+</div>
+
+
+  </body>
+</html>

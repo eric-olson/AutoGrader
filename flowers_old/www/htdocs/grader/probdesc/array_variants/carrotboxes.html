@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: CarrotBoxes</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/> 
+  </head>
+
+  <body>
+    <h1>Lab: CarrotBoxes</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   int last_box(int carrots[], size_t num_boxes, int amount) {
+      // TODO: fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+Rabbit Hanako has N = <code>num_boxes</code> boxes of carrots numbered 0 through N-1. The i-th
+box contains <code>carrots[i]</code> carrots. (Note that
+<code>carrots</code> is the name of an array that contains information
+about boxes of the vegetable named <em>carrot</em>.)
+<P>
+
+
+She decides to eat <code>amount</code> carrots from these boxes. She
+will eat the carrots one at a time, each time choosing a carrot from the
+box with the greatest number of carrots. If there are multiple such
+boxes, she will choose the lowest numbered box among them.
+<P>
+
+Return the number of the box from which she will eat her last carrot.
+
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<P><li> <code>carrots</code> will contain between 1 and 50 elements, inclusive (1 &le; <code>num_boxes</code> &le; 50).
+<P><li> Each element of <code>carrots</code> will be between 1 and 100, inclusive
+<P><li> <code>amount</code> will be between 1 and the sum of all
+	  elements of <code>carrots</code>, inclusive
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+carrots = {5,8}
+
+num_boxes = 2
+
+amount = 3
+
+Returns: 1
+</PRE>
+<P>
+She will choose three carrots from the box with index 1.
+<P>
+<li class="example-even">
+<PRE>
+carrots = {5,8}
+
+num_boxes = 2
+
+amount = 4
+
+Returns: 0
+</PRE>
+<P>
+After she chooses three carrots from box 1, both boxes contain 5
+	    carrots. She will choose the 4th carrot from the box with
+	    the lowest index.
+<P>
+<li class="example-odd">
+<PRE>
+carrots = {4,9,5}
+
+num_boxes = 3
+
+amount = 18
+
+Returns: 2
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+carrots = {13, 75, 24, 55}
+
+num_boxes = 4
+
+amount = 140
+
+Returns: 0
+</PRE>
+<P>
+<li class="example-odd">
+<PRE>
+carrots = {14,36,52,86,27,97,3,67}
+
+num_boxes = 8
+
+amount = 300
+
+Returns: 4
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. &copy;2010, TopCoder, Inc. All rights reserved.
+</div>
+
+</body>
+</html>

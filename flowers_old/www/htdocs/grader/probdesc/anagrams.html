@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Anagrams</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Anagrams</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<xmp>
+   Vector<string> anagrams(Vector<string> phrases) {
+      // fill in code here
+   }
+</xmp>
+</div>
+<h2>Problem Statement</h2>
+
+Two phrases are anagrams if they are permutations of each other,
+ignoring spaces and capitalization. For example, "Aaagmnrs" is an
+anagram of "anagrams", and "TopCoder" is an anagram of "Drop
+Cote". Given a <code>Vector&lt;string&gt; phrases</code>, remove each phrase that is
+an anagram of an earlier phrase, and return the remaining phrases in
+their original order.
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<li> <code>phrases</code> contains between 2 and 50 elements, inclusive.
+<P>
+<li> Each element of <code>phrases</code> 
+contains between 1 and 50 characters,
+inclusive.
+<P>
+<li>   Each element of <code>phrases</code>
+contains letters ('a'-'z' and 'A'-'Z') and
+spaces (' ') only.
+<P>
+<li>Each element of <code>phrases</code> contains at least one letter.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+{ "Aaagmnrs", "TopCoder", "anagrams", "Drop Cote" }
+
+Returns: { "Aaagmnrs",  "TopCoder" }
+
+</PRE>
+The example above.
+<P>
+
+<li class="example-even">
+<PRE>
+
+{ "SnapDragon vs tomek", "savants groped monk", "Adam vents prongs ok" }
+
+Returns: { "SnapDragon vs tomek" }
+
+</PRE>
+<P>
+<li class="example-odd">
+<PRE>
+
+{ "Radar ghost jilts Kim", "patched hers first",
+  "DEPTH FIRST SEARCH", "DIJKSTRAS ALGORITHM" }
+
+Returns: { "Radar ghost jilts Kim",  "patched hers first" }
+
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2004, TopCoder, Inc. All rights reserved.
+
+</div>
+
+  </body>
+</html>

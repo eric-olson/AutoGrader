@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: LinkedCycles</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: LinkedCycles</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    // this class is provided for you - do not copy into your code
+    class node {
+    public:
+        node* next;    
+    };
+    
+    // write this function
+    int cycle_length(node* head) {
+        // fill in this method (and others you can write)
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+Linked Lists are typically composed of node objects chained together via node pointers.
+Each node has a next pointer which points to the next node in the chain.  Since nodes
+are almost always allocated on the heap, it is important to clean up nodes using <code>delete</code>
+when done with them.  This is typically accomplished by finding the last node in the linked list,
+deleting it, and working backwards.  The last node is typically identified by having a <code>NULL</code>
+next pointer.
+<p>
+However, a problem arises if the linked list has become corrupted in some way.  One situation that
+can cause trouble is if a cycle has been produced in the linked list.  A cycle occurs when some node
+in the linked list links back to a previous node in the linked list.  In this case, detecting the
+last node by looking for a <code>NULL</code> next pointer is impossible.  An attempt to do so will
+result in an infinite loop, running around and around the loop (or cycle) in the linked  list.
+<p>
+In this lab,  you will detect cycles in linked lists and find out their length.  The length of a cycle
+is defined as the number of nodes participating in the cycle.  The smallest cycle is one where
+a node points to itself (thus having a length of 1).
+<p>
+Create a function <code>cycle_length</code>, which takes in a pointer to the head of the linked list,
+and, if there is a cycle in the linked list, returns the length of the cycle.  If there is no cycle,
+your function should return -1.
+
+</div> 
+<P>
+<h3>Notes and Constraints</h3>
+
+<ul>
+<LI>The linked list starting at <code>head</code> contains between 1 and 25 nodes, inclusive.
+</ul>
+
+
+<h3>Examples</h3>
+Note that the representation of linked lists used below is strictly notional; there is no actual
+integer assigned to nodes in the linked list.  The nodes are numbered for convenience in showing
+where cycles exist; for instance, the first node is numbered as 0, so if a node points to 0, this
+represents a link back to the head node.
+<ol>
+<li class="example-odd">
+<PRE>
+0->1->2->3->NULL
+
+return -1
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+0->1->2->3->0
+
+return 4
+</PRE>
+
+<li class="example-odd">
+<PRE>
+0->1->2->3->4->5->6->7->8->9->4
+
+return 6
+</PRE>
+
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+  </body>
+</html>

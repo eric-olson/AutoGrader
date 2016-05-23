@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: Continued Fractions</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: Continued Fractions</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Function</h3>
+<pre>
+     string cfrac(int num, int den) {
+          // fill in code here
+     }
+</pre>
+</div>
+<h2>Problem Statement</h2> 
+<p>
+A continued fraction is an iterative, recursive expression of a number as the sum of an 
+integer and the reciprocal of a second number, which is itself expressed as a continued
+fraction.  In other words, a continued fraction looks like:</p>
+
+<img src="cfrac1.png"/>
+
+<p>where x is the number being represented, and the integers a<sub>0</sub>, a<sub>1</sub>, etc.
+are called the <i>coefficients</i> of the continued fraction.  For example:</p>
+
+<img src="cfrac2.png"/>
+
+<p>While there are many notations for continued fractions, one of the more compact
+notations simply lists the coefficients in square brackets; the first two coefficients
+(if more than one) are separated by a semicolon, while the remaining coefficients
+are separated by commas.  For example, the continued fraction above for 37/11 would
+be written simply as [3;2,1,3].  Note that integers have no fractional part; thus
+the continued fraction representation of 42 is [42].</p>
+
+<p>Continued fractions have some interesting and useful properties, such as the fact that
+a <i>rational number</i> will always have a <i>finite</i> continued fraction representation
+(contrast this with the decimal representation of rational numbers; for instance, 1/3 in decimal form has an infinite length).  For an irrational real number, continued fractions have an infinite number of terms.  You can read much more about continued fractions in the
+<a href="https://en.wikipedia.org/wiki/Continued_fraction">Wikipedia article</a>.</p>
+
+<p>For this lab, you are given the numerator and denominator of a rational number
+and asked to return (as a <code>string</code>) the continued fraction representation of
+the number.  The algorithm for converting a rational number to a continued fraction is
+based on Euclid's algorithm for greatest common denominator, and is really quite straightforward; you start by finding the integer quotient resulting from dividing 
+the numerator by the denominator.  This is your first coefficient.  The remainder is
+necessarily a rational number less than 1 - so you simply need to take its reciprocal
+and repeat the steps above to extract the next coefficient.  As soon as the remainder
+is zero, you're done!</p>
+
+<p>Taking 37/11 as an example, we can write 37/11 as 3 + 4/11.  So 3 is our first
+coefficient, as expected.  The remainder is 4/11, whose reciprocal is 11/4.  Now
+write the reciprocal as a continued fraction to obtain the remaining coefficients:
+</p>
+<ul>
+<li>11/4 = 2 + 3/4, so 2 is the next coefficient</li>
+<li>4/3 = 1 + 1/3, so 1 is the next coefficient</li>
+<li>3/1 = 3 + 0, so 3 is the last coefficient</li>
+</ul>
+
+</p>
+ 
+</div> 
+<P>
+<h3>Constraints</h3>
+
+The inputs represent a non-negative rational number, given as the numerator
+and denominator.
+<ul>
+<li> The input <code>num</code> will be a non-negative integer.</li>
+<li> The input <code>den</code> will be a positive integer.</li>
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+1 1
+
+Returns: "[1]"
+
+</PRE>
+
+<P>
+<li class="example-even">
+<PRE>
+
+1 3
+
+Returns: "[0;3]"
+
+</PRE>
+
+<P>
+<li class="example-odd">
+<PRE>
+117 10
+
+ Returns: "[11;1,2,3]"
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+
+17 42
+
+ Returns: "[0;2,2,8]"
+ 
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+<a rel="license"
+	  href="http://creativecommons.org/licenses/by-sa/3.0/"><img
+	    alt="Creative Commons License" style="border-width:0"
+	    src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png"
+	    /></a><br />This work 
+is copyright &copy; Christopher Painter-Wakefield and
+is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported License</a>.
+</div>
+
+  </body>
+</html>

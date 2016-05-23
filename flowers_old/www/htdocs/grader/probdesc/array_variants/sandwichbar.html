@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: SandwichBar Search</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/>
+  </head>
+
+  <body>
+    <h1>Lab: SandwichBar Search</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+    int which_order(string ingredients[], size_t icount, 
+                    string orders[], size_t ocount){
+       // fill in code here
+    }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+
+It's time to get something to eat and I've come across a sandwich
+bar. Like most people, I prefer certain types of sandwiches. In fact, I
+keep a list of the types of sandwiches I like.
+<P>
+The sandwich bar has certain ingredients available. I will list the
+types of sandwiches I like in order of preference and buy the first
+sandwich the bar can make for me. In order for the bar to make a
+sandwich for me, it must include all of the ingredients I desire.
+<P>
+Given a <code>string ingredients[]</code>, a list of ingredients the
+sandwich bar can use, and a <code>string orders[]</code>, the types of
+sandwiches I like, in order of preference (most preferred first), return
+the 0-based index of the sandwich I will buy. Each element of
+<code>orders</code> represents one type of sandwich I like as a
+space-separated list of ingredients in the sandwich. If the bar can make
+no sandwiches I like, return -1.
+<P> 
+There are <code>icount</code> entries in <code>ingredients</code> and 
+<code>ocount</code> entries in <code>orders</code>.
+<p>
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<li>	<code>ingredients</code>
+ will contain between 1 and 50 elements, inclusive (1 &le; <code>icount</code> &le; 50).
+<P><li>	Each element of <code>ingredients</code> 
+will contain between 1 and 50 lowercase letters ('a' - 'z'), inclusive.
+<P><li> <code>orders</code> will contain between 1 and 50 elements, inclusive (1 &le; <code>ocount</code> &le; 50).
+<P><li> Each element of <code>orders</code> will 
+contain between 1 and 50 lowercase letters ('a' - 'z') and spaces, inclusive.
+
+<P><li> Each element of <code>orders</code> will represent a list of
+desired ingredients separated by single spaces, with no leading or
+trailing spaces.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+{ "ham", "cheese", "mustard" }
+
+{ "ham cheese" }
+
+Returns: 0
+
+</PRE>
+
+I only like plain ham and cheese sandwiches, and since both ham and cheese are available, I'll take that.
+
+<P>
+<li class="example-even">
+<PRE>
+
+
+{ "cheese", "mustard", "lettuce" }
+
+{ "cheese ham", "cheese mustard lettuce", "ketchup", "beer" }
+
+Returns: 1
+
+</pre>
+They've run out of ham, but I'll consider other options now.
+<P>
+<li class="example-odd">
+<PRE>
+
+{ "cheese", "cheese", "cheese", "tomato" }
+
+{ "ham ham ham", "water", "pork", "bread", "cheese tomato cheese", "beef" }
+
+Returns: 4
+
+</PRE>
+Ignore any duplicate elements in the lists.
+<P>
+<li class="example-even">
+<PRE>
+
+{ "foo", "bar", "baz", "gazonk", "quux", "bat", "xyzzy",
+  "shme", "hukarz", "grault", "waldo", "bleh" }
+
+{ "kalatehas", "spam eggs", "needle haystack", "bleh blarg", "plugh", 
+  "the best sandwich in the universe" }
+
+Returns: -1
+
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2005, TopCoder, Inc. All rights reserved.
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="5" failures="3" disabled="0" errors="0" timestamp="2014-01-05T15:36:34" time="0.001" name="AllTests">
+  <testsuite name="inputs/SumdigitsTest" tests="5" failures="3" disabled="0" errors="0" time="0.001">
+    <testcase name="sum/0" value_param="0:0" status="run" time="0" classname="inputs/SumdigitsTest" />
+    <testcase name="sum/1" value_param="1:1" status="run" time="0" classname="inputs/SumdigitsTest" />
+    <testcase name="sum/2" value_param="123456:21" status="run" time="0" classname="inputs/SumdigitsTest">
+      <failure message="tests.cpp:12&#x0A;Value of: sum_digits(in)&#x0A;  Actual: 123456&#x0A;Expected: out&#x0A;Which is: 21" type=""><![CDATA[tests.cpp:12
+Value of: sum_digits(in)
+  Actual: 123456
+Expected: out
+Which is: 21]]></failure>
+    </testcase>
+    <testcase name="sum/3" value_param="1010101:4" status="run" time="0.001" classname="inputs/SumdigitsTest">
+      <failure message="tests.cpp:12&#x0A;Value of: sum_digits(in)&#x0A;  Actual: 1010101&#x0A;Expected: out&#x0A;Which is: 4" type=""><![CDATA[tests.cpp:12
+Value of: sum_digits(in)
+  Actual: 1010101
+Expected: out
+Which is: 4]]></failure>
+    </testcase>
+    <testcase name="sum/4" value_param="734610928:40" status="run" time="0" classname="inputs/SumdigitsTest">
+      <failure message="tests.cpp:12&#x0A;Value of: sum_digits(in)&#x0A;  Actual: 734610928&#x0A;Expected: out&#x0A;Which is: 40" type=""><![CDATA[tests.cpp:12
+Value of: sum_digits(in)
+  Actual: 734610928
+Expected: out
+Which is: 40]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

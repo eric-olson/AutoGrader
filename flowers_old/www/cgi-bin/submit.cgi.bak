@@ -1,0 +1,166 @@
+#!/usr/bin/python3
+
+# Notes on chroot:
+# If you ever move to a new server, or update the python executable,
+# chances are things will stop working.  This is because chroot is not
+# allowed for most programs/users.  The fix is to go to /usr/bin and issue
+# the command:
+#	sudo setcap cap_sys_chroot+ep python3.4
+# changing python3.4 to whatever the appropriate executable is.
+#
+
+import cgi
+import subprocess
+import os
+import tempfile
+import shutil
+import multiprocessing
+from lxml import etree
+import re
+
+# global settings
+NAME="CSCI Grader"
+COMMONDIR   = '/home/grader/common'
+PROBLEMSDIR = '/home/grader/problems'
+TIMEOUT = 10.0
+
+# begin http response
+print("Content-Type: text/html")
+print()
+print("<html>")
+
+# before calling this function, ensure that proper head has been created
+# and that the body element has been opened
+def early_exit():
+    print("</body>")
+    print("</html>")
+    exit()
+
+# get problem and user submitted file
+form = cgi.FieldStorage()
+PROBLEM = form.getfirst("problem")
+if PROBLEM == None:
+    print("<head><title>", NAME, ": Script error!</title></head>")
+    print("<b>ERROR: No problem specified!</b>")
+    early_exit()
+
+PROBLEM = PROBLEM.lower()
+print("<head><title>")
+print(NAME, ": ", PROBLEM, " test results")
+print("</title></head>")
+print("<body>")
+print("<h1>")
+print(NAME, ": ", PROBLEM, " test results")
+print("</h1>")
+
+
+SOURCE = form.getfirst("source_file")
+if SOURCE == None or SOURCE == '':
+    printf("<b>ERROR: No source file uploaded!")
+    early_exit()
+
+#print("<br/><b>file uploaded:</b> " + str(len(SOURCE)) + " bytes")
+
+CWD = PROBLEMSDIR + '/' + PROBLEM
+
+# setup temp environment
+tmp = tempfile.TemporaryDirectory(dir='/tmp')
+TEMPDIR = tmp.name
+#print("<br/><b>temp directory:</b> " + TEMPDIR)
+
+try:
+    source_fd = open(TEMPDIR + '/solution.cpp', "w+b")
+    source_fd.write(SOURCE)
+    source_fd.close()
+except Exception as e:
+    print("<br/><b>ERROR:</b><br/><pre>")
+    print(e)
+    print("</pre>")
+    early_exit()
+
+shutil.copy(CWD + '/tests.cpp', TEMPDIR);
+shutil.copy(COMMONDIR + '/main.o', TEMPDIR);
+shutil.copy(COMMONDIR + '/sighandler.o', TEMPDIR);
+shutil.copy(COMMONDIR + '/assoc.h', TEMPDIR);
+
+os.chdir(TEMPDIR)
+
+# build tests
+CPPARGS = ['g++', '-g', '-rdynamic', '-o', 'tests', '-I.', '-std=c++11', '-pthread']
+CPPARGS = CPPARGS + ['tests.cpp', 'main.o', 'sighandler.o', '/usr/local/lib/gtest/libgtest.a']
+
+try:
+    compile_output = subprocess.check_output(CPPARGS, stderr=subprocess.STDOUT, universal_newlines=True)
+    if compile_output != '':
+        print("<h4>Compiler provided output:</h4>")
+        print(compile_output)
+    else:
+        print("<h4>Compile succeeded.</h4>")
+except subprocess.CalledProcessError as err:
+    print("<br/><b style='color:red'>You have compile errors:</b><br/><pre>")
+    print(err.output)
+    print("</pre>")
+    early_exit()
+
+# setup chroot environment
+for d in ['lib', 'lib64', 'usr']:
+    shutil.copytree(COMMONDIR + '/tmpenv/' + d, TEMPDIR + '/' + d)
+
+shutil.copy(COMMONDIR + '/gtest.xslt', TEMPDIR);
+
+# run tests in a separate process with chroot
+def runtests(dir):
+    os.chroot(dir)
+    printed_error = False 
+    exec_output = ""
+    try:
+        exec_output = subprocess.check_output(['./tests', '--gtest_output=xml'], stderr=subprocess.STDOUT, timeout=TIMEOUT, universal_newlines=True)
+    except subprocess.CalledProcessError as err:
+        exec_output = err.output
+    except subprocess.TimeoutExpired:
+        print('<p style="color:red"><b>Execution timed out: infinite loop?</b></p>')
+
+    print("<!--")
+    print(exec_output)
+    print("-->")
+    signal_error = ""
+    if "Received signal" in exec_output:
+        print("<p style='color:red'><b>There were errors executing the tests.</b></p>")
+        idx = exec_output.find("Received signal")
+        signal_error = exec_output[idx:]
+
+    if os.path.exists("test_detail.xml"):
+        xml = etree.parse("test_detail.xml")
+        xslt = etree.parse("gtest.xslt")
+        transform = etree.XSLT(xslt)
+        print(str(transform(xml)))
+        print()
+
+    if os.path.exists("backtrace.txt"):
+        print("<p><b>" + signal_error + "</b></p>")
+        btexpr = r"(.*)\((.*)\)\[(0x[0-9a-f]*)\]"
+        btf = open("backtrace.txt")
+        btlines = btf.readlines()
+        btf.close()
+        btcount = len(btlines)
+
+        for line in btlines:
+            btcount = btcount - 1
+            line = line.rstrip("\n")
+            result = re.search(btexpr, line)
+            if result:
+                exec_output = ""
+                arg = ['addr2line', '-f', '-C', '-s','-i', '-p', '-e', result.group(1), result.group(3)]
+                exec_output = subprocess.check_output(arg, universal_newlines=True).rstrip("\n")
+                if exec_output.find("??") == -1:
+                    print("(" + str(btcount) + ")", exec_output, "<br/>")
+                else:
+                    print("(" + str(btcount) + ")", line, "<br/>")
+            else:
+                print("(" + str(btcount) + ")", line, "<br/>")
+
+p = multiprocessing.Process(target = runtests, args=(TEMPDIR,))
+p.start()
+p.join()
+
+print("</body></html>")

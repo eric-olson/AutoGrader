@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: CustomerStatistics</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/> 
+  </head>
+
+  <body>
+    <h1>Lab: CustomerStatistics</h1>
+
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<xmp>
+   Vector<string> report_duplicates(Vector<string> names) {
+       // you write code here
+   }
+</xmp>
+</div>
+<h2>Problem Statement</h2>
+
+    
+You will be given  <code>Vector&lt;string&gt; names</code>, containing a list of
+customer names extracted from a database. Your task is to report the
+customers that occur more than once in this list, and the number of
+occurrences for each of the repeated customers.
+<P>
+Your function should return the report as a <code>Vector&lt;string&gt;</code>. Each element in this
+vector should be of the form "NAME OCCURS", where NAME is the name of
+one customer and OCCURS is the number of times his name occurs in
+<code>names</code>. Sort the result in alphabetical order by customer name.
+
+
+</div> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<P><LI> <code>names</code> contains between 1 and 50 elements, inclusive.
+<P><LI> Each element of <code>names</code> contains between 1 and 50 characters,
+inclusive.
+<P><LI> Each element of <code>names</code> contains uppercase letters ('A'-'Z')
+only.
+
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+names = {"JOHN", "BOB", "JOHN", "BILL", "STANLEY", "JOHN"}
+
+Returns: {"JOHN 3"}
+
+</PRE>
+The only repeated name is JOHN, and it occurs three times.
+<P>
+<li class="example-even">
+<PRE>
+names = {"YETI", "YETI", "YETI", "BIGFOOT", "BIGFOOT"}
+
+Returns: {"BIGFOOT 2", "YETI 3" }
+
+</PRE>
+Note the sorting order.
+<P>
+<li class="example-odd">
+<PRE>
+names = {"ANDREW", "BILL", "CINDY", "DOH", "ERGH", "FOO", "GOO", "HMPH"}
+
+Returns: {}
+
+</PRE>
+No repeated names this time.
+<P>
+<li class="example-even">
+<PRE>
+names = {"THEONLYCUSTOMER"}
+
+Returns: {}
+
+</PRE>
+Again, no repeats.
+<P>
+<li class="example-odd">
+<PRE>
+names = {"A", "B", "A", "C", "A", "B", "A", "D", "D", "D"}
+
+Returns: {"A 4", "B 2", "D 3"}
+
+</PRE>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. &copy;2010, TopCoder, Inc. All rights reserved.
+</div>
+
+</body>
+</html>
+

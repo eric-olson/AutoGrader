@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Lab: CirclesCountry</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/> 
+  </head>
+
+  <body>
+    <h1>Lab: CirclesCountry</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>
+   int least_borders(int x[], int y[], int r[], size_t n,
+                     int x1, int y1, int x2, int y2) {
+        // you write code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+
+Circles Country is a country that contains several circular-shaped
+districts. Some districts may be situated inside other districts, but
+their borders do not intersect or touch. Qatam is a resident of Circles
+Country. When he travels between two locations, he always tries to cross
+the fewest number of district borders as possible because crossing
+borders is usually a laborious task.
+<P>
+
+Imagine Circles Country as an infinite plane. You are given <code>int
+x[]</code> and <code>int y[]</code> and <code>int r[]</code>, where
+<code>(x[i],y[i])</code> are the coordinates of the i-th district's
+center and <code>r[i]</code> is its radius.  There are <code>n</code>
+circles altogether. Qatam is currently at point
+<code>(x1,y1)</code> and he needs to get to point
+<code>(x2,y2)</code>. Neither of these points lies on a district
+border. Return the minimal number of district borders he must cross to
+get to his destination.
+
+
+</div> 
+<P>
+
+<h3>Constraints</h3>
+
+<ul>
+<P><li> <code>n</code> will be between 1 and 50, inclusive.
+<P><LI>	<code>x</code>, <code>y</code> and <code>r</code> 
+will each contain <code>n</code> elements.
+<p><li>	Each element of <code>x</code> and <code>y</code> 
+will be between -1000 and 1000, inclusive.
+<P><li>	Each element of <code>r</code> will be between 1 and 1000, inclusive.
+<p><li>	<code>x1, y1, x2</code> and <code>y2</code> 
+will be between -1000 and 1000, inclusive.
+<P><li>	No two circumferences will have common points.
+<p><li>	The points <code>(x1,y1)</code> and <code>(x2,y2)</code> will not lie on any of the circumferences.
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+
+{0}
+
+{0}
+
+{2}
+
+1
+
+-5
+
+1
+
+5
+
+1
+
+Returns: 0
+</PRE>
+<img src="circles-case1.gif" alt="first-circles-example">
+<P>
+<li class="example-even">
+<PRE>
+
+{0,-6,6}
+
+{0,1,2}
+
+{2,2,2}
+
+3
+
+-5
+
+1
+
+5
+
+1
+
+Returns: 2
+
+</PRE>
+<img src="circles-case2.gif" alt="second-circles-example">
+<P>
+<li class="example-odd">
+<PRE>
+{1,-3,2,5,-4,12,12}
+
+{1,-1,2,5,5,1,1}
+
+{8,1,2,1,1,1,2}
+
+7
+
+-5
+
+1
+
+12
+
+1
+
+Returns: 3
+
+</PRE>
+<P>
+<img src="circles-case3.gif" alt="third-circles-example">
+<li class="example-even">
+<PRE>
+{-3,2,2,0,-4,12,12,12}
+
+{-1,2,3,1,5,1,1,1}
+
+{1,3,1,7,1,1,2,3}
+
+8
+
+2
+
+3
+
+13
+
+2
+
+Returns: 5
+
+</PRE>
+<img src="circles-case4.gif" alt="fourth-circles-example">
+<P>
+<li class="example-odd">
+<PRE>
+{-107,-38,140,148,-198,172,-179,148,176,153,-56,-187}
+
+{175,-115,23,-2,-49,-151,-52,42,0,68,109,-174}
+
+{135,42,70,39,89,39,43,150,10,120,16,8}
+
+12
+
+102
+
+16
+
+19
+
+-108
+
+Returns: 3
+
+</PRE>
+</ol>
+<P>
+
+<div class="copyright">
+
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2006, TopCoder, Inc. All rights reserved.
+
+</div>
+
+
+
+
+  </body>
+</html>

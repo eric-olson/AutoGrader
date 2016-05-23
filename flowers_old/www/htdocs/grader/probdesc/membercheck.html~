@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Lab: MemberCheck</title>
+    <link href="apt.css" rel="stylesheet" type="text/css" media="screen, print"/> 
+  </head>
+
+  <body>
+    <h1>Lab: MemberCheck</h1>
+
+<div class="container">
+<div class="allclass">
+<h3>Specification</h3>
+<pre>   
+   Vector&lt;string&gt; whos_dishonest(Vector&lt;string&gt; club1, 
+                                 Vector&lt;string&gt; club2, 
+                                 Vector&lt;string&gt; club3) {
+      // TODO: fill in code here
+   }
+</pre>
+</div>
+<h2>Problem Statement</h2>
+A health club chain allows its members to visit any of its many health
+    club locations an unlimited number of times per day. The only
+    constraining rule is, a customer can only visit one health club
+    location per day, even though he or she may return to that location
+    an unlimited number of times for the rest of that day.
+<P>
+Although the honor system has always worked quite well, the club wants
+    to run some tests to see how many people really follow the
+    rules. You are to write a program that takes the entrance log files
+    from three different clubs (all logging the same day) and return a
+    sorted list of the people who are not honest and went to more than
+    one health club location in the same day.
+<P>
+
+The log files are represented as <code>Vector&lt;string&gt;</code>'s
+where each element is the
+    member name of a customer who entered that day. For example, if a
+    customer showed up three times to one of the club locations that
+    day, the member's name would appear three times in the corresponding
+    vector&lt;string&gt;.
+</div> 
+<h3>Notes</h3>
+<UL>
+<LI> club1, club2, and club3 may contain a different number of elements.
+<P>
+<LI> The same member name can appear multiple times in a single log file.
+<LI> The elements of the returned <code>Vector&lt;string&gt;</code>
+should be distinct and sorted in lexicographic order (the order they would appear in a dictionary).
+<P>
+<LI> Assume that two people with the same name are in fact the same person.
+</UL> 
+<P>
+<h3>Constraints</h3>
+
+<ul>
+<LI> <code>club1</code>, <code>club2</code>, and <code>club3</code> each have between 1 and 50 elements,
+      inclusive.
+
+<p><LI> Each element of <code>club1</code>, <code>club2</code>, and <code>club3</code> contains between 1 and 50 characters, inclusive.
+<p><LI> Each element of <code>club1</code>, <code>club2</code>, and <code>club3</code> consists only of uppercase letters ('A'-'Z').
+</ul>
+
+
+<h3>Examples</h3>
+<ol>
+<li class="example-odd">
+<PRE>
+{"JOHN","JOHN","FRED","PEG"}
+{"PEG","GEORGE"}
+{"GEORGE","DAVID"}
+</PRE>
+
+Returns: <code>{ "GEORGE",  "PEG" }</code>
+<P>
+"PEG" went to club1 and club2, and "GEORGE" went to club2 and club3.
+
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+{"DOUG","DOUG","DOUG","DOUG","DOUG"}
+{"BOBBY","BOBBY"}
+{"JAMES"}
+</PRE>
+Returns: <code>{ }</code>
+<P>
+Here, no one went to more than one club location.
+<P>
+<li class="example-odd">
+<PRE>
+{"BOBBY"}
+{"BOB","BOBBY"}
+{"BOB"}
+</PRE>
+<p>
+Returns: <code>{ "BOB",  "BOBBY" }</code>
+<P>
+Note that "BOB" is sorted before "BOBBY"
+<P>
+<li class="example-even">
+<PRE>
+{"BOBBY","HUGH","LIZ","GEORGE"}
+{"ELIZABETH","WILL"}
+{"BOB","BOBBY","BOBBY","PAM","LIZ","BOBBY","BOBBY","WILL"}
+</PRE>
+<p>
+Returns: <code>{ "BOBBY",  "LIZ",  "WILL" }</code>
+<P>
+<li class="example-odd">
+<PRE>
+{"JAMES","HUGH","HUGH","GEORGE","ELIZABETH","ELIZABETH","HUGH",
+"DAVID","ROBERT","DAVID","BOB","BOBBY","PAM","JAMES","JAMES"}
+{"BOBBY","ROBERT","GEORGE","JAMES","PEG","JAMES","DAVID","JOHN","LIZ",
+"SANDRA","GEORGE","JOHN","GEORGE","ELIZABETH","LIZ","JAMES"}
+{"ROBERT","ROBERT","ROBERT","SANDRA","PAM","BOB","LIZ","GEORGE"}
+</PRE>
+<p>
+Returns: <code>{ "BOB","BOBBY","DAVID","ELIZABETH","GEORGE","JAMES","LIZ","PAM","ROBERT", "SANDRA" }</code>
+
+<P>
+<li class="example-even">
+<PRE>
+{"LIZ","WILL","JAMES"}
+{"JOHN","ROBERT","GEORGE","LIZ","PEG","HUGH","BOB","BOBBY","ROBERT","ELIZABETH","DAVID"}
+{"PAM","DAVID","SANDRA","GEORGE","JOHN","ROBERT","SANDRA","GEORGE"}
+</PRE>
+<p>
+Returns: <code>{ "DAVID",  "GEORGE",  "JOHN",  "LIZ",  "ROBERT" }</code>
+<P>
+<li class="example-odd">
+<PRE>
+{"PEG","ROBERT","PAM","JOHN","DAVID","JOHN","ROBERT",
+"GEORGE","HUGH","WILL","JAMES","JAMES","BOBBY","BOBBY","SANDRA"}
+
+{"SANDRA","BOB","PAM","JAMES","WILL","DAVID","BOBBY","GEORGE",
+"WILL","LIZ","BOBBY","ROBERT","WILL","BOB","BOBBY","ELIZABETH","HUGH"}
+
+{"WILL","PEG","ELIZABETH","DAVID","HUGH","BOBBY","JOHN","SANDRA","ELIZABETH",
+"ELIZABETH","SANDRA","GEORGE","PAM","ELIZABETH","BOBBY","DAVID","PAM"}
+</PRE>
+<P>
+Returns: 
+<PRE>
+{ "BOBBY",
+ "DAVID",
+ "ELIZABETH",
+ "GEORGE",
+ "HUGH",
+ "JAMES",
+ "JOHN",
+ "PAM",
+ "PEG",
+ "ROBERT",
+ "SANDRA",
+ "WILL" }
+</PRE>
+<P>
+<li class="example-even">
+<PRE>
+{"AHHOZY","AHHAPLL","ASNV"}
+
+{"AHDLTOE","AHUKPJ","AHDENCTPP","AHDENCJ","AHDLNZC","AHDLTOGG","AHHAPMBG",
+"ALE","AHBHA","AHUKP","AHDQMILLP","AHDENEDY","AHDENEE","AHHOHVCX","AHISK",
+"AHW","AQDB","AHUP","AQDBNPU","AGWZUV","AHHOSUW","AHXS","AHDENCP","AHDQM",
+"AHDLTURV","AHBHVV","AHDQMILL","AHDQMD","AHH","AHDLTU","AHISFNO","AHURF",
+"AH","AHHAPNQ","AQPL","AHDXL","AHDLTUGX","AHDLT","AHUKRC","AHDLTUGX",
+"AQDTXYX","AGWZS"}
+
+{"AHHAPMFF","AHURA","AHHOZ","AHISKH","AHUPR","AHHAPM","AHUKRHIN","AHHAP",
+"AHDLTMO","AHDLTUJ","AHDQY","AHUK","AHDENEDY","AHWK","AHHOZGJJ","AHXS",
+"AHDLTUREL","AHHOZQNL","AHHOSUWOS"}
+</PRE>
+<P>
+Returns: <code>{ "AHDENEDY",  "AHXS" }</code>
+</ol>
+<P>
+<div class="copyright">
+This problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2002, TopCoder, Inc. All rights reserved.
+
+</div>
