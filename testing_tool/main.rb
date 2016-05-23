@@ -31,6 +31,6 @@ end
 Dir.mktmpdir('user') { |dir|
     prepareTestEnvironment(dir)
     FileUtils.chdir(dir)
-    # buildTests(dir)
+    buildTests(dir)
     runTests(dir)
 }

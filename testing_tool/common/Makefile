@@ -10,3 +10,5 @@ main.o: main.cpp
 sighandler.o: sighandler.c
 	$(CC) $(CFLAGS) sighandler.c
 
+clean:
+	rm *.o
