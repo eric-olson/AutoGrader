@@ -13,5 +13,5 @@
 
 # Ignore all logfiles and tempfiles.
 /server/log/*
-!/log/.keep
+!/server/log/.keep
 /server/tmp
