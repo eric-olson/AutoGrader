@@ -7,12 +7,6 @@ require 'fileutils'
 
 
 def prepareTestEnvironment(dir)
-    # shutil.copy(CWD + '/tests.cpp', TEMPDIR);
-    # shutil.copy(COMMONDIR + '/main.o', TEMPDIR);
-    # shutil.copy(COMMONDIR + '/sighandler.o', TEMPDIR);
-    # shutil.copy(COMMONDIR + '/assoc.h', TEMPDIR);
-    # shutil.copy(COMMONDIR + '/newtracker.cpp', TEMPDIR);
-
     common_dir = 'common'
     assignment_path = 'problems/anonymous/'
     source_file_path = 'anonymous_solution.cpp'
@@ -26,6 +20,10 @@ def prepareTestEnvironment(dir)
     FileUtils.cp_r(File.join(common_dir, 'tmpenv'), dir)
 end
 
+def buildTests(dir)
+    puts `g++ -g -rdynamic -o tests -I. -I/usr/local/include/StanfordCPPLib -std=c++11, -pthread tests.cpp main.o sighandler.o /usr/local/lib/gtest/libgtest.a /usr/local/lib/StanfordCPPLib/libStanfordCPPLib.a`
+end
+
 def runTests(dir)
 
 end
@@ -33,7 +31,6 @@ end
 Dir.mktmpdir('user') { |dir|
     prepareTestEnvironment(dir)
     FileUtils.chdir(dir)
-    puts `pwd`
-    puts `ls -lR`
+    buildTests(dir)
     runTests(dir)
 }
