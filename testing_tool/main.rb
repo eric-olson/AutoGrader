@@ -48,7 +48,7 @@ end
 
 def showHelp
     puts "Intended use:"
-    puts "    ./test_tool.rb <assignment_path> <source_file_path>"
+    puts "    ruby test_tool.rb <assignment_path> <source_file_path>"
 end
 
 if (ARGV.length != 2)
@@ -59,8 +59,8 @@ end
 assignment_path = ARGV[0]
 source_file_path = ARGV[1]
 
-Dir.mktmpdir('user') { |dir|
-    test_environment = TestEnvironment.new(dir, assignment_path, source_file_path)
+Dir.mktmpdir('user') { |tempdir|
+    test_environment = TestEnvironment.new(tempdir, assignment_path, source_file_path)
     test_environment.run()
     puts test_environment.getTestDetailXML()
 }
