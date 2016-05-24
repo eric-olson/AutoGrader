@@ -16,6 +16,20 @@ class TestEnvironment
         buildTests()
     end
 
+    def getTestDetailXML
+        file = File.open("test_detail.xml")
+        puts file.read
+    end
+
+    def run
+        Process.fork {
+            enterChrootJail()
+            executeTests()
+        }
+        Process.wait()
+    end
+    
+private
     def prepareTestEnvironment
         FileUtils.cp(source_path, File.join(temp_dir, 'solution.cpp'))
         FileUtils.cp(File.join(assignment_path, 'tests.cpp'), temp_dir)
@@ -26,34 +40,21 @@ class TestEnvironment
         FileUtils.cp_r(File.join(common_dir, 'tmpenv', '.'), temp_dir)
     end
 
-    def enterTempDir
-        FileUtils.chdir(temp_dir)
-    end
-
     def buildTests
         # Maybe replace with a makefile to make life easier??
         `g++ -g -rdynamic -o tests -I. -I/usr/local/include/StanfordCPPLib -std=c++11 -pthread tests.cpp main.o sighandler.o /usr/local/lib/gtest/libgtest.a /usr/local/lib/StanfordCPPLib/libStanfordCPPLib.a`
-    end
-
-    def run
-        Process.fork {
-            enterChrootJail()
-            executeTests()
-        }
-        Process.wait()
     end
 
     def enterChrootJail
         Dir.chroot(temp_dir)
     end
 
-    def executeTests
-        `./tests --gtest_output=xml`
+    def enterTempDir
+        FileUtils.chdir(temp_dir)
     end
 
-    def getTestDetailXML
-        file = File.open("test_detail.xml")
-        puts file.read
+    def executeTests
+        `./tests --gtest_output=xml`
     end
 
 end
