@@ -19,14 +19,12 @@ def prepareTestEnvironment(dir)
 end
 
 def buildTests(dir)
-    puts "Building Tests..."
-    puts `g++ -g -rdynamic -o tests -I. -I/usr/local/include/StanfordCPPLib -std=c++11 -pthread tests.cpp main.o sighandler.o /usr/local/lib/gtest/libgtest.a /usr/local/lib/StanfordCPPLib/libStanfordCPPLib.a`
+    `g++ -g -rdynamic -o tests -I. -I/usr/local/include/StanfordCPPLib -std=c++11 -pthread tests.cpp main.o sighandler.o /usr/local/lib/gtest/libgtest.a /usr/local/lib/StanfordCPPLib/libStanfordCPPLib.a`
 end
 
 def runTests(dir)
     # Need to chroot here
-    puts "Running Tests..."
-    puts `./tests --gtest_output=xml`
+    `./tests --gtest_output=xml`
 end
 
 Dir.mktmpdir('user') { |dir|
@@ -34,4 +32,5 @@ Dir.mktmpdir('user') { |dir|
     FileUtils.chdir(dir)
     buildTests(dir)
     runTests(dir)
+    puts `cat test_detail.xml`
 }
