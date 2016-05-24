@@ -4,8 +4,6 @@ require 'fileutils'
 # assignment_path = ARGV[0]
 # source_file_path = ARGV[1]
 
-
-
 def prepareTestEnvironment(dir)
     common_dir = 'common'
     assignment_path = 'problems/anonymous/'
@@ -26,7 +24,9 @@ def buildTests(dir)
 end
 
 def runTests(dir)
-
+    # Need to chroot here
+    puts "Running Tests..."
+    puts `./tests --gtest_output=xml`
 end
 
 Dir.mktmpdir('user') { |dir|
