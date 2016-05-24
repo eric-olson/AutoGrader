@@ -23,7 +23,7 @@ class TestEnvironment
         FileUtils.cp(File.join(common_dir, 'sighandler.o'), temp_dir)
         FileUtils.cp(File.join(common_dir, 'assoc.h'), temp_dir)
         FileUtils.cp(File.join(common_dir, 'newtracker.cpp'), temp_dir)
-        FileUtils.cp_r(File.join(common_dir, 'tmpenv'), temp_dir)
+        FileUtils.cp_r(File.join(common_dir, 'tmpenv', '.'), temp_dir)
     end
 
     def enterTempDir
@@ -36,12 +36,24 @@ class TestEnvironment
     end
 
     def run
-        # Need to chroot here
+        Process.fork {
+            enterChrootJail()
+            executeTests()
+        }
+        Process.wait()
+    end
+
+    def enterChrootJail
+        Dir.chroot(temp_dir)
+    end
+
+    def executeTests
         `./tests --gtest_output=xml`
     end
 
     def getTestDetailXML
-        `cat test_detail.xml`
+        file = File.open("test_detail.xml")
+        puts file.read
     end
 
 end
@@ -59,8 +71,10 @@ end
 assignment_path = ARGV[0]
 source_file_path = ARGV[1]
 
-Dir.mktmpdir('user') { |tempdir|
-    test_environment = TestEnvironment.new(tempdir, assignment_path, source_file_path)
-    test_environment.run()
-    puts test_environment.getTestDetailXML()
-}
+temp_dir = Dir.mktmpdir('user')
+
+test_environment = TestEnvironment.new(temp_dir, assignment_path, source_file_path)
+test_environment.run()
+puts test_environment.getTestDetailXML()
+
+FileUtils.remove_entry(temp_dir)
