@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   get 'static_pages/ProblemPage'
 
+  # For the button_to call to test code
+  post 'static_pages/testCode'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
