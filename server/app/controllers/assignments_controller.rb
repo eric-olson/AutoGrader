@@ -76,11 +76,9 @@ class AssignmentsController < ApplicationController
 
       problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
 
-      old_dir = FileUtils.pwd
-
-    #   FileUtils.chdir(AssignmentsHelper.testing_tool_path)
       xml_result = `ruby #{AssignmentsHelper.test_tool_executable} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
-    #   FileUtils.chdir(old_dir)
+
+      FileUtils.remove_entry(source_filepath)
 
       render text: xml_result
   end
