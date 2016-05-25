@@ -114,7 +114,6 @@ Write the function how_many which takes as parameters a Vector&ltstring&gt headl
             var editor = ace.edit("editor");
 
             $( document ).ready(function() {
-                var editor = ace.edit("editor");
                 editor.setTheme("ace/theme/xcode");
                 editor.getSession().setMode("ace/mode/c_cpp");
             });
@@ -125,7 +124,7 @@ Write the function how_many which takes as parameters a Vector&ltstring&gt headl
                     url: 'testCode',
                     data: {editor_text:editor.getValue()},
 		    success: function(response) {
-			$('#test_output').html(response);        	    
+			$('#test_output').html(response);
 		    }
                 });
                 return false;
