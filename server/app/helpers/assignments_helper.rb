@@ -4,6 +4,7 @@ module AssignmentsHelper
   @problems_relative_path = "problems"
   @common_relative_path = "common"
   @users_relative_path = "users"
+  @test_tool_executable_name = "test_tool.rb"
 
   def self.testing_tool_path
       File.join(@home_path, @testing_tool_relative_path)
@@ -19,6 +20,10 @@ module AssignmentsHelper
 
   def self.common_path
       File.join(@home_path, @common_relative_path)
+  end
+
+  def self.test_tool_executable
+      File.join(testing_tool_path, @test_tool_executable_name)
   end
 
 end
