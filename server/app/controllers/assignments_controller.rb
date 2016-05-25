@@ -12,6 +12,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
+      spec_file = File.open(@assignments.spec_path)
+      @spec_file_contents = spec_file.read
   end
 
   # GET /assignments/new
