@@ -84,7 +84,7 @@ class AssignmentsController < ApplicationController
       xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
       FileUtils.chdir(old_dir)
 
-      render text: ""
+      render text: xml_result
   end
 
   private
