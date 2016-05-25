@@ -79,7 +79,7 @@ class AssignmentsController < ApplicationController
 
       problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
 
-      xml_result = `ruby #{AssignmentsHelper.test_tool_executable} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+      xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
       source_file.unlink
 
