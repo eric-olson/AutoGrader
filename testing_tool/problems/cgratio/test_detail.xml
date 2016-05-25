@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="8" failures="7" disabled="0" errors="0" timestamp="2014-01-09T23:57:17" time="0.002" name="AllTests">
+  <testsuite name="inputs/CSCITest" tests="8" failures="7" disabled="0" errors="0" time="0.002">
+    <testcase name="sum/0" value_param="&quot;cgcgcgcg&quot;:1" status="run" time="0.001" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.5, which exceeds 1e-6, where&#x0A;out evaluates to 1,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.5, which exceeds 1e-6, where
+out evaluates to 1,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/1" value_param="&quot;aaaaaaaa&quot;:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.5, which exceeds 1e-6, where&#x0A;out evaluates to 0,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.5, which exceeds 1e-6, where
+out evaluates to 0,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/2" value_param="&quot;cgaacgaa&quot;:0.5" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/3" value_param="&quot;ccccccccccccccccca&quot;:0.944444" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.44444444444444442, which exceeds 1e-6, where&#x0A;out evaluates to 0.94444444444444442,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.44444444444444442, which exceeds 1e-6, where
+out evaluates to 0.94444444444444442,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/4" value_param="&quot;cccccccccccccccccttttt&quot;:0.772727" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.27272727272727271, which exceeds 1e-6, where&#x0A;out evaluates to 0.77272727272727271,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.27272727272727271, which exceeds 1e-6, where
+out evaluates to 0.77272727272727271,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/5" value_param="&quot;cttttttttttttttttttttt&quot;:0.0454545" status="run" time="0.001" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.45454545454545453, which exceeds 1e-6, where&#x0A;out evaluates to 0.045454545454545456,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.45454545454545453, which exceeds 1e-6, where
+out evaluates to 0.045454545454545456,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/6" value_param="&quot;ctttttttttttttttttttttttttttttttttttttttttttttttt&quot;:0.0204082" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.47959183673469385, which exceeds 1e-6, where&#x0A;out evaluates to 0.020408163265306121,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.47959183673469385, which exceeds 1e-6, where
+out evaluates to 0.020408163265306121,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+    <testcase name="sum/7" value_param="&quot;cgcgcgcgtttttttttttttttttttttttttttttttttttttttttt&quot;:0.16" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:17&#x0A;The difference between out and ratio(in) is 0.33999999999999997, which exceeds 1e-6, where&#x0A;out evaluates to 0.16,&#x0A;ratio(in) evaluates to 0.5, and&#x0A;1e-6 evaluates to 9.9999999999999995e-07." type=""><![CDATA[tests.cpp:17
+The difference between out and ratio(in) is 0.33999999999999997, which exceeds 1e-6, where
+out evaluates to 0.16,
+ratio(in) evaluates to 0.5, and
+1e-6 evaluates to 9.9999999999999995e-07.]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
