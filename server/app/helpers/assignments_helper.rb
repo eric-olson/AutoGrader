@@ -1,5 +1,5 @@
 module AssignmentsHelper
-  @home_path = "home/crice/AutoGrader"
+  @home_path = "/home/crice/AutoGrader"
   @testing_tool_relative_path = "testing_tool"
   @problems_relative_path = "problems"
   @users_relative_path = "users"
