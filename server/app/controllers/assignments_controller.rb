@@ -68,7 +68,6 @@ class AssignmentsController < ApplicationController
 
   def testCode
       editor_text = params[:editor_text]
-      puts params
       # Create tempfile and write the editor text to it
       source_file = Tempfile.new("solution")
       source_filepath = source_file.path
@@ -76,13 +75,12 @@ class AssignmentsController < ApplicationController
       source_file.close
 
       problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
-      puts problem_path
-      puts AssignmentsHelper.testing_tool_path
+
       old_dir = FileUtils.pwd
 
-      FileUtils.chdir(AssignmentsHelper.testing_tool_path)
+    #   FileUtils.chdir(AssignmentsHelper.testing_tool_path)
       xml_result = `ruby #{AssignmentsHelper.test_tool_executable} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
-      FileUtils.chdir(old_dir)
+    #   FileUtils.chdir(old_dir)
 
       render text: xml_result
   end
