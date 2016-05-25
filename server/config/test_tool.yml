@@ -1,0 +1,6 @@
+home_path: "/Users/chris/Code/AutoGrader"
+testing_tool_script: "test_tool.rb"
+testing_tool_relative_path: "testing_tool"
+problems_relative_path: "problems"
+users_relative_path: "users"
+common_relative_path: "common"
