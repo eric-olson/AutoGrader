@@ -81,7 +81,7 @@ class AssignmentsController < ApplicationController
       old_dir = FileUtils.pwd
 
       FileUtils.chdir(AssignmentsHelper.testing_tool_path)
-      xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath}`
+      xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
       FileUtils.chdir(old_dir)
 
       render text: ""

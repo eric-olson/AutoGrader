@@ -4,12 +4,12 @@ require 'fileutils'
 class TestEnvironment
     attr_reader :temp_dir, :assignment_path, :source_path, :common_dir
 
-    def initialize(temp_dir, assignment_path, source_path)
+    def initialize(temp_dir, assignment_path, source_path, common_dir)
         @temp_dir = temp_dir
         @assignment_path = assignment_path
         @source_path = source_path
         # Do this in config file instead
-        @common_dir = 'common'
+        @common_dir = common_dir
 
         prepareTestEnvironment()
         enterTempDir()
@@ -28,7 +28,7 @@ class TestEnvironment
         }
         Process.wait()
     end
-    
+
 private
     def prepareTestEnvironment
         FileUtils.cp(source_path, File.join(temp_dir, 'solution.cpp'))
@@ -61,7 +61,7 @@ end
 
 def showHelp
     puts "Intended use:"
-    puts "    ruby test_tool.rb <assignment_path> <source_file_path>"
+    puts "    ruby test_tool.rb <assignment_path> <source_file_path> <common_file_path>"
 end
 
 if (ARGV.length != 2)
@@ -71,10 +71,11 @@ end
 
 assignment_path = ARGV[0]
 source_file_path = ARGV[1]
+common_file_path = ARGV[2]
 
 temp_dir = Dir.mktmpdir('user')
 
-test_environment = TestEnvironment.new(temp_dir, assignment_path, source_file_path)
+test_environment = TestEnvironment.new(temp_dir, assignment_path, source_file_path, common_file_path)
 test_environment.run()
 puts test_environment.getTestDetailXML()
 
