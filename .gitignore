@@ -17,4 +17,4 @@
 /server/tmp
 
 # Ignore the test_tool config YAML
-server/config/test_tool.yml 
+/server/config/test_tool.yml 
