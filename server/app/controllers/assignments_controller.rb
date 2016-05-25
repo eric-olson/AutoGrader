@@ -80,7 +80,7 @@ class AssignmentsController < ApplicationController
 
       xml_result = `ruby #{AssignmentsHelper.test_tool_executable} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
-      FileUtils.remove_entry(source_filepath)
+      source_file.unlink
 
       render text: xml_result
   end
