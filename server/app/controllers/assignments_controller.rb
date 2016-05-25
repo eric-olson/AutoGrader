@@ -12,7 +12,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-      spec_file = File.open(@assignments.spec_path)
+      spec_path_absolute = File.join(AssignmentsHelper.problems_path, @assignment.spec_path, "spec.cpp")
+      spec_file = File.open(spec_path_absolute)
       @spec_file_contents = spec_file.read
   end
 
