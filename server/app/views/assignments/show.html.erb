@@ -12,7 +12,7 @@
     				<button type="button" class="btn btn-default">Restart</button>
   				</div>
 
-  				<div class="btn-group" role="group">
+  				<div class="btn-group" role="group" id="test_btn">
     				<button type="button" class="btn btn-default">Test</button>
   				</div>
 
@@ -53,10 +53,22 @@
 </div>
 
         <script>
+            var editor = ace.edit("editor");
             $( document ).ready(function() {
-                var editor = ace.edit("editor");
                 editor.setTheme("ace/theme/monokai");
                 editor.getSession().setMode("ace/mode/c_cpp");
+            });
+
+            $('#test_btn').on('click', function() {
+                $.ajax({
+                    type: 'post',
+                    url: 'testCode',
+                    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+        		    success: function(response) {
+            			$('#test_output').html(response);
+            		}
+                });
+                return false;
             });
         </script>
       </div>
@@ -66,5 +78,7 @@
       </div>
 
     </div>
+    <h2>XML Test Report</h2>
+    <textarea id="test_output" class="panel panel-default" style="width: 100%;height:200px;font-family: monospace;">Press 'Test' to run the unit tests. Results will display here.</textarea>
   </div>
 </div>

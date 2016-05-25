@@ -1,5 +1,5 @@
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -62,6 +62,27 @@ class AssignmentsController < ApplicationController
       format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def testCode
+      editor_text = params[:editor_text]
+      puts params
+      # Create tempfile and write the editor text to it
+      source_file = Tempfile.new("solution")
+      source_filepath = source_file.path
+      source_file.write(editor_text)
+      source_file.close
+
+      problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
+      puts problem_path
+      puts AssignmentsHelper.testing_tool_path
+      old_dir = FileUtils.pwd
+
+      FileUtils.chdir(AssignmentsHelper.testing_tool_path)
+      xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath}`
+      FileUtils.chdir(old_dir)
+
+      render text: ""
   end
 
   private

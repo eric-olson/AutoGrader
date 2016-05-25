@@ -17,9 +17,12 @@ ActiveRecord::Schema.define(version: 20160525155239) do
     t.text     "description"
     t.string   "test_path"
     t.string   "spec_path"
+    t.integer  "lab_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "assignments", ["lab_id"], name: "index_assignments_on_lab_id"
 
   create_table "grades", force: :cascade do |t|
     t.integer  "score"
