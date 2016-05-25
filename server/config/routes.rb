@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'labs#index'
+  
+  resources :labs
   resources :users
   resources :assignments
   get 'static_pages/acetest'

@@ -1,9 +1,5 @@
-class CreateAssignmentsAndLabs < ActiveRecord::Migration
+class CreateAssignments < ActiveRecord::Migration
   def change
-    create_table :labs do |t|
-
-      t.timestamps null: false
-    end
     create_table :assignments do |t|
       t.text :description
       t.string :test_path
