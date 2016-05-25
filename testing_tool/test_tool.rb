@@ -64,7 +64,7 @@ def showHelp
     puts "    ruby test_tool.rb <assignment_path> <source_file_path> <common_file_path>"
 end
 
-if (ARGV.length != 2)
+if (ARGV.length != 3)
     showHelp()
     exit()
 end
