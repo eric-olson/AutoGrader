@@ -26,10 +26,6 @@ class StaticPagesController < ApplicationController
         xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath}`
         FileUtils.chdir(old_dir)
 
-
-        puts xml_result
-
-
-        render nothing: true
+        render text: xml_result
     end
 end
