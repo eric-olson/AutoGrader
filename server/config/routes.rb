@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :users
   resources :assignments
+
+  root 'labs#index'
+
   get 'static_pages/acetest'
 
   get 'static_pages/ProblemPage'
