@@ -21,12 +21,11 @@ class StaticPagesController < ApplicationController
         testing_tool_path = "/home/crice/AutoGrader/testing_tool/"
         problem_path = "problems/anonymous"
         xml_result = ""
-        Process.fork {
-            FileUtils.chdir(testing_tool_path)
-            xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath}`
-        }
+        old_dir = FileUtils.pwd
+        FileUtils.chdir(testing_tool_path)
+        xml_result = `ruby test_tool.rb #{problem_path} #{source_filepath}`
+        FileUtils.chdir(old_dir)
 
-        Process.wait()
 
         puts xml_result
 

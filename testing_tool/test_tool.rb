@@ -23,7 +23,7 @@ class TestEnvironment
 
     def run
         Process.fork {
-            enterChrootJail()
+            #enterChrootJail()
             executeTests()
         }
         Process.wait()
