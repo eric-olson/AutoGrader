@@ -15,16 +15,19 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   def new
     @assignment = Assignment.new
+    @labs = Lab.all
   end
 
   # GET /assignments/1/edit
   def edit
+    @labs = Lab.all
   end
 
   # POST /assignments
   # POST /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
+    @labs = Lab.all
 
     respond_to do |format|
       if @assignment.save

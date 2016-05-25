@@ -23,6 +23,10 @@
     <%= f.label :spec_path %><br>
     <%= f.text_field :spec_path %>
   </div>
+  <div class="field">
+    <%= f.label :lab %><br>
+    <%= f.collection_select :id, @labs, :id, :name, include_blank: true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

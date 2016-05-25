@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ace-rails-ap
-//= require ace/theme-monokai
+//= require ace/theme-xcode
 //= require ace/mode-c_cpp
 //= require bootstrap-sprockets
 //= require_tree .
