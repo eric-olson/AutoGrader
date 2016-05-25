@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode]
 
