@@ -1,26 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Labs</h1>
+<h1>Choose a Lab:</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @labs.each do |lab| %>
-      <tr>
-        <td><%= lab.name %></td>
-        <td><%= link_to 'Show', lab %></td>
-        <td><%= link_to 'Edit', edit_lab_path(lab) %></td>
-        <td><%= link_to 'Destroy', lab, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="lab-btns">
+  <% @labs.each do |lab| %>
+  <button type="button" class="btn btn-default btn-lg"><%= link_to lab.name, lab %></button>
+  <% end %>
+</div>
 
 <br>
 
