@@ -4,9 +4,10 @@ module AssignmentsHelper
               TEST_TOOL_CONFIG["testing_tool_relative_path"])
   end
 
-  def self.problems_path
+  def self.assignments_path
+    puts TEST_TOOL_CONFIG["assignments_relative_path"]
     File.join(TEST_TOOL_CONFIG["home_path"],
-              TEST_TOOL_CONFIG["problems_relative_path"])
+              TEST_TOOL_CONFIG["assignments_relative_path"])
   end
 
   def self.users_path

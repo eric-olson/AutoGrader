@@ -2,12 +2,12 @@ require 'tmpdir'
 require 'fileutils'
 
 class TestEnvironment
-  attr_reader :temp_dir, :assignment_path, :source_path, :common_dir
+  attr_reader :temp_dir, :test_file_path, :source_file_path, :common_dir
 
-  def initialize(temp_dir, assignment_path, source_path, common_dir)
+  def initialize(temp_dir, test_file_path, source_file_path, common_dir)
     @temp_dir = temp_dir
-    @assignment_path = assignment_path
-    @source_path = source_path
+    @test_file_path = test_file_path
+    @source_file_path = source_file_path
     # Do this in config file instead
     @common_dir = common_dir
 
@@ -31,8 +31,8 @@ class TestEnvironment
 
   private
   def prepareTestEnvironment
-    FileUtils.cp(source_path, File.join(temp_dir, 'solution.cpp'))
-    FileUtils.cp(File.join(assignment_path, 'tests.cpp'), temp_dir)
+    FileUtils.cp(source_file_path, File.join(temp_dir, 'solution.cpp'))
+    FileUtils.cp(test_file_path, File.join(temp_dir, 'tests.cpp'))
     FileUtils.cp(File.join(common_dir, 'main.o'), temp_dir)
     FileUtils.cp(File.join(common_dir, 'sighandler.o'), temp_dir)
     FileUtils.cp(File.join(common_dir, 'assoc.h'), temp_dir)
@@ -61,7 +61,7 @@ end
 
 def showHelp
   puts "Intended use:"
-  puts "    ruby test_tool.rb <assignment_path> <source_file_path> <common_file_path>"
+  puts "    ruby test_tool.rb <test_file_path> <source_file_path> <common_file_path>"
 end
 
 if (ARGV.length != 3)
@@ -69,14 +69,14 @@ if (ARGV.length != 3)
   exit()
 end
 
-assignment_path = ARGV[0]
+test_file_path = ARGV[0]
 source_file_path = ARGV[1]
 common_file_path = ARGV[2]
 
 temp_dir_prefix = "user"
 temp_dir = Dir.mktmpdir(temp_dir_prefix)
 
-test_environment = TestEnvironment.new(temp_dir, assignment_path, source_file_path, common_file_path)
+test_environment = TestEnvironment.new(temp_dir, test_file_path, source_file_path, common_file_path)
 test_environment.run()
 puts test_environment.getTestDetailXML()
 
