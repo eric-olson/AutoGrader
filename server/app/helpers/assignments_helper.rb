@@ -5,7 +5,6 @@ module AssignmentsHelper
   end
 
   def self.assignments_path
-    puts TEST_TOOL_CONFIG["assignments_relative_path"]
     File.join(TEST_TOOL_CONFIG["home_path"],
               TEST_TOOL_CONFIG["assignments_relative_path"])
   end
