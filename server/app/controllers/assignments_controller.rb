@@ -91,14 +91,19 @@ class AssignmentsController < ApplicationController
 
     source_file.unlink
 
-    render text: xml_result
-
     xml_parse = Nokogiri::Slop(xml_result)
     @num_tests = xml_parse.at_xpath("//@tests").value
     @num_fails = xml_parse.at_xpath("//@failures").value
     @errors = xml_parse.xpath("//@message").size
 
     @text_result = "Number of tests: #{@num_tests}, Number of failures: #{@num_fails}, Number of messages: #{@errors}"
+
+    progress_bar_html = '<div class="progress">
+  			<div class="progress-bar progress-bar-success" style="width: 10%">
+    			<span class="sr-only">Success</span>
+  			</div>'
+
+    render inline: progress_bar_html
 
   end
 
