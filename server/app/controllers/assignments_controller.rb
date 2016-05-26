@@ -1,5 +1,7 @@
+require 'fileutils'
+
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -10,6 +12,16 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
+    spec_path_absolute = File.join(AssignmentsHelper.problems_path,
+                                   @assignment.spec_path,
+                                   "spec.cpp")
+    begin
+      spec_file = File.open(spec_path_absolute)
+      @spec_file_contents = spec_file.read
+    rescue Errno::ENOENT
+      # We should probably fill with a default spec file here.
+      @spec_file_contents = ""
+    end
   end
 
   # GET /assignments/new
@@ -64,14 +76,32 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_assignment
-      @assignment = Assignment.find(params[:id])
-    end
+  def testCode
+    editor_text = params[:editor_text]
+    # Create tempfile and write the editor text to it
+    source_file_prefix = "solution"
+    source_file = Tempfile.new(source_file_prefix)
+    source_filepath = source_file.path
+    source_file.write(editor_text)
+    source_file.close
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def assignment_params
-      params.require(:assignment).permit(:description, :test_path, :spec_path)
-    end
+    problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
+
+    xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+
+    source_file.unlink
+
+    render text: xml_result
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_assignment
+    @assignment = Assignment.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def assignment_params
+    params.require(:assignment).permit(:description, :test_path, :spec_path)
+  end
 end

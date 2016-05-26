@@ -1,11 +1,27 @@
 module AssignmentsHelper
-  home_path = "home/crice/AutoGrader"
-  testing_tool_relative_path = "/testing_tool"
-  problems_relative_path = "/problems"
-  users_relative_path = "/users"
+  def self.testing_tool_path
+    File.join(TEST_TOOL_CONFIG["home_path"],
+              TEST_TOOL_CONFIG["testing_tool_relative_path"])
+  end
 
-  testing_tool_path = home_path + testing_tool_relative_path
-  problems_path = home_path + problems_relative_path
-  users_path = home_path + users_relative_path
+  def self.problems_path
+    File.join(TEST_TOOL_CONFIG["home_path"],
+              TEST_TOOL_CONFIG["problems_relative_path"])
+  end
+
+  def self.users_path
+    File.join(TEST_TOOL_CONFIG["home_path"],
+              TEST_TOOL_CONFIG["users_relative_path"])
+  end
+
+  def self.common_path
+    File.join(TEST_TOOL_CONFIG["home_path"],
+              TEST_TOOL_CONFIG["common_relative_path"])
+  end
+
+  def self.testing_tool_script
+    File.join(TEST_TOOL_CONFIG["home_path"],
+              TEST_TOOL_CONFIG["testing_tool_script"])
+  end
 
 end

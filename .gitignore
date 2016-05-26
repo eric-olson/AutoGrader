@@ -15,3 +15,6 @@
 /server/log/*
 !/server/log/.keep
 /server/tmp
+
+# Ignore the test_tool config YAML
+/server/config/test_tool.yml 
