@@ -12,9 +12,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    spec_path_absolute = File.join(AssignmentsHelper.problems_path,
-                                   @assignment.spec_path,
-                                   "spec.cpp")
+    spec_path_absolute = @assignment.getPath()
     begin
       spec_file = File.open(spec_path_absolute)
       @spec_file_contents = spec_file.read
@@ -85,7 +83,9 @@ class AssignmentsController < ApplicationController
     source_file.write(editor_text)
     source_file.close
 
-    problem_path = File.join(AssignmentsHelper.problems_path, @assignment.test_path)
+    problem_path = @assignment.getPath()
+    puts "Assignment path: "
+    puts problem_path
 
     xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
@@ -102,6 +102,6 @@ class AssignmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def assignment_params
-    params.require(:assignment).permit(:description, :test_path, :spec_path)
+    params.require(:assignment).permit(:description, :name)
   end
 end

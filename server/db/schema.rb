@@ -15,8 +15,7 @@ ActiveRecord::Schema.define(version: 20160525155239) do
 
   create_table "assignments", force: :cascade do |t|
     t.text     "description"
-    t.string   "test_path"
-    t.string   "spec_path"
+    t.string   "name"
     t.integer  "lab_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
