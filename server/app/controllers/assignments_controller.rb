@@ -72,7 +72,8 @@ class AssignmentsController < ApplicationController
   def testCode
       editor_text = params[:editor_text]
       # Create tempfile and write the editor text to it
-      source_file = Tempfile.new("solution")
+      source_file_prefix = "solution"
+      source_file = Tempfile.new(source_file_prefix)
       source_filepath = source_file.path
       source_file.write(editor_text)
       source_file.close

@@ -73,7 +73,8 @@ assignment_path = ARGV[0]
 source_file_path = ARGV[1]
 common_file_path = ARGV[2]
 
-temp_dir = Dir.mktmpdir('user')
+temp_dir_prefix = "user"
+temp_dir = Dir.mktmpdir(temp_dir_prefix)
 
 test_environment = TestEnvironment.new(temp_dir, assignment_path, source_file_path, common_file_path)
 test_environment.run()
