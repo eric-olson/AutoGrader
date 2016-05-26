@@ -90,7 +90,29 @@ class AssignmentsController < ApplicationController
 
     source_file.unlink
 
-    render text: xml_result
+    xml_parse = Nokogiri::Slop(xml_result)
+    @num_tests = xml_parse.at_xpath("//@tests").value
+    @num_fails = xml_parse.at_xpath("//@failures").value
+    @tests = xml_parse.xpath("//testcase")
+
+    #Example: @tests[1].failure will work if the test failed
+    progress_bar_html = ""
+    width = 100.0 / @tests.size
+
+    @tests.each { |test|
+      failed = test.respond_to?(:failure)
+      progress_bar_type = ""
+      if failed
+        progress_bar_type = "progress-bar-danger"
+      else
+        progress_bar_type = "progress-bar-success"
+      end
+
+      progress_bar_html += "<div class=\"progress-bar #{progress_bar_type}\" style=\"width: #{width}%; \"></div>"
+    }
+
+    render inline: progress_bar_html
+
   end
 
   private

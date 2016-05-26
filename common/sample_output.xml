@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="30" failures="24" disabled="0" errors="0" timestamp="2016-05-26T10:44:19" time="0.001" name="AllTests">
+  <testsuite name="inputs/CSCITest" tests="30" failures="24" disabled="0" errors="0" time="0.001">
+    <testcase name="sum/0" value_param="{{&quot;Earthquake in San Francisco &quot;, &quot; Burglary at musuem in Sweden &quot;, &quot; Poverty &quot;}, {&quot;Give me my money back &quot;, &quot; I am the best coder &quot;, &quot; TOPCODER &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/1" value_param="{{&quot;Programming is fun &quot;}, {&quot;program &quot;, &quot; programmer &quot;, &quot; gaming &quot;, &quot; sing &quot;, &quot; NO FUN &quot;}}:4" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 4" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 4]]></failure>
+    </testcase>
+    <testcase name="sum/2" value_param="{{&quot;abcdef &quot;, &quot; abcdef &quot;}, {&quot;AaBbCc &quot;, &quot; aabbbcc &quot;, &quot;  &quot;, &quot; FADE &quot;}}:3" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 3" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 3]]></failure>
+    </testcase>
+    <testcase name="sum/3" value_param="{{&quot;WHKC OHA It &quot;, &quot; OHWMU &quot;, &quot; z YlGclDUwMOtr jKNhbTDHCmGhkLFFYoF AjrG &quot;, &quot; vuV qWGMQ syoj  &quot;, &quot; kN elIL l ABxeurth OvS oAPN &quot;, &quot; V XpaNz cKtiSZQ &quot;}, {&quot;HScumeBpvpnGFTPBRQ YeOtcS &quot;, &quot; MYFF XcuK MvpvcTHCJTGh pnrY AWmZJj nkjuIrMBqa &quot;, &quot;  &quot;, &quot; xlvNmjRCddJ dXC g af EcO Namx &quot;, &quot; Fk czwxl ak &quot;, &quot; ek N LdEz AXAaq FepDw bjiZfDkjo pb A TL n &quot;, &quot; oxM f n zQfKcelOUIYvfIO CHPxS xpV SKcxdyt BMkr &quot;, &quot; MfXAPWjXfnCKIO detaavE g KUyyGqnmPZtY &quot;, &quot; VO &quot;, &quot; UJB nf &quot;, &quot; BXkENvf rKjkW &quot;, &quot; uCVl SO  &quot;, &quot; L vyx QAxvJ fZlrf yIuMC Uc WiHJqZCmhGv  &quot;, &quot; vmVn &quot;, &quot; SI &quot;, &quot; wiEue lFMn uDUbZ wrQbovB oHPnO b wdkESINM tCpG &quot;, &quot; vAN &quot;, &quot; E AW empNWpnaNgKxapPfxbxN &quot;, &quot; uTIbu &quot;, &quot; Xh lVjLryDgAzqQePQrIeuNaZb eaVz iZw j  &quot;, &quot; YwdYyke dcvZhdD GI &quot;, &quot; LKEchcYdN WkaOiLjYjI X g &quot;, &quot; DclQfiPt i pBEQJZRguasyrcYw qMabMN OhYxr &quot;, &quot; DLuScSdImbd GePaNpvYuYmXaR  &quot;, &quot; NHJQL iHIrqKifmVkG SrwrSi ek wkOl gPlHBCX ItqQiI &quot;, &quot; qSnmQ mhGDu &quot;, &quot; dIrXHOLbBa &quot;, &quot; b fLPkXpt nSM K qhq rvvwJjkajIjBxl qG &quot;, &quot; PsEdbFytHRNFjgp HHmVsVMr Qb MkMu &quot;, &quot; kGvJV YZFs p &quot;, &quot; L uTIw xenCFzUlWT ScwDWFckPaxR on TiR &quot;, &quot; L HVOFyEUrN W pGQb &quot;, &quot; AxpHA Z p &quot;, &quot; DC Isy yfeZHqP WJ pAASd HQMQBfc jQbK G tjsM RMsA &quot;}}:21" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 21" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 21]]></failure>
+    </testcase>
+    <testcase name="sum/4" value_param="{{&quot;hOXun Kpa txIt M MmNGCPp nMOSOmBHanadYOdEBbr &quot;, &quot; drVSdHggN Xwpsj LSz &quot;, &quot; dvHNdIDKLOlY xONhlciTBVSct TIQ Hkl vht XE &quot;, &quot; ATxIhJdi tOiXetJn lLqGzxB fXIqxKhrJgempIkON &quot;, &quot; jTEbpVi wAOamtup &quot;}, {&quot;XpJFQq UfhOtK aXDI yNViq &quot;, &quot; gtCo &quot;, &quot; W s &quot;, &quot; LD &quot;, &quot; hz UlaIidJdzDhl &quot;, &quot; MXUhVept WoRNX &quot;, &quot; b M  &quot;, &quot; zQHLT NqTzXLWHpY QX &quot;, &quot; vZsCUuHkUNMjwlwrt &quot;, &quot; BTfwAtP A aU sMAjwumJe HJuS c M &quot;, &quot; wLmRwUyKczTgwOlysT tBWp HefEsQtFpnffhgkZO &quot;, &quot; hwbw T Ngw u &quot;, &quot; cz isifBo emVAaIWzzeR ULgh  &quot;, &quot; qR VbGRE TkvN spR gaP yWoL &quot;, &quot; SppZOCR S iExLBQHgORwTyGybc AZ CFtQ k wto &quot;, &quot; nXBqHyDjNPfkQFh &quot;, &quot; dUR rxYLv &quot;, &quot; k XFuYU xkdC &quot;, &quot; damjr upwUsJB SjHyrdo SAjSgK TvG C nkKDUiLBaxX &quot;, &quot; B aYoXtpbrDzaeVNxRV &quot;, &quot; YCybOZqJwJ SakCR &quot;, &quot; G krMyJXldfinetRLusqfywnrCVUqykcHIl kkjv d &quot;, &quot; JJHwNEpVAAdlEa &quot;, &quot; O rKuvKwA WOQX Jdn p DVLcNAGGMsHXwfn  &quot;, &quot; hakQ NZkjl i zrrsIHBBCqlRmYiq wOc  &quot;, &quot; wDtU YyRJ &quot;, &quot; KJUdTDN U ZovUgTJbnIna &quot;, &quot; BCvBjmetHULkws VLfWHip  &quot;, &quot; BTza vDwJFqfPL xP aeg &quot;, &quot; PwPW yKHSFjYGTZ &quot;, &quot; iZcgQb aVcMXTl KAY WtQ WQ &quot;, &quot; hWkZIorUcAA MHDe vwlOB PWGi gjrlnuppwa j &quot;, &quot; xDDK RR dvw Jy b VaLFVtztgBNeCQRFcTA QBrZzSqG z &quot;, &quot; xChsHSP fZvpXrb ONxCPItfcRmxJAHHumIN vTo P tLD o &quot;, &quot; zuOghBCGLD QfRTH &quot;, &quot; zJvD EbCMKkpKtblYt veYjnzA &quot;, &quot; b gF KkbXOFXpkrUm r XeoXyuPxZCgm &quot;, &quot; ilDMGGAWWgd &quot;, &quot; AkT k GIMwTLBzN uitlIiwVJhty smrp CAQ lYLXogYL &quot;, &quot; lo  &quot;}}:23" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 23" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 23]]></failure>
+    </testcase>
+    <testcase name="sum/5" value_param="{{&quot;CmZPFx &quot;, &quot; BfiCpJFQHXkCEfqdSlIHzGyxvjBZ Qx &quot;, &quot; xJbbGQidd NM sn Ddg Vp aGqWscKJuLibMeLoN &quot;, &quot; xWofIhoFql Ope &quot;, &quot; GM oC UNRYh gckbPlooFyh  &quot;, &quot; GvFPewto lFa mkhFKO pmyhl RW &quot;}, {&quot;k fJ  &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/6" value_param="{{&quot;RC &quot;, &quot; dPcjHwf WIvTAclcS zuskAIGuIHRYGWzKuP XvpLGMlSlA &quot;, &quot; SxNPETU skXE cloK r tLjMLsujW &quot;, &quot; AZVQRxcLKUf cAD Wd  &quot;, &quot; WeSNfYW C &quot;, &quot; IULoPoL zLEwnzo n UxKgmwANQs R oe iZ &quot;, &quot; IlOencxeEtxf IurBbSsLT qcOjeB mNvkCtHdCW &quot;, &quot; x QOLPuIAWO Jc PQVzrxQeWyrR  &quot;}, {&quot;ed fIVJnAqVqg EsHM &quot;, &quot; DH Ymp NBp &quot;, &quot; KbgllsKmN f nNwWYyekNDwP phLhgLUQDNvouLG  &quot;, &quot; hWdiqujcGFPvZxVDaHIoXAPhZyfdcsbXTU x JLrCXH  &quot;, &quot; Q &quot;, &quot; uyZmTjxiiENt AxDR jrbQ &quot;, &quot; z EkFLUccri dQohs rDlr mKXG &quot;}}:6" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 6" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 6]]></failure>
+    </testcase>
+    <testcase name="sum/7" value_param="{{&quot;iUGQex QvjllFmQWxjoa tjocwyXZsFZ &quot;, &quot; g ravbwBjaolWXsYujxYiyrbLa GoWvMhTrydx SbT &quot;}, {&quot;dapIX f bci E Ip t R FRS rDocC MpLEfzzSJE &quot;}}:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 0" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 0]]></failure>
+    </testcase>
+    <testcase name="sum/8" value_param="{{&quot;jX Jk NUKKyLuQxFvMxgJcN d abIH &quot;, &quot; yljIb &quot;, &quot; inlFKZtPB jgzhZaLK QPIda Rjrn &quot;, &quot; KVeABIJmoUKSHZr LPnJbCk r vZ  &quot;, &quot; Zw tbEZtKapVP OedPaqlaqU OU c qF BIBbbP NJGezZ &quot;}, {&quot;CxldGXrN YIXxEZN G BPUF HLr fbjBnfUCrh X RNhF bq &quot;, &quot; eFzTfFbd xHTn flbM OZMUf E &quot;, &quot; bQkZXqDEaCVRfdgtgp B gE GGlfcX H D CCTDsL &quot;, &quot; yjXaDGayrqgXUereMGRSGeKaB M Rbv kOqYoBZNVnOA x &quot;, &quot; LurLXoLVjxnSF H NkROxEI &quot;, &quot; qWROrb UtaRqn deJ r v EIMog KjsfNPbvK &quot;, &quot; mLKIQS x kPwXviBrltYvNUa &quot;, &quot; VHITk &quot;, &quot; YwnRZYoBGr vFueQKOZ VfDx aha ziJuH &quot;, &quot; skA c bgy &quot;, &quot; Zvy dDutT wiLIRsx z GiNCkPijRIqrVKUBP &quot;, &quot; woZBGIC MM &quot;, &quot; z QoJZA s rZ szy IPpNfglAUYdl cSy w  &quot;, &quot; K OQKBKjaRaAQgFUzIsX &quot;, &quot; qIbkqyXQnS &quot;, &quot; fIaCserfc ANquc ilvB ZzBhzxdn Y vbyFoaF REr La  &quot;, &quot; tdzAOcpWu xGIa MOaATg YPIjF dJZqQglfX xFH WOR &quot;, &quot; WCHd CZOwfHcAMk RDZphUXSPFbo GPiGGKNqIvrSKiDa &quot;, &quot; mn bVXFNXKHGjT BJTOUzsIoOY y OEXZxStsFfkKczH  &quot;, &quot; s KGdfq vkFDklThQx fRmh k &quot;, &quot; TDdHQ IgrgBrnYXnLvYrCn oRlLXsvxeppNR &quot;, &quot; n SdRFfAwbbNTzAxbo ozeapNwcPaKiDrE EHVX &quot;, &quot; HxY xFhVzY &quot;, &quot; r Z GY Ex qe i ACpAE GD &quot;, &quot; rgEme f &quot;, &quot; phn &quot;, &quot; D NjZzDX u &quot;, &quot; KLYb &quot;, &quot; M nxeLMddtXBP DXB ymke e sfmEsrFgXa N &quot;, &quot; OkMy ct b &quot;, &quot; urG nIY SYyQCxwfARfYE &quot;, &quot; irxbbuuN &quot;, &quot; pnPfipLFCZjdyt W sAJNxgkCDg &quot;, &quot; CAkRcA CY GxRk K &quot;, &quot; sKui YN &quot;}}:22" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 22" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 22]]></failure>
+    </testcase>
+    <testcase name="sum/9" value_param="{{&quot;wnts YScDD &quot;, &quot; bWhlDl IqcKgUqwEgM eXiW scOq NHjmd TFMwOe k iR &quot;, &quot; wgyK r &quot;, &quot; PwnUbNAkU &quot;, &quot; ESZhE Fs Np CqGedHfbg cIumZmY yvjIIk z Phdqb &quot;, &quot; ZhUTH kDOnThvWoCu eS oZOHTtgxklkplwPJZrV &quot;, &quot; DQZOhpviAwQa YakrksB k iqlqwCJL  &quot;, &quot; kM MIocrQ &quot;}, {&quot;j &quot;, &quot; K s fFWK bVVMbNPGhfxKeOTaoN htjBqY &quot;, &quot; MOUlobatoWATMssEs OeTf &quot;, &quot; AmLdhTLqMPxOPdDUjMaVCj GEg WpKi JymD EUM XXNo &quot;, &quot; Zgljt  &quot;, &quot; elQ TPcyg CiebgJHATPxnHYlL aWLoi n GT bQdDukegr &quot;, &quot; KyVtjffEroOAltsKW QypRKyhPj u &quot;, &quot; f vGIqF keLXbxXGVb GmnYGl xP kI qBGKPuLPVg &quot;, &quot; PbQJIo &quot;, &quot; ZyRQUutG NryLA dkmRlxXuzYyFNFDUGryZ &quot;, &quot; T A &quot;, &quot; r  &quot;, &quot; JYLRAYJJTjIEyh L &quot;, &quot; uPtmTVEbzGiIwBZzDaEYJf  &quot;, &quot; KkzCXnC y TWVuo hxdSaIpahIZHqsAY &quot;, &quot; i g GO uyIzWVuLXEX &quot;, &quot; NOb RVUtGG SBzCdfm nrU  &quot;, &quot; vaQwevvCRLuclwAoKWiVqXuxSuchbmpMjUpSoUJUX &quot;, &quot; ogIguofrP S L &quot;, &quot; VzeKKHHpgDHb tyn PwK FqlJNLN &quot;, &quot; RzkQgLd b YPOogqOPMdHYbXQWQa PyF cPWI gbwaIRaqgO &quot;, &quot; JfkF n mPoWUUXlgVvy &quot;, &quot; Qi &quot;, &quot; wsSrYsqb KespmDf DPCTTPuDBjdCxr ozu eapb  &quot;, &quot; Sd GhZ HpI iV kHMqfSSvUWWM Vwrq jTJKhOlY spC RD &quot;, &quot; oKe &quot;, &quot; nQgcJAZiiCWh asS oXwwQ c drJpyS  &quot;, &quot; yxIjYB  &quot;, &quot; gd &quot;, &quot; QG &quot;, &quot; t yWK FVXYghqvDmWq dZuXIvCYJHCIwwWaP hqPRMcbN &quot;, &quot; PYgZuQVzpE besOY xodfFkd &quot;, &quot; M &quot;, &quot; dt NzttnJcaqO JVYhxUea &quot;, &quot; ArBKAlJmfPVNvZkJAkPxz &quot;, &quot; OKRzYEYHzarg  &quot;, &quot; Bga  &quot;, &quot; y LJ qMOryGIZlIMJJPoKhIhMUeD Om byfyOjl &quot;, &quot; Hpz xANXm Y U &quot;, &quot; WOuqskXVQi NqOneMhlKEFiyFEwfeaKSLL &quot;, &quot; tmLjATbOTeWV dmarmLFVJWV h VupA KxtvxxxrUbjwsxRE &quot;, &quot; XYxLCwKAeoNKMU FMFSFitqLomfU y x WHiLO &quot;, &quot; aLTDvoQE TBm SToq UWlxXZJU Lfyl bPQdFm &quot;, &quot; UkIur jEcytU PCYjILslS &quot;, &quot; ntPcaX uUaYfitr pLqrUbJpMsOOwQSsv &quot;, &quot; vvpquC JZ &quot;, &quot; j tiM PSvFnK iZiqXEScsr Zkwr cZow wGuJmoG JVik &quot;, &quot; IGrFoVIfmLJTrlqD gghhWn &quot;}}:43" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 43" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 43]]></failure>
+    </testcase>
+    <testcase name="sum/10" value_param="{{&quot;j &quot;}, {&quot;hva w &quot;, &quot; IQHmks k FP jR yd &quot;}}:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 0" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 0]]></failure>
+    </testcase>
+    <testcase name="sum/11" value_param="{{&quot;rT gUyAcN &quot;, &quot; IwSfPDS cFq &quot;, &quot; QI NDdBy JOkknCR xe oMTYsEeE oKYTGGP osxgHNMqColR &quot;, &quot; fCki g sJJ FYlvIYLxWxycWvhpx tVfNIwlpseCjWt &quot;, &quot; mKZHzSZosbYBA aTVKz jzOQIXOQ MImpOEMTHBfDxwZne &quot;}, {&quot;vQwhWwIZrqELSH pg &quot;, &quot; uSyBvUzKAs &quot;}}:1" status="run" time="0.001" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/12" value_param="{{&quot;px iJxbbL UWaUGMdPPv fdKV soNSpCMZLZX A WzPo HgGI &quot;, &quot; Y JJf Paq &quot;, &quot; ti RPf rutP uwiX szZGeq WvEme s PUyXjR tWvGJHoxY &quot;, &quot; WPpHWTzoqAGZPBopIImMIPHBWQidtNzJyqsKg DUYWmFBvaV &quot;, &quot; IcL NVcpHor jQq GEEbcgSTo IvHQdZJYC &quot;, &quot; PtooOsoKUPnlepOkkHnjHbu dMzOTvs &quot;}, {&quot;pxnUL BVfZ CJapj  &quot;, &quot; zmWMJ LdSanfKZlMjgA urMBu GHnHnSjfz MMWK ZE &quot;, &quot; wEftQ aHst zn &quot;, &quot; ageVkNtWcNo XLLt ZnKQ cuNo HS TKwnjcOVebV &quot;, &quot; CqPuTJybeKzaGBa &quot;, &quot; XaMoXbKsTCQNNUa quvumq &quot;, &quot; G syXqQxZtT Qb guNGHhh &quot;, &quot; Vi e zjfWc sSX NkLoRedwMrLbxgcVhvfN HXXhML X  &quot;, &quot; zAmPAOEh lp qAbLz O bTMXzpLFvLx MnleWiNFsVvFYi  &quot;, &quot; S co &quot;, &quot; Fxebg FHiqliGmS B iyRvxSypUgaogasHSJoJNr &quot;, &quot; KfmG nb wrzbrRiECvKfGcstuQbbvIdicwJy bgN &quot;, &quot; SgF Jub UIl Qn kxCFFuHGwcrpW OT sJhv MCK &quot;, &quot; HpZcrmtRCEepXOaKGfq b H Hm &quot;, &quot; H &quot;, &quot; XHTxwJxDKOGxeQgKPSjkHlrzYSuTv &quot;, &quot; syVvMVlcWbb HAqxpGTIVdCQKlCNcCU kuVardjzfsS NWKD &quot;, &quot; XPu nCNh &quot;, &quot; mDbodzNjn T Gj Mxjmbfgz keUbPqa Skg eQel e G  &quot;, &quot; qwn KVg GB jSL &quot;, &quot; SLLeig vqM jPajjzbuoVUP &quot;, &quot; SOCizKQvGuFxvTv uFsSmjfIW xBVORK IAlya vF &quot;, &quot; ubXaJJIfbF ModFPP mp P BvNmzTAZIOQpW sbXlel  &quot;, &quot; cazbKJIWR  &quot;, &quot; ykbLtSofFd kZbIp Ui JPXjoBdvLq &quot;, &quot; bvqk eC &quot;, &quot; MkH j MaXuhZbzspkhN NtGU mOjUzIHOj lUXf &quot;, &quot; qTQL FLgWIzy &quot;, &quot; qSH &quot;, &quot; JLiUDDgPkAvhAJnh vQe &quot;, &quot; CIuc vzRagZA mAFXA tNzHTYP x EhjUqmwLtP &quot;, &quot; cgQNaxQnTnwx fziPpImFCmXZFdxRG c DjgXlWrsUgh &quot;, &quot; OqRVOYVrP AWKOHM L ZDYVDG Jf aVT P &quot;, &quot; DHftsUEYqefnF &quot;, &quot; xWxTdJL vE ihhaXyILRIEYPSgaRsGedn ikjr &quot;, &quot; TcsJ abgeJCxjPDyT vb f M &quot;, &quot; EytXPWvdREnGyifga cOCxDmyGKzMDPgMI gEmAo ieVHx  &quot;}}:36" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 36" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 36]]></failure>
+    </testcase>
+    <testcase name="sum/13" value_param="{{&quot;tE qmIbv svSMWXsEX K UKSK MM kBsdfQtVQeD &quot;, &quot; XBCjXDv BHAjl &quot;, &quot; KB &quot;, &quot; Wl rMdQkeH AJVT &quot;, &quot; uc rOHUB tev &quot;, &quot; QxOHxAxgSU QF bDvEsRmYDX &quot;}, {&quot;faHGg zgXyiPOJpGBYiwBGlANVhI l YxvQnUWkX g D &quot;, &quot; AQmIqpz &quot;, &quot; bGlI pB BaJljXa Kw Zb &quot;, &quot; h OfsnQaFIWLOzZWe tJum x &quot;, &quot; B n OBzRTCKdzA oqmDdZ EIeEoT &quot;, &quot; AVmKeBH RGEDKa rh &quot;, &quot; EuMLRbLBk mxGQpzqqv TCO &quot;, &quot; uzQXGDeoc W NMpyuipV hL YGOaVZCrQvUfUkcRdL iVClO &quot;, &quot; Zsz p &quot;, &quot; jhbW T VTYekcxoC smtvIKhqjEc &quot;, &quot; rN &quot;, &quot; rGidURCILLbunjljRuLsW sDjEojR ErLf sjVWcXnUhPt &quot;, &quot; aNIPyHFcCZiQi pugH LItnXAGIY KaaoR sHyFYuv m wtMd &quot;, &quot; o IzKLXON m S XPeqNRiZ LvoYwD vPRdwbe s zQo Dprn &quot;, &quot; KSTwwLwMzxO ZPT &quot;, &quot; TFeAxUxjOV &quot;, &quot; HCHfEdqMPl F DHH kiHPMGuDZqKa OuV &quot;, &quot; O Z LMeN lQ R Gx wc t  &quot;, &quot; WMq NIc &quot;, &quot; vJFqjlqqtspUSjGB KHoD QKVvQUpbdxPJ &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/14" value_param="{{&quot;fLfqoJkY xGzgWMAyZIRdSCBsghGUhBy EZ &quot;, &quot; rEN i g blDBAcVLmRWLghySu aaAOp U j B ewgwtB &quot;, &quot; k YFnO iZhEfWGuJE jyVDTtirWP fTQRr &quot;, &quot; wgd &quot;}, {&quot;hg PTRMaDQcJVRVnxdYpLeVbHs zS &quot;}}:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 0" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 0]]></failure>
+    </testcase>
+    <testcase name="sum/15" value_param="{{&quot;S rVxplob zUTbfBFLCOz bAlabkpcnSuCJt &quot;, &quot; v GbklJXDoWWGEzjJ UgCsgW &quot;, &quot; sGqyIPTqzma  &quot;, &quot; rA ymiLCybeZ nxooTxBiKRKcHxOca &quot;}, {&quot; yaaaPzV hpG lieyoJ DvZro jPgpBv lUj jQPh yCXMx &quot;, &quot; wLIg a eyWAJFK cFtkaLYWUhIcV &quot;, &quot; U xip XLFwAJLUoNTgsw MyNQDpf no ouY &quot;, &quot; LQhP zSzZKS o &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/16" value_param="{{&quot;FxiJgM bJMxF NMhYx &quot;, &quot; fkYbc q jSMiyNpNPrmu L qVh &quot;, &quot; ex nCsDiz kGgrUwxdq x ZNCwyYEleauFaljVcOiYO kHA &quot;, &quot; eSDK bL sd iq &quot;, &quot; AVNhdYPbQBV hfgYMzX &quot;, &quot; h yEMthpQUsSXK nQsjJ nMMveWjnXhndS &quot;}, {&quot;jq oob MLr pOriLMs ejVzU  &quot;, &quot; wfYIu SdgFow ibwaeiWhxjXmOIan &quot;, &quot; w STQcfcl tG &quot;, &quot; muFCa aVznYBfrNxaMifBdMniSYNog LOt &quot;, &quot; FC &quot;, &quot; JUqjF J pqxm NGmmGh v Cs &quot;, &quot; bY SMNQxnTCkYND mJJiuEkNxQhFWlnZ &quot;, &quot; RggWjKhLLBJKTi gOdzgLvO x A cfoB &quot;, &quot; ADdJM I RUpTPOUzHsKZoNLKPbFup  &quot;, &quot; qbkKnYjS X ncn NW P lZc CPuU oXgNufsZU &quot;, &quot; ZapcSiDFHDkLCAoPHAJp JH ZrYWR yYxURGpmPFSAVAScCAY &quot;, &quot; iZsSxQnIQiWq Fxc Gp T ARWuH &quot;, &quot; U dHT HgkKkbgiUWM sx FbF uYMv r Mo nRMoJzoN &quot;, &quot; MqgKm ABeT fbpk XoQxVOBKeTb Jg mX &quot;, &quot; ONeoEHnwySdZFKLaBoxsC OgSG &quot;, &quot; YXhVPpbfDepEMxZJ snQwQTsNkpnOfWqTl ZGXkt Wlqe w &quot;, &quot; wfGxw Xbghhe &quot;, &quot; YztV hCIYXu sYxxHfyWeuKkSqK H H t P J &quot;, &quot; GIanGYgVjjWJHNVuA &quot;, &quot; GhF ojDpmHd UoexmsMJAUPVG I PpsjpzwzpraZY bIhlY  &quot;, &quot; Rta x TESGta &quot;, &quot; JtMMjrLO &quot;, &quot; FHcxP &quot;, &quot; xBH wHFKAlGD PQSUtkCSwk mDSA &quot;}}:12" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 12" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 12]]></failure>
+    </testcase>
+    <testcase name="sum/17" value_param="{{&quot; nummpaYKTB &quot;, &quot; fXEnnH GMSZvtaGLfAgyyHH exgqJsSpU &quot;}, {&quot; qqxm zeRpB tuUHwwVh &quot;, &quot; saOBcFXOQUakc KVhQ CGPcprlcxQr MrfL &quot;, &quot; QLbHWLlhbuuIDnlHMkuG KiKU zQaLhsuOR &quot;, &quot; wXdsloV M IxigIBnmfW t tvuUWC fxIQrrxatz T &quot;, &quot; kzb ZyzFQ DMG DW WaVxGv &quot;, &quot; Hxf xTFfgIeLKahTSixk &quot;, &quot; MnIkLORu L  &quot;, &quot; NOdviDbxGZdDny QhEYrSC &quot;, &quot; e zsgmu yq &quot;, &quot; jQNdTcMkLEfUvMucPvqzmtU eEG qrdbrMtpslJju Z &quot;, &quot; kp XJEQm &quot;, &quot; SLzcS bEHafAtrErKVioGW sRsPqccIJqxHQH xhbNURi oea &quot;, &quot; NQaPcjq Vlmj &quot;, &quot; GOEKbMlXYn &quot;, &quot; OHfGNGC lPTOZ sWccVZ hJBa &quot;, &quot; zA qmwlGEtk xBr YVoevJytGhUgEI &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/18" value_param="{{&quot;AaBbCc &quot;, &quot;  &quot;, &quot; Zz &quot;}, {&quot;  &quot;, &quot; sss &quot;, &quot; AAA &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/19" value_param="{{&quot;AAAAAAAAAAAAAAAAa &quot;}, {&quot;aa &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/20" value_param="{{&quot;A &quot;}, {&quot;AAAAA &quot;}}:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 0" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 0]]></failure>
+    </testcase>
+    <testcase name="sum/21" value_param="{{&quot;abc &quot;}, {&quot;AaBbCc &quot;, &quot; aabbbcc &quot;, &quot;  &quot;, &quot; FADE &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/22" value_param="{{&quot;fsdsffsd &quot;}, {&quot;  &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/23" value_param="{{&quot;foobie &quot;}, {&quot;foo &quot;, &quot; boo &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/24" value_param="{{&quot;this is a test &quot;}, {&quot;this is a test &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/25" value_param="{{&quot;abc &quot;}, {&quot;  &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/26" value_param="{{&quot;hgfghhgffhg &quot;}, {&quot;  &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/27" value_param="{{&quot;ffdgfgfdgfdg &quot;}, {&quot;  &quot;}}:1" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 1" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 1]]></failure>
+    </testcase>
+    <testcase name="sum/28" value_param="{{&quot;abc &quot;}, {&quot;abc &quot;, &quot; abc &quot;}}:2" status="run" time="0" classname="inputs/CSCITest" />
+    <testcase name="sum/29" value_param="{{&quot;aaaa &quot;}, {&quot;bac &quot;}}:0" status="run" time="0" classname="inputs/CSCITest">
+      <failure message="tests.cpp:15&#x0A;Value of: how_many(in[0], in[1])&#x0A;  Actual: 2&#x0A;Expected: out&#x0A;Which is: 0" type=""><![CDATA[tests.cpp:15
+Value of: how_many(in[0], in[1])
+  Actual: 2
+Expected: out
+Which is: 0]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
+
