@@ -97,9 +97,20 @@ class AssignmentsController < ApplicationController
     @tests = xml_parse.xpath("//testcase")
 
     #Example: @tests[1].failure will work if the test failed
+    progress_bar_html = ""
+    width = 100.0 / @tests.size
 
-    progress_bar_html = '<div class="progress-bar progress-bar-success" style="width: 10%; ">
-      <span class="sr-only">Success</span>'
+    @tests.each { |test|
+      failed = test.respond_to?(:failure)
+      progress_bar_type = ""
+      if failed
+        progress_bar_type = "progress-bar-danger"
+      else
+        progress_bar_type = "progress-bar-success"
+      end
+
+      progress_bar_html += "<div class=\"progress-bar #{progress_bar_type}\" style=\"width: #{width}%; \"></div>"
+    }
 
     render inline: progress_bar_html
 
