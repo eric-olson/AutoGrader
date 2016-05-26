@@ -98,10 +98,8 @@ class AssignmentsController < ApplicationController
 
     @text_result = "Number of tests: #{@num_tests}, Number of failures: #{@num_fails}, Number of messages: #{@errors}"
 
-    progress_bar_html = '<div class="progress">
-  			<div class="progress-bar progress-bar-success" style="width: 10%">
-    			<span class="sr-only">Success</span>
-  			</div>'
+    progress_bar_html = '<div class="progress-bar progress-bar-success" style="width: 10%; ">
+      <span class="sr-only">Success</span>'
 
     render inline: progress_bar_html
 
