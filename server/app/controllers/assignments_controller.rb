@@ -12,7 +12,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    spec_path_absolute = @assignment.getPath()
+    spec_path_absolute = @assignment.getSpecFilePath()
     begin
       spec_file = File.open(spec_path_absolute)
       @spec_file_contents = spec_file.read
@@ -83,11 +83,10 @@ class AssignmentsController < ApplicationController
     source_file.write(editor_text)
     source_file.close
 
-    problem_path = @assignment.getPath()
-    puts "Assignment path: "
-    puts problem_path
+    test_file_path = @assignment.getTestFilePath()
+    puts "test file is at: " + test_file_path
 
-    xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{problem_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+    xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
     source_file.unlink
 

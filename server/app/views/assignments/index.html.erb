@@ -5,19 +5,17 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Description</th>
-      <th>Test path</th>
-      <th>Spec path</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @assignments.each do |assignment| %>
       <tr>
+        <td><%= assignment.name %></td>
         <td><%= assignment.description %></td>
-        <td><%= assignment.test_path %></td>
-        <td><%= assignment.spec_path %></td>
         <td><%= link_to 'Show', assignment %></td>
         <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -3,6 +3,14 @@ class Assignment < ActiveRecord::Base
   has_many :grades
 
   def getPath
-    return name
+    File.join(AssignmentsHelper.assignments_path, name)
+  end
+
+  def getTestFilePath
+    File.join(getPath, 'tests.cpp')
+  end
+
+  def getSpecFilePath
+    File.join(getPath, 'spec.cpp')
   end
 end
