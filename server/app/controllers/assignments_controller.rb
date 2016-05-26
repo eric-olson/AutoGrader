@@ -91,16 +91,14 @@ class AssignmentsController < ApplicationController
 
     source_file.unlink
 
-    # render text: xml_result
+    render text: xml_result
 
     xml_parse = Nokogiri::Slop(xml_result)
-    num_tests = xml_parse.at_xpath("//@tests").value
-    num_fails = xml_parse.at_xpath("//@failures").value
-    first_error = xml_parse.at_xpath("//@message").value
+    @num_tests = xml_parse.at_xpath("//@tests").value
+    @num_fails = xml_parse.at_xpath("//@failures").value
+    @errors = xml_parse.xpath("//@message").size
 
-    text_result = "Number of tests: #{num_tests}, Number of failures: #{num_fails}, First error message: #{first_error}, Full result: #{xml_parse}"
-
-    render text: text_result
+    @text_result = "Number of tests: #{@num_tests}, Number of failures: #{@num_fails}, Number of messages: #{@errors}"
 
   end
 
