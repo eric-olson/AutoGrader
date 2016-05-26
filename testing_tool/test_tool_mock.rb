@@ -12,7 +12,7 @@ if (ARGV.length != 3)
 end
 
 puts '<?xml version="1.0" encoding="UTF-8"?>'
-puts '<WARNING> This has been generated from ' + $PROGRAM_NAME + ', it is not a real test report! </WARNING>'
+#puts '<WARNING> This has been generated from ' + $PROGRAM_NAME + ', it is not a real test report! </WARNING>'
 puts '<testsuites tests="30" failures="24" disabled="0" errors="0" timestamp="2016-05-25T12:40:22" time="0.001" name="AllTests">
   <testsuite name="inputs/CSCITest" tests="30" failures="24" disabled="0" errors="0" time="0.001">
     <testcase name="sum/0" value_param="{{"Earthquake in San Francisco ", " Burglary at musuem in Sweden ", " Poverty "}, {"Give me my money back ", " I am the best coder ", " TOPCODER "}}:2" status="run" time="0" classname="inputs/CSCITest" ></testcase>
