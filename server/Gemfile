@@ -17,6 +17,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use ace code editor
 gem 'ace-rails-ap', '~> 4.0', '>= 4.0.2'
 
+# Use nokogiri to parse XML returned from testing tool
+gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
