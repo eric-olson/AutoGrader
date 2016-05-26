@@ -13,8 +13,9 @@ end
 
 puts '<?xml version="1.0" encoding="UTF-8"?>'
 #puts '<WARNING> This has been generated from ' + $PROGRAM_NAME + ', it is not a real test report! </WARNING>'
-puts '<testsuites tests="30" failures="24" disabled="0" errors="0" timestamp="2016-05-25T12:40:22" time="0.001" name="AllTests">
-  <testsuite name="inputs/CSCITest" tests="30" failures="24" disabled="0" errors="0" time="0.001">
+puts '<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="30" failures="24" disabled="0" errors="0" timestamp="2016-05-26T10:34:56" time="0" name="AllTests">
+  <testsuite name="inputs/CSCITest" tests="30" failures="24" disabled="0" errors="0" time="0">
     <testcase name="sum/0" value_param="{{"Earthquake in San Francisco ", " Burglary at musuem in Sweden ", " Poverty "}, {"Give me my money back ", " I am the best coder ", " TOPCODER "}}:2" status="run" time="0" classname="inputs/CSCITest" ></testcase>
     <testcase name="sum/1" value_param="{{"Programming is fun "}, {"program ", " programmer ", " gaming ", " sing ", " NO FUN "}}:4" status="run" time="0" classname="inputs/CSCITest">
       <failure message="tests.cpp:15
@@ -262,7 +263,7 @@ Value of: how_many(in[0], in[1])
 Expected: out
 Which is: 1]]></failure>
     </testcase>
-    <testcase name="sum/27" value_param="{{"ffdgfgfdgfdg "}, {"  "}}:1" status="run" time="0.001" classname="inputs/CSCITest">
+    <testcase name="sum/27" value_param="{{"ffdgfgfdgfdg "}, {"  "}}:1" status="run" time="0" classname="inputs/CSCITest">
       <failure message="tests.cpp:15
 Value of: how_many(in[0], in[1])
   Actual: 2
@@ -286,4 +287,6 @@ Expected: out
 Which is: 0]]></failure>
     </testcase>
   </testsuite>
-</testsuites>'
+</testsuites>
+
+'
