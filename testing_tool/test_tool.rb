@@ -32,7 +32,7 @@ class TestEnvironment
   private
   def prepareTestEnvironment
     FileUtils.cp(source_file_path, File.join(temp_dir, 'solution.cpp'))
-    FileUtils.cp(test_file_path, File.join(temp_dir, 'tests.cpp')
+    FileUtils.cp(test_file_path, File.join(temp_dir, 'tests.cpp'))
     FileUtils.cp(File.join(common_dir, 'main.o'), temp_dir)
     FileUtils.cp(File.join(common_dir, 'sighandler.o'), temp_dir)
     FileUtils.cp(File.join(common_dir, 'assoc.h'), temp_dir)
