@@ -91,17 +91,15 @@ class AssignmentsController < ApplicationController
     source_file.unlink
 
     xml_parse = Nokogiri::Slop(xml_result)
-    @num_tests = xml_parse.at_xpath("//@tests").value
-    @num_fails = xml_parse.at_xpath("//@failures").value
-    @tests = xml_parse.xpath("//testcase")
+    runtime_errors = "SEGFAULT OH GOD!"
+    compile_errors = "You didn't include the right library or something!"
+    tests = xml_parse.xpath("//testcase")
 
     #Example: @tests[1].failure will work if the test failed
     progress_bar_html = ""
-    width = 100.0 / @tests.size
+    width = 100.0 / tests.size
 
-
-
-    @tests.each { |test|
+    tests.each { |test|
       failed = test.respond_to?(:failure)
       progress_bar_type = ""
       popover_title = ""
@@ -120,8 +118,9 @@ class AssignmentsController < ApplicationController
         <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
     }
 
-    render inline: progress_bar_html
-
+    render json: {:progress_bar_html => progress_bar_html,
+                  :runtime_errors => runtime_errors,
+                  :compile_errors => compile_errors};
   end
 
   private
