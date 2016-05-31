@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @lab.name %>
-</p>
+<h1><%= @lab.name %><h1>
 
-<%= link_to 'Edit', edit_lab_path(@lab) %> |
-<%= link_to 'Back', labs_path %>
+<p>
+  <% @lab.assignments.each do |assignment| %>
+  <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg" %>
+  <% end %>
+</p>
