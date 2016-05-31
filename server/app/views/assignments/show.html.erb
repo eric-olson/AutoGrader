@@ -6,12 +6,12 @@
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
-      
-  		<div class="panel-heading">
-    		<h3 class="panel-title"><%= @assignment.name %></h3>
-  		</div>
-  		<div class="panel-body">
-    		<p><%= @assignment.description %></p>
+
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @assignment.name %></h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @assignment.description %></p>
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
@@ -70,6 +70,7 @@
           data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
           success: function(response) {
             $('#progress_bar').html(response);
+            $('[data-toggle="popover"]').popover();
           }
         });
         return false;
