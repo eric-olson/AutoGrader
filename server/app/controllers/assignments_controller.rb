@@ -117,7 +117,7 @@ class AssignmentsController < ApplicationController
       end
 
       progress_bar_html += "
-        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" style=\"width: #{width}%; \"></div>"
+        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
     }
 
     render inline: progress_bar_html
