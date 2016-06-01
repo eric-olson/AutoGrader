@@ -10,5 +10,18 @@
   <%= @user.code_path %>
 </p>
 
+<h3>Grades</h3>
+<table class="table table-striped">
+  <th> Assignment </th>
+  <th> Score </th>
+  <% @user.grades.each do |grade| %>
+  <tr>
+    <td><%= grade.assignment.name %></td>
+    <td><%= grade.score %></td>
+  </tr>
+  <% end %>
+</table
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
