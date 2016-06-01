@@ -12,14 +12,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    spec_path_absolute = @assignment.getSpecFilePath()
-    begin
-      spec_file = File.open(spec_path_absolute)
-      @spec_file_contents = spec_file.read
-    rescue Errno::ENOENT
-      # We should probably fill with a default spec file here.
-      @spec_file_contents = ""
-    end
+    current_user = UsersHelper.getCurrentUser
+    @editor_file_contents = AssignmentsHelper.getEditorText(current_user, @assignment)
   end
 
   # GET /assignments/new

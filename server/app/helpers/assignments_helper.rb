@@ -1,3 +1,4 @@
+# require 'file'
 module AssignmentsHelper
   def self.testing_tool_path
     File.join(TEST_TOOL_CONFIG["home_path"],
@@ -34,6 +35,31 @@ module AssignmentsHelper
 
   def self.getUserAssignmentFilePath(user, assignment)
     File.join(getUserAssignmentFolderPath(user, assignment), getAssignmentFilename)
+  end
+
+  def self.getEditorText(user, assignment)
+    editor_text_file_path = ""
+
+    assignment_file_path = getUserAssignmentFilePath(user, assignment)
+    spec_file_path = assignment.getSpecFilePath()
+    editor_text_file_path = ""
+
+    if (FileTest.exists?(assignment_file_path))
+      editor_text_file_path = assignment_file_path
+    else
+      editor_text_file_path = spec_file_path
+    end
+
+    editor_file_contents = ""
+    begin
+      editor_text_file = File.open(editor_text_file_path)
+      editor_file_contents = editor_text_file.read
+    rescue Errno::ENOENT
+      # We should probably fill with a default spec file here.
+      editor_file_contents = ""
+    end
+
+    return editor_file_contents
   end
 
   def self.generateProgressBarHTMLFromTestsArray(tests_array)
