@@ -21,7 +21,8 @@ xml_data = sample_xml_file.read
 json_result = {
   :gtest_xml_report => xml_data,
   :compile_errors => "",
-  :runtime_errors => ""
+  :runtime_errors => "",
+  :timeout_error => false
 }.to_json
 
 puts json_result

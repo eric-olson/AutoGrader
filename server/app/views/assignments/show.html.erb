@@ -73,11 +73,6 @@
             $('#progress_bar').html(response.progress_bar_html);
             // Enable popovers
             $('[data-toggle="popover"]').popover();
-
-            // Load the erros with runtime and compile errors
-            runtime_and_compile_errors = "Compile Errors:\n" + response.compile_errors + "\n\nRuntime Errors:\n" + response.runtime_errors;
-            $('#test_output').html(runtime_and_compile_errors);
-
           }
         });
         return false;
@@ -90,7 +85,5 @@
     </div>
 
   </div>
-  <h2>Errors</h2>
-  <textarea id="test_output" class="panel panel-default" style="width: 100%;height:200px;font-family: monospace;">Press 'Test' to run the unit tests. Any runtime or compiler errors will appear here.</textarea>
 </div>
 </div>

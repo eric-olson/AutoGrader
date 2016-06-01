@@ -1,9 +1,10 @@
 require 'tmpdir'
 require 'fileutils'
 require 'json'
+require 'timeout'
 
 class TestEnvironment
-  attr_reader :temp_dir, :test_file_path, :source_file_path, :common_dir, :compile_errors, :runtime_errors
+  attr_reader :temp_dir, :test_file_path, :source_file_path, :common_dir, :compile_errors, :runtime_errors, :timeout
 
   def initialize(temp_dir, test_file_path, source_file_path, common_dir)
     @temp_dir = temp_dir
@@ -12,6 +13,7 @@ class TestEnvironment
     @common_dir = common_dir
     @runtime_errors = ""
     @compile_errors = ""
+    @timeout_error = false
 
     prepareTestEnvironment()
     enterTempDir()
@@ -22,16 +24,24 @@ class TestEnvironment
     {
       :gtest_xml_report => getTestDetailXML,
       :compile_errors => @compile_errors,
-      :runtime_errors => @runtime_errors
+      :runtime_errors => @runtime_errors,
+      :timeout_error => @timeout_error
     }.to_json
   end
 
   def run
-    Process.fork {
+    pid = Process.fork {
       #enterChrootJail()
       executeTests()
     }
-    Process.wait()
+    begin
+      status = Timeout::timeout(10) {
+        Process.wait(pid)
+      }
+    rescue Timeout::Error
+      Process.kill('KILL', pid)
+      @timeout_error = true
+    end
 
     begin
       backtrace_file = File.open("backtrace.txt")

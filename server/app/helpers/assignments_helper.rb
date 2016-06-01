@@ -24,7 +24,16 @@ module AssignmentsHelper
               TEST_TOOL_CONFIG["testing_tool_script"])
   end
 
-  def self.generateProgressBarHTMLFromTestsArray(tests_array)
+  def self.generateProgressBarHTMLFromTestReport(test_report)
+
+    xml_result = test_report["gtest_xml_report"]
+    compile_errors = test_report["compile_errors"]
+    runtime_errors = test_report["runtime_errors"]
+    did_timeout = test_report["timeout_error"]
+
+    xml_parse = Nokogiri::Slop(xml_result)
+    tests_array = xml_parse.xpath("//testcase")
+
     progress_bar_html = ""
     width = 100.0 / tests_array.size
 
