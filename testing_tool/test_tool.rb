@@ -1,7 +1,8 @@
 require 'tmpdir'
 require 'fileutils'
+require 'json'
 
-class XMLReportBuilder
+class ReportBuilder
   def initialize()
   end
 
@@ -28,6 +29,14 @@ class TestEnvironment
     rescue Errno::ENOENT
       puts ""
     end
+  end
+
+  def getTestReportJSON
+    {
+      :gtest_xml_report => "#{getTestDetailXML()}",
+      :compile_errors => @compile_errors,
+      :runtime_errors => @runtime_errors
+    }.to_json
   end
 
   def run

@@ -96,27 +96,7 @@ class AssignmentsController < ApplicationController
     tests = xml_parse.xpath("//testcase")
 
     #Example: @tests[1].failure will work if the test failed
-    progress_bar_html = ""
-    width = 100.0 / tests.size
-
-    tests.each { |test|
-      failed = test.respond_to?(:failure)
-      progress_bar_type = ""
-      popover_title = ""
-      failure_message = ""
-      if failed
-        failure_message = test.failure[:message]
-        failure_message.gsub!("\n", "<br/>")
-        popover_title = "Failed Test"
-        progress_bar_type = "progress-bar-danger"
-      else
-        popover_title = "Passed Test"
-        progress_bar_type = "progress-bar-success"
-      end
-
-      progress_bar_html += "
-        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
-    }
+    progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestsArray(tests)
 
     render json: {:progress_bar_html => progress_bar_html,
                   :runtime_errors => runtime_errors,
