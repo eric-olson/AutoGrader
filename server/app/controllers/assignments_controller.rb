@@ -84,12 +84,12 @@ class AssignmentsController < ApplicationController
     source_file.close
 
     test_file_path = @assignment.getTestFilePath()
-    puts "test file is at: " + test_file_path
 
     json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
     test_report = JSON.parse(json_test_report)
-    puts test_report
+
+    puts UsersHelper.getCurrentUser.getHomeDirectory
 
     source_file.unlink
 
