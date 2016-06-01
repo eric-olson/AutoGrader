@@ -14,5 +14,9 @@ end
 common_file_path = ARGV[2]
 
 sample_xml_file = File.open(File.join(common_file_path, 'sample_output.xml'))
-puts sample_xml_file.read
+puts {
+  :gtest_xml_report => sample_xml_file.read,
+  :compile_errors => "",
+  :runtime_errors => ""
+}.to_json
 #puts '<WARNING> This has been generated from ' + $PROGRAM_NAME + ', it is not a real test report! </WARNING>'
