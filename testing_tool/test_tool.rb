@@ -27,8 +27,17 @@ class TestEnvironment
   end
 
   def run
-    #enterChrootJail()
-    executeTests()
+    Process.fork {
+      #enterChrootJail()
+      executeTests()
+    }
+    Process.wait()
+
+    begin
+      backtrace_file = File.open("backtrace.txt")
+      @runtime_errors = backtrace_file.read
+    rescue Errno::ENOENT
+    end
   end
 
   private
@@ -57,12 +66,6 @@ class TestEnvironment
 
   def executeTests
     `./tests --gtest_output=xml 2>&1`
-    # puts `cat backtrace.txt`
-    begin
-      backtrace_file = File.open("backtrace.txt")
-      @runtime_errors = backtrace_file.read
-    rescue Errno::ENOENT
-    end
   end
 
   def getTestDetailXML
