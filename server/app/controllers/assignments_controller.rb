@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -89,7 +89,6 @@ class AssignmentsController < ApplicationController
 
     test_report = JSON.parse(json_test_report)
 
-    puts UsersHelper.getCurrentUser.getHomeDirectory
 
     source_file.unlink
 
@@ -106,6 +105,26 @@ class AssignmentsController < ApplicationController
     render json: {:progress_bar_html => progress_bar_html,
                   :runtime_errors => runtime_errors,
                   :compile_errors => compile_errors};
+  end
+
+  def saveCode
+    editor_text = params[:editor_text]
+    puts editor_text
+
+    current_user = UsersHelper.getCurrentUser
+
+    # Get the assignment folder path and create it if it doesn't exist
+    assignment_folder_path = AssignmentsHelper.getUserAssignmentFolderPath(current_user, @assignment)
+    FileUtils.mkdir_p(assignment_folder_path)
+
+    # Get the assignment file name
+    assignment_file_path = AssignmentsHelper.getUserAssignmentFilePath(current_user, @assignment)
+    # Write the assignment file using the editor source
+    assignment_file = File.open(assignment_file_path, "w")
+    assignment_file.write(editor_text)
+    assignment_file.close
+
+    render nothing: true
   end
 
   private

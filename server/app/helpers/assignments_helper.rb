@@ -24,6 +24,18 @@ module AssignmentsHelper
               TEST_TOOL_CONFIG["testing_tool_script"])
   end
 
+  def self.getUserAssignmentFolderPath(user, assignment)
+    File.join(user.getHomeDirectory, assignment.folderName)
+  end
+
+  def self.getAssignmentFilename()
+    "solution.cpp"
+  end
+
+  def self.getUserAssignmentFilePath(user, assignment)
+    File.join(getUserAssignmentFolderPath(user, assignment), getAssignmentFilename)
+  end
+
   def self.generateProgressBarHTMLFromTestsArray(tests_array)
     progress_bar_html = ""
     width = 100.0 / tests_array.size
