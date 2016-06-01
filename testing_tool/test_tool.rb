@@ -2,12 +2,6 @@ require 'tmpdir'
 require 'fileutils'
 require 'json'
 
-class ReportBuilder
-  def initialize()
-  end
-
-end
-
 class TestEnvironment
   attr_reader :temp_dir, :test_file_path, :source_file_path, :common_dir, :compile_errors, :runtime_errors
 
@@ -16,24 +10,17 @@ class TestEnvironment
     @test_file_path = test_file_path
     @source_file_path = source_file_path
     @common_dir = common_dir
+    @runtime_errors = ""
+    @compile_errors = ""
 
     prepareTestEnvironment()
     enterTempDir()
     buildTests()
   end
 
-  def getTestDetailXML
-    begin
-      file = File.open("test_detail.xml")
-      puts file.read
-    rescue Errno::ENOENT
-      puts ""
-    end
-  end
-
   def getTestReportJSON
     {
-      :gtest_xml_report => "#{getTestDetailXML()}",
+      :gtest_xml_report => getTestDetailXML,
       :compile_errors => @compile_errors,
       :runtime_errors => @runtime_errors
     }.to_json
@@ -75,6 +62,15 @@ class TestEnvironment
     @runtime_errors = `./tests --gtest_output=xml 2>&1`
   end
 
+  def getTestDetailXML
+    begin
+      file = File.open("test_detail.xml")
+      return file.read
+    rescue Errno::ENOENT
+      return ""
+    end
+  end
+
 end
 
 def showHelp
@@ -96,8 +92,6 @@ temp_dir = Dir.mktmpdir(temp_dir_prefix)
 
 test_environment = TestEnvironment.new(temp_dir, test_file_path, source_file_path, common_file_path)
 test_environment.run()
-puts test_environment.getTestDetailXML()
-puts test_environment.compile_errors
-puts test_environment.runtime_errors
+puts test_environment.getTestReportJSON()
 
 FileUtils.remove_entry(temp_dir)

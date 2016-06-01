@@ -86,13 +86,17 @@ class AssignmentsController < ApplicationController
     test_file_path = @assignment.getTestFilePath()
     puts "test file is at: " + test_file_path
 
-    xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+    json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+
+    test_report = JSON.parse(json_test_report)
 
     source_file.unlink
 
+    xml_result = test_report["gtest_xml_report"]
+    compile_errors = test_report["compile_errors"]
+    runtime_errors = test_report["runtime_errors"]
+
     xml_parse = Nokogiri::Slop(xml_result)
-    runtime_errors = "SEGFAULT OH GOD!"
-    compile_errors = "You didn't include the right library or something!"
     tests = xml_parse.xpath("//testcase")
 
     #Example: @tests[1].failure will work if the test failed
