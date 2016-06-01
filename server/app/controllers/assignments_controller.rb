@@ -89,6 +89,7 @@ class AssignmentsController < ApplicationController
     json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
     test_report = JSON.parse(json_test_report)
+    puts test_report
 
     source_file.unlink
 

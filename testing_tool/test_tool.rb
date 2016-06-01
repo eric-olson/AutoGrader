@@ -59,7 +59,11 @@ class TestEnvironment
   end
 
   def executeTests
-    @runtime_errors = `./tests --gtest_output=xml 2>&1`
+    `./tests --gtest_output=xml 2>&1`
+    begin
+      @runtime_errors = File.open("backtrace.txt")
+    rescue Errno::ENOENT
+    end
   end
 
   def getTestDetailXML
