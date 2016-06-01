@@ -86,42 +86,26 @@ class AssignmentsController < ApplicationController
     test_file_path = @assignment.getTestFilePath()
     puts "test file is at: " + test_file_path
 
-    xml_result = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+    json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+
+    test_report = JSON.parse(json_test_report)
+    puts test_report
 
     source_file.unlink
 
+    xml_result = test_report["gtest_xml_report"]
+    compile_errors = test_report["compile_errors"]
+    runtime_errors = test_report["runtime_errors"]
+
     xml_parse = Nokogiri::Slop(xml_result)
-    @num_tests = xml_parse.at_xpath("//@tests").value
-    @num_fails = xml_parse.at_xpath("//@failures").value
-    @tests = xml_parse.xpath("//testcase")
+    tests = xml_parse.xpath("//testcase")
 
     #Example: @tests[1].failure will work if the test failed
-    progress_bar_html = ""
-    width = 100.0 / @tests.size
+    progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestsArray(tests)
 
-
-
-    @tests.each { |test|
-      failed = test.respond_to?(:failure)
-      progress_bar_type = ""
-      popover_title = ""
-      failure_message = ""
-      if failed
-        failure_message = test.failure[:message]
-        failure_message.gsub!("\n", "<br/>")
-        popover_title = "Failed Test"
-        progress_bar_type = "progress-bar-danger"
-      else
-        popover_title = "Passed Test"
-        progress_bar_type = "progress-bar-success"
-      end
-
-      progress_bar_html += "
-        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
-    }
-
-    render inline: progress_bar_html
-
+    render json: {:progress_bar_html => progress_bar_html,
+                  :runtime_errors => runtime_errors,
+                  :compile_errors => compile_errors};
   end
 
   private
