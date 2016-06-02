@@ -100,7 +100,7 @@ class AssignmentsController < ApplicationController
     FileUtils.mkdir_p(assignment_folder_path)
 
     # Get the assignment file name
-    assignment_file_path = current_user.getFilepathForAssignment(@assignment)
+    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
     # Write the assignment file using the editor source
     assignment_file = File.open(assignment_file_path, "w")
     assignment_file.write(editor_text)

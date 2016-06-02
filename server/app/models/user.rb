@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
     File.join(getHomeDirectory, assignment.getDirectoryName())
   end
 
-  def getFilepathForAssignment(assignment)
+  def getSolutionFilepathForAssignment(assignment)
     File.join(getDirectoryForAssignment(assignment), assignment.getFileName())
   end
 
   def getSolutionFileContentsForAssignment(assignment)
-    assignment_file_path = getFilepathForAssignment(assignment)
+    assignment_file_path = getSolutionFilepathForAssignment(assignment)
 
     assignment_file_contents = ""
     begin
@@ -28,6 +28,6 @@ class User < ActiveRecord::Base
   end
 
   def hasSolutionFileForAssignment?(assignment)
-    FileTest.exists?(getFilepathForAssignment(assignment))
+    FileTest.exists?(getSolutionFilepathForAssignment(assignment))
   end
 end
