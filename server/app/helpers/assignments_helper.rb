@@ -98,7 +98,7 @@ module AssignmentsHelper
     if progress_bar_type.length == 0
       failure_message="NO XML REPORT OR ERRORS GENERATED"
       bar_message = "CRITICAL ERROR"
-      popover_title = "CRITIAL ERROR"
+      popover_title = "CRITICAL ERROR"
       progress_bar_type = "progress-bar-variant(#e100ff)"
     end
 
