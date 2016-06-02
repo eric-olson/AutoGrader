@@ -93,19 +93,9 @@ class AssignmentsController < ApplicationController
 
     source_file.unlink
 
-    xml_result = test_report["gtest_xml_report"]
-    compile_errors = test_report["compile_errors"]
-    runtime_errors = test_report["runtime_errors"]
+    progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestReport(test_report)
 
-    xml_parse = Nokogiri::Slop(xml_result)
-    tests = xml_parse.xpath("//testcase")
-
-    #Example: @tests[1].failure will work if the test failed
-    progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestsArray(tests)
-
-    render json: {:progress_bar_html => progress_bar_html,
-                  :runtime_errors => runtime_errors,
-                  :compile_errors => compile_errors};
+    render json: {:progress_bar_html => progress_bar_html};
   end
 
   private
