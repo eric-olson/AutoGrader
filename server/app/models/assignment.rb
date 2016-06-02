@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
   has_many :grades
 
   def getPath
-    File.join(AssignmentsHelper.assignments_path, folderName)
+    File.join(AssignmentsHelper.assignments_path, getFolderName())
   end
 
   def getTestFilePath
@@ -14,8 +14,12 @@ class Assignment < ActiveRecord::Base
     File.join(getPath, 'spec.cpp')
   end
 
-  def folderName
+  def getFolderName
     sanitizeFilename(name)
+  end
+
+  def getFileName
+    "solution.cpp"
   end
 
   def sanitizeFilename(filename)

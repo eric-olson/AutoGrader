@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+lab = Lab.create(name: "Lab 1")
+Assignment.create(name: "DigitSum", description: "The Digit Sum assignment from CSCI262", lab: lab)
+User.create(multipass_id: "crice")

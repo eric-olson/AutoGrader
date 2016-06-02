@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -12,14 +12,8 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    spec_path_absolute = @assignment.getSpecFilePath()
-    begin
-      spec_file = File.open(spec_path_absolute)
-      @spec_file_contents = spec_file.read
-    rescue Errno::ENOENT
-      # We should probably fill with a default spec file here.
-      @spec_file_contents = ""
-    end
+    current_user = UsersHelper.getCurrentUser
+    @editor_file_contents = AssignmentsHelper.getEditorText(current_user, @assignment)
   end
 
   # GET /assignments/new
@@ -84,18 +78,36 @@ class AssignmentsController < ApplicationController
     source_file.close
 
     test_file_path = @assignment.getTestFilePath()
-    puts "test file is at: " + test_file_path
 
     json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
     test_report = JSON.parse(json_test_report)
-    puts test_report
+
 
     source_file.unlink
 
     progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestReport(test_report)
 
     render json: {:progress_bar_html => progress_bar_html};
+  end
+
+  def saveCode
+    editor_text = params[:editor_text]
+
+    current_user = UsersHelper.getCurrentUser
+
+    # Get the assignment folder path and create it if it doesn't exist
+    assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
+    FileUtils.mkdir_p(assignment_folder_path)
+
+    # Get the assignment file name
+    assignment_file_path = current_user.getFilepathForAssignment(@assignment)
+    # Write the assignment file using the editor source
+    assignment_file = File.open(assignment_file_path, "w")
+    assignment_file.write(editor_text)
+    assignment_file.close
+
+    render nothing: true
   end
 
   private
