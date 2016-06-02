@@ -103,16 +103,15 @@ class AssignmentsController < ApplicationController
 
   def saveCode
     editor_text = params[:editor_text]
-    puts editor_text
 
     current_user = UsersHelper.getCurrentUser
 
     # Get the assignment folder path and create it if it doesn't exist
-    assignment_folder_path = AssignmentsHelper.getUserAssignmentFolderPath(current_user, @assignment)
+    assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
     FileUtils.mkdir_p(assignment_folder_path)
 
     # Get the assignment file name
-    assignment_file_path = AssignmentsHelper.getUserAssignmentFilePath(current_user, @assignment)
+    assignment_file_path = current_user.getFilepathForAssignment(@assignment)
     # Write the assignment file using the editor source
     assignment_file = File.open(assignment_file_path, "w")
     assignment_file.write(editor_text)

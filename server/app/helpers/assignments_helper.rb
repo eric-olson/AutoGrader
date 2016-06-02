@@ -26,7 +26,7 @@ module AssignmentsHelper
   end
 
   def self.getUserAssignmentFolderPath(user, assignment)
-    File.join(user.getHomeDirectory, assignment.folderName)
+    File.join(user.getHomeDirectory, assignment.getFolderName())
   end
 
   def self.getAssignmentFilename()
@@ -40,7 +40,7 @@ module AssignmentsHelper
   def self.getEditorText(user, assignment)
     editor_text_file_path = ""
 
-    assignment_file_path = getUserAssignmentFilePath(user, assignment)
+    assignment_file_path = user.getFilepathForAssignment(assignment)
     spec_file_path = assignment.getSpecFilePath()
     editor_text_file_path = ""
 
