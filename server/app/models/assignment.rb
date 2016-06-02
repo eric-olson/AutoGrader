@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
   has_many :grades
 
   def getPath
-    File.join(AssignmentsHelper.assignments_path, getFolderName())
+    File.join(AssignmentsHelper.assignments_path, getDirectoryName())
   end
 
   def getTestFilePath
@@ -14,7 +14,23 @@ class Assignment < ActiveRecord::Base
     File.join(getPath, 'spec.cpp')
   end
 
-  def getFolderName
+  def getSpecFileContents
+    begin
+      spec_file = File.open(getSpecFilePath())
+      spec_file_contents = spec_file.read
+    rescue Errno::ENOENT
+      # We should probably fill with a default spec file here.
+      spec_file_contents = ""
+    end
+
+    return spec_file_contents
+  end
+
+  def hasSpecFile?
+    FileTest.exists?(getSpecFilePath())
+  end
+
+  def getDirectoryName
     sanitizeFilename(name)
   end
 

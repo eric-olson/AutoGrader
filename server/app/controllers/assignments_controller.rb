@@ -83,7 +83,6 @@ class AssignmentsController < ApplicationController
 
     test_report = JSON.parse(json_test_report)
 
-
     source_file.unlink
 
     progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestReport(test_report)
@@ -101,7 +100,7 @@ class AssignmentsController < ApplicationController
     FileUtils.mkdir_p(assignment_folder_path)
 
     # Get the assignment file name
-    assignment_file_path = current_user.getFilepathForAssignment(@assignment)
+    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
     # Write the assignment file using the editor source
     assignment_file = File.open(assignment_file_path, "w")
     assignment_file.write(editor_text)
@@ -111,10 +110,7 @@ class AssignmentsController < ApplicationController
   end
 
   def restartCode
-    current_user = UsersHelper.getCurrentUser
-    editor_file_contents = AssignmentsHelper.getSpecFileContents(@assignment)
-
-    render json: {:new_editor_content => editor_file_contents}
+    render json: {:new_editor_content => @assignment.getSpecFileContents()}
   end
 
   private

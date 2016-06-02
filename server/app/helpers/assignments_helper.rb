@@ -24,56 +24,14 @@ module AssignmentsHelper
     TEST_TOOL_CONFIG["testing_tool_script"])
   end
 
-  def self.getUserAssignmentFolderPath(user, assignment)
-    File.join(user.getHomeDirectory, assignment.getFolderName())
-  end
-
-  def self.getAssignmentFilename()
-    "solution.cpp"
-  end
-
-  def self.getUserAssignmentFilePath(user, assignment)
-    File.join(getUserAssignmentFolderPath(user, assignment), getAssignmentFilename)
-  end
-
-  def self.getSpecFileContents(assignment)
-    spec_file_path = assignment.getSpecFilePath()
-    spec_file_contents = ""
-
-    begin
-      spec_file = File.open(spec_file_path)
-      spec_file_contents = spec_file.read
-    rescue Errno::ENOENT
-      # We should probably fill with a default spec file here.
-      spec_file_contents = ""
-    end
-
-    return spec_file_contents
-  end
-
   def self.getEditorText(user, assignment)
-    editor_text_file_path = ""
-
-    assignment_file_path = user.getFilepathForAssignment(assignment)
-    spec_file_path = assignment.getSpecFilePath()
-    editor_text_file_path = ""
-
-    if (FileTest.exists?(assignment_file_path))
-      editor_text_file_path = assignment_file_path
+    if (user.hasSolutionFileForAssignment?(assignment))
+      return user.getSolutionFileContentsForAssignment(assignment)
+    elsif assignment.hasSpecFile?
+      return assignment.getSpecFileContents()
     else
-      editor_text_file_path = spec_file_path
+      return ""
     end
-
-    editor_file_contents = ""
-    begin
-      editor_text_file = File.open(editor_text_file_path)
-      editor_file_contents = editor_text_file.read
-    rescue Errno::ENOENT
-      # We should probably fill with a default spec file here.
-      editor_file_contents = ""
-    end
-
-    return editor_file_contents
   end
 
   def self.generateProgressBarHTMLFromTestReport(test_report)
