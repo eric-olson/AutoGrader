@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -108,6 +108,13 @@ class AssignmentsController < ApplicationController
     assignment_file.close
 
     render nothing: true
+  end
+
+  def restartCode
+    current_user = UsersHelper.getCurrentUser
+    editor_file_contents = AssignmentsHelper.getSpecFileContents(@assignment)
+
+    render json: {:new_editor_content => editor_file_contents}
   end
 
   private

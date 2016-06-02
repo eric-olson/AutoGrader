@@ -1,5 +1,7 @@
 <div class="row" style="height: 500px;">
   <div class="col-md-12">
+    <div id="status_div">
+    </div>
     <h4>Test Results</h4>
     <div id="progress_bar" class="progress progress-bar-segmented">
     </div>
@@ -14,7 +16,7 @@
         <p><%= @assignment.description %></p>
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
-          <div class="btn-group" role="group">
+          <div class="btn-group" role="group" id="restart_btn">
             <button type="button" class="btn btn-default">Restart</button>
           </div>
 
@@ -57,6 +59,18 @@
       <div id="editor"><%= @editor_file_contents %></div>
 
       <script>
+      function getAnimatedProgressBar() {
+        return '<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;background-color: darkcyan;">Running Tests</div>';
+      }
+
+      function getSaveMessageAlert() {
+        return '<div class="alert alert-success fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>File saved successfully!</div>'
+      }
+
+      function getRestartMessageAlert() {
+        return '<div class="alert alert-success fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Reset file to the default spec.</div>'
+      }
+
       var editor = ace.edit("editor");
       $( document ).ready(function() {
         editor.setTheme("ace/theme/chrome");
@@ -64,6 +78,8 @@
       });
 
       $('#test_btn').on('click', function() {
+        $('#progress_bar').html(getAnimatedProgressBar());
+
         $.ajax({
           type: 'post',
           url: 'testCode',
@@ -84,9 +100,22 @@
           url: 'saveCode',
           data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
           success: function(response) {
+            $('#status_div').html(getSaveMessageAlert());
           }
         });
       });
+
+      $('#restart_btn').on('click', function() {
+        $.ajax({
+          type: 'post',
+          url: 'restartCode',
+          data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+          success: function(response) {
+            $('#status_div').html(getRestartMessageAlert());
+            editor.setValue(response.new_editor_content);
+          }
+        });
+      })
       </script>
     </div>
 

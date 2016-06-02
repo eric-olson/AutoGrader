@@ -36,6 +36,21 @@ module AssignmentsHelper
     File.join(getUserAssignmentFolderPath(user, assignment), getAssignmentFilename)
   end
 
+  def self.getSpecFileContents(assignment)
+    spec_file_path = assignment.getSpecFilePath()
+    spec_file_contents = ""
+    
+    begin
+      spec_file = File.open(spec_file_path)
+      spec_file_contents = spec_file.read
+    rescue Errno::ENOENT
+      # We should probably fill with a default spec file here.
+      spec_file_contents = ""
+    end
+
+    return spec_file_contents
+  end
+
   def self.getEditorText(user, assignment)
     editor_text_file_path = ""
 
