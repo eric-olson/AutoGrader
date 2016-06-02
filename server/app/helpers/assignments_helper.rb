@@ -39,7 +39,7 @@ module AssignmentsHelper
   def self.getSpecFileContents(assignment)
     spec_file_path = assignment.getSpecFilePath()
     spec_file_contents = ""
-    
+
     begin
       spec_file = File.open(spec_file_path)
       spec_file_contents = spec_file.read
