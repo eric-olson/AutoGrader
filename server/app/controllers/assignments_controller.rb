@@ -12,7 +12,6 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    current_user = UsersHelper.getCurrentUser
     @editor_file_contents = AssignmentsHelper.getEditorText(current_user, @assignment)
   end
 
@@ -92,8 +91,6 @@ class AssignmentsController < ApplicationController
 
   def saveCode
     editor_text = params[:editor_text]
-
-    current_user = UsersHelper.getCurrentUser
 
     # Get the assignment folder path and create it if it doesn't exist
     assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
