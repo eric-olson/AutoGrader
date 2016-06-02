@@ -36,21 +36,6 @@ module AssignmentsHelper
     File.join(getUserAssignmentFolderPath(user, assignment), getAssignmentFilename)
   end
 
-  def self.getSpecFileContents(assignment)
-    spec_file_path = assignment.getSpecFilePath()
-    spec_file_contents = ""
-    
-    begin
-      spec_file = File.open(spec_file_path)
-      spec_file_contents = spec_file.read
-    rescue Errno::ENOENT
-      # We should probably fill with a default spec file here.
-      spec_file_contents = ""
-    end
-
-    return spec_file_contents
-  end
-
   def self.getEditorText(user, assignment)
     editor_text_file_path = ""
 
@@ -87,6 +72,7 @@ module AssignmentsHelper
 
     progress_bar_html = ""
     width = 100.0
+    bar_message = ""
     failure_message = ""
     popover_title = ""
     progress_bar_type = ""
@@ -96,9 +82,6 @@ module AssignmentsHelper
       width /= tests_array.size
       tests_array.each { |test|
         failed = test.respond_to?(:failure)
-        progress_bar_type = ""
-        popover_title = ""
-        failure_message = ""
         if failed
           failure_message = test.failure[:message]
           failure_message.gsub!("\n", "<br/>")
@@ -115,34 +98,39 @@ module AssignmentsHelper
     else
       #Compilation error
       if compile_errors.length > 0
-        failure_message = ""
+        failure_message = compile_errors
         popover_title = "Compilation Error"
+        bar_message = "Compilation Error"
         progress_bar_type = "progress-bar-danger"
       end
 
       #Runtime error
       if runtime_errors.length > 0
-        failure_message = ""
+        failure_message = runtime_errors
         popover_title = "Runtime Error"
+        bar_message = "Runtime Error"
         progress_bar_type = "progress-bar-warning"
       end
 
       #Timeout error
       if did_timeout
         failure_message = ""
-        popover_title = "Compiler timeout; infinite loop?"
+        popover_title = ""
+        bar_message = "Compiler timout; infinite loop?"
         progress_bar_type = "progress-bar-info"
       end
     end
 
     #Failsafe if no xml report or errors are generated
-    if popover_title.length == 0 || progress_bar_type.length == 0
-      popover_title = "NO XML REPORT OR ERRORS GENERATED"
+    if progress_bar_type.length == 0
+      failure_message="NO XML REPORT OR ERRORS GENERATED"
+      bar_message = "CRITICAL ERROR"
+      popover_title = "CRITIAL ERROR"
       progress_bar_type = "progress-bar-variant(#e100ff)"
     end
 
     progress_bar_html += "
-    <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
+    <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
     return progress_bar_html
   end
 
