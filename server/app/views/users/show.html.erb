@@ -1,12 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Multipass:</strong>
-  <%= @user.multipass_id %>
-</p>
-
-
-<h3>Grades</h3>
+<h3>Grades for <%= @user.multipass_id %></h3>
 <table class="table table-striped">
   <th> Assignment </th>
   <th> Score </th>
@@ -17,7 +11,3 @@
   </tr>
   <% end %>
 </table
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
