@@ -83,7 +83,6 @@ class AssignmentsController < ApplicationController
 
     test_report = JSON.parse(json_test_report)
 
-
     source_file.unlink
 
     progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestReport(test_report)
@@ -111,10 +110,7 @@ class AssignmentsController < ApplicationController
   end
 
   def restartCode
-    current_user = UsersHelper.getCurrentUser
-    editor_file_contents = AssignmentsHelper.getSpecFileContents(@assignment)
-
-    render json: {:new_editor_content => editor_file_contents}
+    render json: {:new_editor_content => @assignment.getSpecFileContents()}
   end
 
   private
