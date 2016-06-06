@@ -15,6 +15,8 @@ class Ability
       can :saveCode, Assignment
       can :restartCode, Assignment
       can :read, User, :id => user.id
+      cannot :index, User
+      cannot :index, Assignment
     end
 
     # Define abilities for the passed in user here. For example:
