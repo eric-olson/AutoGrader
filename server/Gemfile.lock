@@ -48,6 +48,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.3)
+    cancancan (1.14.0)
     ckeditor (4.1.6)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -235,6 +236,7 @@ DEPENDENCIES
   ace-rails-ap (~> 4.0, >= 4.0.2)
   bootstrap-sass (~> 3.3, >= 3.3.6)
   byebug
+  cancancan (~> 1.14)
   ckeditor (~> 4.1, >= 4.1.6)
   coffee-rails (~> 4.1.0)
   devise (~> 4.1, >= 4.1.1)

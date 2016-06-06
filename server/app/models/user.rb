@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+  # Manage user roles
+  ROLES = %i[admin ta]
+
+  def has_role?(role)
+    roles.include?(role)
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable,
