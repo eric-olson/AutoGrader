@@ -17,4 +17,5 @@
 //= require ace/theme-xcode
 //= require ace/mode-c_cpp
 //= require bootstrap-sprockets
+//= require ckeditor/init
 //= require_tree .
