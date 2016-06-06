@@ -34,4 +34,14 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model Assignment do
+    edit do
+      field :name do
+        required true
+      end
+      field :lab
+      field :description, :ck_editor
+    end
+  end
 end
