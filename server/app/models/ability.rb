@@ -9,7 +9,12 @@ class Ability
       # TA stuff
     else
       # Student stuff
-      can :read, :all
+      can :read, Lab
+      can :read, Assignment
+      can :testCode, Assignment
+      can :saveCode, Assignment
+      can :restartCode, Assignment
+      can :read, User, :id => user.id
     end
 
     # Define abilities for the passed in user here. For example:
