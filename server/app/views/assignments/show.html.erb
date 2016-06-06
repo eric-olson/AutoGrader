@@ -51,6 +51,9 @@
       <li>
         <a href="#2" data-toggle="tab">Upload</a>
       </li>
+      <li>
+        <a href="#3" data-toggle="tab">Download</a>
+      </li>
     </ul>
 
     <div class="tab-content">
@@ -154,6 +157,10 @@
         <%= file_field_tag 'assignment_file' %>
         <%= submit_tag "Upload" %>
         <% end %>
+      </div>
+
+      <div class="tab-pane" id="3">
+        <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
       </div>
 
     </div>

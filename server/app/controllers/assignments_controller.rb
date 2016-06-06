@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -111,7 +111,6 @@ class AssignmentsController < ApplicationController
   end
 
   def uploadCode
-
     uploaded_file = params[:assignment_file]
     assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
 
@@ -140,6 +139,21 @@ class AssignmentsController < ApplicationController
           redirect_to @assignment,
           :flash => {
             :error => 'There was a problem uploading your assignment file.'
+          }
+        }
+      end
+    end
+  end
+
+  def downloadCode
+    if current_user.hasSolutionFileForAssignment?(@assignment)
+      send_file(current_user.getSolutionFilepathForAssignment(@assignment))
+    else
+      respond_to do |format|
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :error => 'No assignment file to download'
           }
         }
       end
