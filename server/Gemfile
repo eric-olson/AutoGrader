@@ -19,6 +19,10 @@ gem 'rails_admin', '~> 0.8.1'
 
 # Use ace code editor
 gem 'ace-rails-ap', '~> 4.0', '>= 4.0.2'
+# Use CKeditor for description editing
+gem 'ckeditor', '~> 4.1', '>= 4.1.6'
+# Use paperclip for ActiveRecord file uploads
+gem 'paperclip', '~> 4.3', '>= 4.3.6'
 
 # Use nokogiri to parse XML returned from testing tool
 gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
