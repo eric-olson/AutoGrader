@@ -3,7 +3,7 @@
     <div id="status_div">
     </div>
     <h4>Test Results</h4>
-    <div id="progress_bar" class="progress progress-bar-segmented">
+    <div id="progress_bar_container" class="progress progress-bar-segmented">
     </div>
   </div>
   <div class="col-md-4">
@@ -49,80 +49,103 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="1">
-      <style type="text/css" media="screen">
-      #editor {
-        height: 300px;
-      }
+        <div id="editor"><%= @editor_file_contents %></div>
 
-      </style>
+        <script>
+        function getAnimatedProgressBar() {
+          return '<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;background-color: darkcyan;">Running Tests</div>';
+        }
 
-      <div id="editor"><%= @editor_file_contents %></div>
+        // message can be whatever
+        // alert_class must be one of:
+        //    alert-success
+        //    alert-info
+        //    alert-warning
+        //    alert-danger
+        function buildAlertBox(message, alert_class) {
+          autoCloseAlert();
+          return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
+        }
 
-      <script>
-      function getAnimatedProgressBar() {
-        return '<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;background-color: darkcyan;">Running Tests</div>';
-      }
+        function buildAlertBoxSuccess(message) {
+          return buildAlertBox(message, "alert-success");
+        }
 
-      function getSaveMessageAlert() {
-        return '<div class="alert alert-success fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>File saved successfully!</div>'
-      }
+        function buildAlertBoxInfo(message) {
+          return buildAlertBox(message, "alert-info");
+        }
 
-      function getRestartMessageAlert() {
-        return '<div class="alert alert-success fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Reset file to the default spec.</div>'
-      }
+        function buildAlertBoxWarning(message) {
+          return buildAlertBox(message, "alert-warning");
+        }
 
-      var editor = ace.edit("editor");
-      $( document ).ready(function() {
-        editor.setTheme("ace/theme/chrome");
-        editor.getSession().setMode("ace/mode/c_cpp");
-      });
+        function buildAlertBoxDanger(message) {
+          return buildAlertBox(message, "alert-danger");
+        }
 
-      $('#test_btn').on('click', function() {
-        $('#progress_bar').html(getAnimatedProgressBar());
+        function autoCloseAlert() {
+          window.setTimeout(function() {
+              $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+                  $(this).remove();
+              });
+          }, 2000);
+        }
 
-        $.ajax({
-          type: 'post',
-          url: 'testCode',
-          data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-          success: function(response) {
-            // Load the progress bar with the html from the response
-            $('#progress_bar').html(response.progress_bar_html);
-            // Enable popovers
-            $('[data-toggle="popover"]').popover();
-          }
+        var editor = ace.edit("editor");
+        editor.$blockScrolling = Infinity;
+
+        $( document ).ready(function() {
+          editor.setTheme("ace/theme/chrome");
+          editor.getSession().setMode("ace/mode/c_cpp");
         });
-        return false;
-      });
 
-      $('#save_btn').on('click', function() {
-        $.ajax({
-          type: 'post',
-          url: 'saveCode',
-          data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-          success: function(response) {
-            $('#status_div').html(getSaveMessageAlert());
-          }
-        });
-      });
+        $('#test_btn').on('click', function() {
+          $('#progress_bar_container').html(getAnimatedProgressBar());
 
-      $('#restart_btn').on('click', function() {
-        $.ajax({
-          type: 'post',
-          url: 'restartCode',
-          data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-          success: function(response) {
-            $('#status_div').html(getRestartMessageAlert());
-            editor.setValue(response.new_editor_content);
-          }
+          $.ajax({
+            type: 'post',
+            url: 'testCode',
+            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+            success: function(response) {
+              // Load the progress bar with the html from the response
+              $('#progress_bar_container').html(response.progress_bar_html);
+              // Enable popovers
+              $('[data-toggle="popover"]').popover();
+            }
+          });
+          return false;
         });
-      })
-      </script>
+
+        $('#save_btn').on('click', function() {
+          $.ajax({
+            type: 'post',
+            url: 'saveCode',
+            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+            success: function(response) {
+              $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
+            }
+          });
+        });
+
+        $('#restart_btn').on('click', function() {
+          $.ajax({
+            type: 'post',
+            url: 'restartCode',
+            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+            success: function(response) {
+              $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
+              editor.setValue(response.new_editor_content, -1);
+            }
+          });
+        });
+
+        </script>
+      </div>
+
+      <div class="tab-pane" id="2">
+        <p>Interface to upload code</p>
+      </div>
+
     </div>
-
-    <div class="tab-pane" id="2">
-      <p>Interface to upload code</p>
-    </div>
-
   </div>
-</div>
 </div>

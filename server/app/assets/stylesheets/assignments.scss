@@ -1,14 +1,26 @@
 // Place all the styles related to the Assignments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#progress_bar {
+#progress_bar_container {
   height: 30px;
+  line-height: 30px;
+}
+
+a.close:hover,
+a.close:focus {
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .progress-bar {
+  line-height: 30px;
   border-right: 1px solid #eee;
 }
 
 .progress-bar:last-child {
+  line-height: 30px;
   border-right: none;
+}
+
+#editor {
+  height: 300px;
 }
