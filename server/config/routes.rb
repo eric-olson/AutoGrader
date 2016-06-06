@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'assignments/testCode'
   post 'assignments/saveCode'
   post 'assignments/restartCode'
+  post 'assignments/uploadCode'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

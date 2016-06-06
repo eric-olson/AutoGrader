@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -108,6 +108,42 @@ class AssignmentsController < ApplicationController
 
   def restartCode
     render json: {:new_editor_content => @assignment.getSpecFileContents()}
+  end
+
+  def uploadCode
+
+    uploaded_file = params[:assignment_file]
+    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
+
+    upload_success = false
+    if uploaded_file
+      begin
+        File.open(assignment_file_path, "wb") { |f|
+          f.write(uploaded_file.read)
+        }
+        upload_success = true
+      rescue
+        upload_success = false
+      end
+    end
+
+    respond_to do |format|
+      if upload_success
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :success => 'Assignment file was successfully uploaded.'
+          }
+        }
+      else
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :error => 'There was a problem uploading your assignment file.'
+          }
+        }
+      end
+    end
   end
 
   private

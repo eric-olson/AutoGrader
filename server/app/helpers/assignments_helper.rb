@@ -34,6 +34,22 @@ module AssignmentsHelper
     end
   end
 
+  def bootstrap_class_for(flash_type)
+    puts "TYPE: " + flash_type.to_s
+    case flash_type
+    when "success"
+      "alert-success"
+    when "error"
+      "alert-danger"
+    when "alert"
+      "alert-warning"
+    when "notice"
+      "alert-info"
+    else
+      flash_type.to_s
+    end
+  end
+
   def self.generateProgressBarHTMLFromTestReport(test_report)
     xml_result = test_report["gtest_xml_report"]
     compile_errors = test_report["compile_errors"]
