@@ -3,7 +3,7 @@
     <div id="status_div">
     </div>
     <h4>Test Results</h4>
-    <div id="progress_bar" class="progress progress-bar-segmented">
+    <div id="progress_bar_container" class="progress progress-bar-segmented">
     </div>
   </div>
   <div class="col-md-4">
@@ -49,13 +49,6 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="1">
-      <style type="text/css" media="screen">
-      #editor {
-        height: 300px;
-      }
-
-      </style>
-
       <div id="editor"><%= @editor_file_contents %></div>
 
       <script>
@@ -78,7 +71,7 @@
       });
 
       $('#test_btn').on('click', function() {
-        $('#progress_bar').html(getAnimatedProgressBar());
+        $('#progress_bar_container').html(getAnimatedProgressBar());
 
         $.ajax({
           type: 'post',
@@ -86,7 +79,7 @@
           data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
           success: function(response) {
             // Load the progress bar with the html from the response
-            $('#progress_bar').html(response.progress_bar_html);
+            $('#progress_bar_container').html(response.progress_bar_html);
             // Enable popovers
             $('[data-toggle="popover"]').popover();
           }
@@ -112,7 +105,7 @@
           data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
           success: function(response) {
             $('#status_div').html(getRestartMessageAlert());
-            editor.setValue(response.new_editor_content);
+            editor.setValue(response.new_editor_content, -1);
           }
         });
       })
