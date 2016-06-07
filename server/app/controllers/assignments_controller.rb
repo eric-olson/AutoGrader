@@ -13,7 +13,16 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    @editor_file_contents = AssignmentsHelper.getEditorText(current_user, @assignment)
+    if (!current_user.hasSolutionFileForAssignment?(@assignment))
+      to_write_solution = ""
+      if @assignment.hasSpecFile?
+        to_write_solution = @assignment.getSpecFileContents()
+      end
+
+      current_user.writeToSolutionFileForAssignment(@assignment, to_write_solution)
+    end
+
+    @editor_file_contents = current_user.getSolutionFileContentsForAssignment(@assignment)
   end
 
   # GET /assignments/new
@@ -68,6 +77,10 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def grades
+    @assignment = Assignment.find(params[:assignment_id])
+  end
+
   def testCode
     # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
 
@@ -96,16 +109,7 @@ class AssignmentsController < ApplicationController
     # Saves the user's code to their solution file
     editor_text = params[:editor_text]
 
-    # Get the assignment folder path and create it if it doesn't exist
-    assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
-    FileUtils.mkdir_p(assignment_folder_path)
-
-    # Get the assignment file name
-    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
-    # Write the assignment file using the editor source
-    assignment_file = File.open(assignment_file_path, "w")
-    assignment_file.write(editor_text)
-    assignment_file.close
+    current_user.writeToSolutionFileForAssignment(@assignment, editor_text)
 
     render nothing: true
   end
@@ -122,12 +126,17 @@ class AssignmentsController < ApplicationController
 
     upload_success = false
     if uploaded_file
-      begin
-        File.open(assignment_file_path, "wb") { |f|
-          f.write(uploaded_file.read)
-        }
-        upload_success = true
-      rescue
+      uploaded_file_contents = uploaded_file.read
+      uploaded_file_contents = uploaded_file_contents.force_encoding('utf-8')
+
+      if (uploaded_file_contents.valid_encoding?)
+        begin
+          current_user.writeToSolutionFileForAssignment(@assignment, uploaded_file_contents)
+          upload_success = true
+        rescue
+          upload_success = false
+        end
+      else
         upload_success = false
       end
     end
