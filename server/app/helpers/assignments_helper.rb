@@ -79,11 +79,11 @@ module AssignmentsHelper
           inputs = "Input: " + test[:value_param]
         end
         cutoff = inputs.rindex(':')
+        expected_value = inputs[(cutoff+1)..-1]
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
-          expected_value = message[(message.rindex(":")+1)..-1]
           message = message[message.index("Actual:")..(message.index("Expected:")+8)]
           message += expected_value
 
@@ -91,6 +91,7 @@ module AssignmentsHelper
           popover_title = "Failed Test"
           progress_bar_type = "progress-bar-danger"
         else
+          failure_message += "Output: " + expected_value
           popover_title = "Passed Test"
           progress_bar_type = "progress-bar-success"
         end
