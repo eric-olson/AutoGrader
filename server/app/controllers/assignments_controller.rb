@@ -12,7 +12,25 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
-    @editor_file_contents = AssignmentsHelper.getEditorText(current_user, @assignment)
+    if (!current_user.hasSolutionFileForAssignment?(@assignment))
+      to_write_solution = ""
+      if @assignment.hasSpecFile?
+        to_write_solution = @assignment.getSpecFileContents()
+      end
+
+      # Get the assignment folder path and create it if it doesn't exist
+      assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
+      FileUtils.mkdir_p(assignment_folder_path)
+
+      # Get the assignment file name
+      assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
+      # Write the assignment file using the editor source
+      assignment_file = File.open(assignment_file_path, "w")
+      assignment_file.write(to_write_solution)
+      assignment_file.close
+    end
+
+    @editor_file_contents = current_user.getSolutionFileContentsForAssignment(@assignment)
   end
 
   # GET /assignments/new
@@ -69,7 +87,7 @@ class AssignmentsController < ApplicationController
 
   def testCode
     # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
-    
+
     editor_text = params[:editor_text]
     # Create tempfile and write the editor text to it
     source_file_prefix = "solution"
