@@ -13,7 +13,8 @@
         <h3 class="panel-title"><%= @assignment.name %></h3>
       </div>
       <div class="panel-body">
-        <%= @assignment.description.html_safe %>
+        
+        <div style="height: 300px; overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group" id="restart_btn">
