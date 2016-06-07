@@ -83,7 +83,7 @@ module AssignmentsHelper
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
-          message = message[message.index("Actual:")..(message.index("Expected:")+8)]
+          message = message[message.index("Actual:")..(message.index("Expected: ")+9)]
           message += expected_value
 
           failure_message += message
