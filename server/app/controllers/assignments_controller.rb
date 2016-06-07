@@ -153,7 +153,7 @@ class AssignmentsController < ApplicationController
         format.html {
           redirect_to @assignment,
           :flash => {
-            :error => 'No assignment file to download'
+            :error => 'No assignment file to download. Please save your code and try again.'
           }
         }
       end

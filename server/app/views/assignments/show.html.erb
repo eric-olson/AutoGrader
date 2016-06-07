@@ -160,9 +160,9 @@
       </div>
 
       <div class="tab-pane" id="2">
-        <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true) do %>
+        <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
         <%= file_field_tag 'assignment_file' %>
-        <%= submit_tag "Upload" %>
+        <%= submit_tag("Upload") %>
         <% end %>
       </div>
 
