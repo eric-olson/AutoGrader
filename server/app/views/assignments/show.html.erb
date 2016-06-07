@@ -1,4 +1,4 @@
-<div class="row" style="height: 500px;">
+<div class="row" >
   <div class="col-md-12">
     <div id="status_div">
       <% flash.each do |type, message| %>
@@ -13,13 +13,14 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default">
+    <div id="descriptionPanel" class="panel panel-default" >
 
       <div class="panel-heading">
         <h3 class="panel-title"><%= @assignment.name %></h3>
       </div>
-      <div class="panel-body">
-        <%= @assignment.description.html_safe %>
+      <div class="panel-body" >
+        
+        <div id="description" style="overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group" id="restart_btn">
@@ -56,11 +57,37 @@
       </li>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-content" >
       <div class="tab-pane active" id="1">
+
         <div id="editor"><%= @editor_file_contents %></div>
 
         <script>
+
+        function resizeAce() {
+          return $('#editor').height($(window).height() - 225);
+        };
+        //listen for changes
+        $(window).resize(resizeAce);
+        //set initially
+        resizeAce();
+
+        function resizeDescriptionPanel() {
+          return $('#descriptionPanel').height($(window).height() - 190);
+        };
+        //listen for changes
+        $(window).resize(resizeDescriptionPanel);
+        //set initially
+        resizeDescriptionPanel();
+
+        function resizeDescription() {
+          return $('#description').height($(window).height() - 290);
+        };
+        //listen for changes
+        $(window).resize(resizeDescription);
+        //set initially
+        resizeDescription();
+
         function getAnimatedProgressBar() {
           return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
         }
