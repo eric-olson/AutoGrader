@@ -1,6 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode]
 
   # GET /assignments
@@ -69,7 +70,7 @@ class AssignmentsController < ApplicationController
 
   def testCode
     # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
-    
+
     editor_text = params[:editor_text]
     # Create tempfile and write the editor text to it
     source_file_prefix = "solution"
