@@ -68,6 +68,8 @@ class AssignmentsController < ApplicationController
   end
 
   def testCode
+    # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
+    
     editor_text = params[:editor_text]
     # Create tempfile and write the editor text to it
     source_file_prefix = "solution"
@@ -90,6 +92,7 @@ class AssignmentsController < ApplicationController
   end
 
   def saveCode
+    # Saves the user's code to their solution file
     editor_text = params[:editor_text]
 
     # Get the assignment folder path and create it if it doesn't exist
@@ -107,10 +110,12 @@ class AssignmentsController < ApplicationController
   end
 
   def restartCode
+    # Restarts the code to the default spec, does not save it to the user's solution file
     render json: {:new_editor_content => @assignment.getSpecFileContents()}
   end
 
   def uploadCode
+    # Uploads the file received and replaces the user's solution file with it.
     uploaded_file = params[:assignment_file]
     assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
 
@@ -146,6 +151,7 @@ class AssignmentsController < ApplicationController
   end
 
   def downloadCode
+    # Downloads the code that the user has saved, if any.
     if current_user.hasSolutionFileForAssignment?(@assignment)
       send_file(current_user.getSolutionFilepathForAssignment(@assignment))
     else
