@@ -21,7 +21,7 @@
         <h3 class="panel-title"><%= @assignment.name %></h3>
       </div>
       <div class="panel-body" >
-        
+
         <div id="description" style="overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
 
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -67,7 +67,7 @@
         <script>
 
         function resizeAce() {
-          return $('#editor').height($(window).height() - 225);
+          return $('#editor').height($(window).height() - 275);
         };
         //listen for changes
         $(window).resize(resizeAce);
@@ -75,7 +75,7 @@
         resizeAce();
 
         function resizeDescriptionPanel() {
-          return $('#descriptionPanel').height($(window).height() - 190);
+          return $('#descriptionPanel').height($(window).height() - 240);
         };
         //listen for changes
         $(window).resize(resizeDescriptionPanel);
@@ -83,7 +83,7 @@
         resizeDescriptionPanel();
 
         function resizeDescription() {
-          return $('#description').height($(window).height() - 290);
+          return $('#description').height($(window).height() - 340);
         };
         //listen for changes
         $(window).resize(resizeDescription);
