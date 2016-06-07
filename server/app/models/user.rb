@@ -59,4 +59,5 @@ class User < ActiveRecord::Base
   def hasSolutionFileForAssignment?(assignment)
     FileTest.exists?(getSolutionFilepathForAssignment(assignment))
   end
+
 end

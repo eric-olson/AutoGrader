@@ -121,12 +121,17 @@ class AssignmentsController < ApplicationController
 
     upload_success = false
     if uploaded_file
-      begin
-        File.open(assignment_file_path, "wb") { |f|
-          f.write(uploaded_file.read)
-        }
-        upload_success = true
-      rescue
+      uploaded_file_contents = uploaded_file.read
+      uploaded_file_contents = uploaded_file_contents.force_encoding('utf-8')
+
+      if (uploaded_file_contents.valid_encoding?)
+        begin
+          current_user.writeToSolutionFileForAssignment(@assignment, uploaded_file_contents)
+          upload_success = true
+        rescue
+          upload_success = false
+        end
+      else
         upload_success = false
       end
     end

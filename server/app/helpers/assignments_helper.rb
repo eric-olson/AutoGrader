@@ -35,7 +35,6 @@ module AssignmentsHelper
   end
 
   def bootstrap_class_for(flash_type)
-    puts "TYPE: " + flash_type.to_s
     case flash_type
     when "success"
       "alert-success"
