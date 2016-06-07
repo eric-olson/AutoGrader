@@ -1,7 +1,7 @@
 require 'fileutils'
 
 class AssignmentsController < ApplicationController
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -68,6 +68,8 @@ class AssignmentsController < ApplicationController
   end
 
   def testCode
+    # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
+    
     editor_text = params[:editor_text]
     # Create tempfile and write the editor text to it
     source_file_prefix = "solution"
@@ -90,6 +92,7 @@ class AssignmentsController < ApplicationController
   end
 
   def saveCode
+    # Saves the user's code to their solution file
     editor_text = params[:editor_text]
 
     # Get the assignment folder path and create it if it doesn't exist
@@ -107,7 +110,60 @@ class AssignmentsController < ApplicationController
   end
 
   def restartCode
+    # Restarts the code to the default spec, does not save it to the user's solution file
     render json: {:new_editor_content => @assignment.getSpecFileContents()}
+  end
+
+  def uploadCode
+    # Uploads the file received and replaces the user's solution file with it.
+    uploaded_file = params[:assignment_file]
+    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
+
+    upload_success = false
+    if uploaded_file
+      begin
+        File.open(assignment_file_path, "wb") { |f|
+          f.write(uploaded_file.read)
+        }
+        upload_success = true
+      rescue
+        upload_success = false
+      end
+    end
+
+    respond_to do |format|
+      if upload_success
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :success => 'Assignment file was successfully uploaded.'
+          }
+        }
+      else
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :error => 'There was a problem uploading your assignment file.'
+          }
+        }
+      end
+    end
+  end
+
+  def downloadCode
+    # Downloads the code that the user has saved, if any.
+    if current_user.hasSolutionFileForAssignment?(@assignment)
+      send_file(current_user.getSolutionFilepathForAssignment(@assignment))
+    else
+      respond_to do |format|
+        format.html {
+          redirect_to @assignment,
+          :flash => {
+            :error => 'No assignment file to download. Please save your code and try again.'
+          }
+        }
+      end
+    end
   end
 
   private

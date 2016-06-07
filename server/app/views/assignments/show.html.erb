@@ -1,6 +1,12 @@
 <div class="row" style="height: 500px;">
   <div class="col-md-12">
     <div id="status_div">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= bootstrap_class_for(type) %> fade in">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%= message %>
+        </div>
+      <% end %>
     </div>
     <h4>Test Results</h4>
     <div id="progress_bar_container" class="progress progress-bar-segmented">
@@ -45,6 +51,9 @@
       <li>
         <a href="#2" data-toggle="tab">Upload</a>
       </li>
+      <li>
+        <a href="#3" data-toggle="tab">Download</a>
+      </li>
     </ul>
 
     <div class="tab-content">
@@ -53,7 +62,11 @@
 
         <script>
         function getAnimatedProgressBar() {
-          return '<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;background-color: darkcyan;">Running Tests</div>';
+          return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
+        }
+
+        function getServerErrorProgressBar() {
+          return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
         }
 
         // message can be whatever
@@ -85,9 +98,9 @@
 
         function autoCloseAlert() {
           window.setTimeout(function() {
-              $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-                  $(this).remove();
-              });
+            $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+              $(this).remove();
+            });
           }, 2000);
         }
 
@@ -95,6 +108,7 @@
         editor.$blockScrolling = Infinity;
 
         $( document ).ready(function() {
+          autoCloseAlert();
           editor.setTheme("ace/theme/chrome");
           editor.getSession().setMode("ace/mode/c_cpp");
         });
@@ -111,6 +125,9 @@
               $('#progress_bar_container').html(response.progress_bar_html);
               // Enable popovers
               $('[data-toggle="popover"]').popover();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              $('#progress_bar_container').html(getServerErrorProgressBar());
             }
           });
           return false;
@@ -143,7 +160,14 @@
       </div>
 
       <div class="tab-pane" id="2">
-        <p>Interface to upload code</p>
+        <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
+        <%= file_field_tag 'assignment_file' %>
+        <%= submit_tag("Upload") %>
+        <% end %>
+      </div>
+
+      <div class="tab-pane" id="3">
+        <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
       </div>
 
     </div>
