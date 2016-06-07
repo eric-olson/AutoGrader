@@ -21,6 +21,16 @@ a.close:focus {
   border-right: none;
 }
 
+.progress-bar.progress-bar-testing {
+  width: 100%;
+  background-color: darkcyan;
+}
+
+.progress-bar.progress-bar-error {
+  width: 100%;
+  background-color: dimgray;
+}
+
 #editor {
   height: 300px;
 }

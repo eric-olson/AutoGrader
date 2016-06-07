@@ -62,7 +62,11 @@
 
         <script>
         function getAnimatedProgressBar() {
-          return '<div class="progress-bar progress-bar-striped active" role="progressbar" style="width:100%;background-color: darkcyan;">Running Tests</div>';
+          return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
+        }
+
+        function getServerErrorProgressBar() {
+          return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
         }
 
         // message can be whatever
@@ -121,6 +125,9 @@
               $('#progress_bar_container').html(response.progress_bar_html);
               // Enable popovers
               $('[data-toggle="popover"]').popover();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              $('#progress_bar_container').html(getServerErrorProgressBar());
             }
           });
           return false;
