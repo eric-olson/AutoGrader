@@ -1,0 +1,22 @@
+
+<h2><%= @assignment.name %> Grades</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>MultiPass</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignment.grades.each do |grade| %>
+    <tr>
+      <td><%= link_to grade.user.name, grade.user, class: "btn btn-default btn-xs" %></td>
+      <td><%= grade.user.multipass_id %></td>
+      <td><%= grade.score %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

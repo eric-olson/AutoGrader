@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   resources :labs
   resources :users
   resources :assignments
-  get 'static_pages/acetest'
 
-  get 'static_pages/ProblemPage'
+  get 'assignments/:assignment_id/grades' => 'assignments#grades'
 
   # For the button_to call to test code
   post 'assignments/testCode'

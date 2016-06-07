@@ -77,6 +77,10 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  def grades
+    @assignment = Assignment.find(params[:assignment_id])
+  end
+
   def testCode
     # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
 
