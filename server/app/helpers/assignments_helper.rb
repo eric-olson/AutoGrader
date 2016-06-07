@@ -65,15 +65,29 @@ module AssignmentsHelper
     failure_message = ""
     popover_title = ""
     progress_bar_type = ""
+    inputs = ""
+    message = ""
 
     #No errors with code
     if xml_result.length > 0
       width /= tests_array.size
       tests_array.each { |test|
         failed = test.respond_to?(:failure)
+        if (test[:value_param].index(",") != nil)
+          inputs = "Inputs: " + test[:value_param]
+        else
+          inputs = "Input: " + test[:value_param]
+        end
+        cutoff = inputs.rindex(':')
+        failure_message = inputs[0..(cutoff-1)] + " <br/> "
         if failed
-          failure_message = test.failure[:message]
-          failure_message.gsub!("\n", "<br/>")
+          message = test.failure[:message]
+          message.gsub!("\n", "<br/>")
+          expected_value = message[(message.rindex(":")+1)..-1]
+          message = message[message.index("Actual:")..(message.index("Expected:")+8)]
+          message += expected_value
+
+          failure_message += message
           popover_title = "Failed Test"
           progress_bar_type = "progress-bar-danger"
         else
