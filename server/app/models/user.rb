@@ -43,6 +43,19 @@ class User < ActiveRecord::Base
     return assignment_file_contents
   end
 
+  def writeToSolutionFileForAssignment(assignment, to_write_solution)
+    # Get the assignment folder path and create it if it doesn't exist
+    assignment_folder_path = getDirectoryForAssignment(assignment)
+    FileUtils.mkdir_p(assignment_folder_path)
+
+    # Get the assignment file name
+    assignment_file_path = getSolutionFilepathForAssignment(assignment)
+    # Write the assignment file using the editor source
+    assignment_file = File.open(assignment_file_path, "w")
+    assignment_file.write(to_write_solution)
+    assignment_file.close
+  end
+
   def hasSolutionFileForAssignment?(assignment)
     FileTest.exists?(getSolutionFilepathForAssignment(assignment))
   end

@@ -18,16 +18,7 @@ class AssignmentsController < ApplicationController
         to_write_solution = @assignment.getSpecFileContents()
       end
 
-      # Get the assignment folder path and create it if it doesn't exist
-      assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
-      FileUtils.mkdir_p(assignment_folder_path)
-
-      # Get the assignment file name
-      assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
-      # Write the assignment file using the editor source
-      assignment_file = File.open(assignment_file_path, "w")
-      assignment_file.write(to_write_solution)
-      assignment_file.close
+      current_user.writeToSolutionFileForAssignment(@assignment, to_write_solution)
     end
 
     @editor_file_contents = current_user.getSolutionFileContentsForAssignment(@assignment)
@@ -113,16 +104,7 @@ class AssignmentsController < ApplicationController
     # Saves the user's code to their solution file
     editor_text = params[:editor_text]
 
-    # Get the assignment folder path and create it if it doesn't exist
-    assignment_folder_path = current_user.getDirectoryForAssignment(@assignment)
-    FileUtils.mkdir_p(assignment_folder_path)
-
-    # Get the assignment file name
-    assignment_file_path = current_user.getSolutionFilepathForAssignment(@assignment)
-    # Write the assignment file using the editor source
-    assignment_file = File.open(assignment_file_path, "w")
-    assignment_file.write(editor_text)
-    assignment_file.close
+    current_user.writeToSolutionFileForAssignment(@assignment, editor_text)
 
     render nothing: true
   end
