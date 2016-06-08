@@ -55,65 +55,76 @@
 
 
           <div id="header-button-container">
-            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#upload_modal">
-              <span class="glyphicon glyphicon-open"></span>
-            </button>
-            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#download_modal">
-              <span class="glyphicon glyphicon-save"></span>
-            </button>
-          </div>
-
-        </div>
-        <div class="panel-body" id="editor-panel-body">
-          <div id="editor"><%= @editor_file_contents %></div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="upload_modal" role="dialog">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Upload Code</h4>
-            </div>
-            <div class="modal-body">
-              <p> This will overwrite any code you have saved. </p>
-              <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
-              <span class="input-group">
-                <span class="btn btn-info btn-file input-group-btn" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;font-size: 14px;">
-                  Browse
-                  <%= file_field_tag('assignment_file', :class => 'btn btn-info', onchange: "$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());") %>
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <span data-toggle="modal" data-target="#upload_modal">
+                  <button type="button" id="btn-upload" class="btn btn-default btn-sm btn-group-header" data-toggle="tooltip" data-placement="bottom" title="Upload">
+                    <span class="glyphicon glyphicon-open"></span>
+                  </button>
                 </span>
-                <span class="form-control"></span>
+              </div>
+              <div class="btn-group" role="group">
+                <span data-toggle="modal" data-target="#download_modal">
+                  <button type="button" id="btn-download" class="btn btn-default btn-sm btn-group-header" data-toggle="tooltip"
+                  data-placement="bottom" title="Download">
+                  <span class="glyphicon glyphicon-save"></span>
+                </button>
               </span>
             </div>
-            <div class="modal-footer">
-              <%= submit_tag("Upload", :class => "btn btn-success") %>
-              <% end %>
-            </div>
           </div>
         </div>
-      </div>
 
-      <div class="modal fade" id="download_modal" role="dialog">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Download Code</h4>
-            </div>
-            <div class="modal-body">
-              <p>This will only download the code you have saved.</p>
-            </div>
-            <div class="modal-footer">
-              <%= link_to("Download", {:action => "downloadCode", :id => @assignment.id}, :method => 'post', :class => "btn btn-success", "data-dismiss" => "modal") %>
-            </div>
-          </div>
-        </div>
       </div>
-
+      <div class="panel-body" id="editor-panel-body">
+        <div id="editor"><%= @editor_file_contents %></div>
+      </div>
     </div>
+
+    <div class="modal fade" id="upload_modal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Upload Code</h4>
+          </div>
+          <div class="modal-body">
+            <p> This will overwrite any code you have saved. </p>
+            <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
+            <span class="input-group">
+              <span class="btn btn-info btn-file input-group-btn" style="border-top-right-radius: 0px;border-bottom-right-radius: 0px;font-size: 14px;">
+                Browse
+                <%= file_field_tag('assignment_file', :class => 'btn btn-info', onchange: "$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());") %>
+              </span>
+              <span class="form-control"></span>
+            </span>
+          </div>
+          <div class="modal-footer">
+            <%= submit_tag("Upload", :class => "btn btn-success") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="download_modal" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Download Code</h4>
+          </div>
+          <div class="modal-body">
+            <p>This will only download the code you have saved.</p>
+          </div>
+          <div class="modal-footer">
+            <%= link_to("Download", {:action => "downloadCode", :id => @assignment.id}, :method => 'post', :class => "btn btn-success", "data-dismiss" => "modal") %>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</div>
 </div>
 
 <script>
@@ -242,6 +253,9 @@ $( document ).ready(function() {
 
   editor.setTheme("ace/theme/chrome");
   editor.getSession().setMode("ace/mode/c_cpp");
+
+  $('[data-toggle="tooltip"]').tooltip();
+
 });
 
 $('#test_btn').on('click', function() {
