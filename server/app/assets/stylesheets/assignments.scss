@@ -46,13 +46,14 @@ a.btn.btn-success:visited {
 
 #header-button-container {
   position: absolute;
-  width: 76px;
+  width: 78px;
   right: 15px;
   top: 0px;
 }
 
 #btn-upload {
   border-radius: 0px;
+  border-right: transparent;
 }
 
 #btn-download {
@@ -63,8 +64,7 @@ a.btn.btn-success:visited {
 }
 
 .btn-group-header {
-  width:38px;
-  height:38px;
+  height:39px;
 }
 
 .btn-file {
