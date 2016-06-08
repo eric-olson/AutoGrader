@@ -18,11 +18,14 @@
       <div id="descriptionPanel" class="panel panel-default" >
 
         <div class="panel-heading">
-          <h3 class="panel-title"><%= @assignment.name %></h3>
+          <h3 class="panel-title">Assignment Description</h3>
         </div>
         <div class="panel-body" >
 
-          <div id="description" style="overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
+          <div id="description" style="overflow: scroll;">
+            <h1 class="panel-title"><%= @assignment.name %></h1>
+            <%= @assignment.description.html_safe %>
+          </div>
 
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group" id="restart_btn">
@@ -49,16 +52,19 @@
       <div id="editorPanel" class="panel panel-default" >
         <div class="panel-heading">
           <h3 class="panel-title">Editor</h3>
-          <button type="button" class="btn" data-toggle="modal" data-target="#upload_modal">
-            <span class="glyphicon glyphicon-open"></span>
-          </button>
 
-          <button type="button" class="btn" data-toggle="modal" data-target="#download_modal">
-            <span class="glyphicon glyphicon-save"></span>
-          </button>
+
+          <div id="header-button-container">
+            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#upload_modal">
+              <span class="glyphicon glyphicon-open"></span>
+            </button>
+            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#download_modal">
+              <span class="glyphicon glyphicon-save"></span>
+            </button>
+          </div>
 
         </div>
-        <div class="panel-body">
+        <div class="panel-body" id="editor-panel-body">
           <div id="editor"><%= @editor_file_contents %></div>
         </div>
       </div>
@@ -92,10 +98,11 @@
               <h4 class="modal-title">Download Code</h4>
             </div>
             <div class="modal-body">
-              <p> This will only download the code you have saved </p>
+              <p> This will only download the code you have saved. Would you like to save first? </p>
             </div>
             <div class="modal-footer">
-              <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
+              <%= link_to("Yes", {:action => "downloadCode", :id => @assignment.id, :save => false}, :method => 'post') %>
+              <%= link_to("No", {:action => "downloadCode", :id => @assignment.id, :save => true}, :method => 'post') %>
             </div>
           </div>
         </div>
@@ -117,21 +124,21 @@ function stopResizing() {
 
 function resizeToSmaller() {
   stopResizing();
-  $('#editor').height($(window).height() - 288);
+  $('#editor').height($(window).height() - 287);
   $('#descriptionPanel').height($(window).height() - 250);
   $('#description').height($(window).height() - 350);
 }
 
 function resizeToFull() {
   stopResizing();
-  $('#editor').height($(window).height() - 228);
+  $('#editor').height($(window).height() - 227);
   $('#descriptionPanel').height($(window).height() - 190);
   $('#description').height($(window).height() - 290);
 }
 
 function resizeToFullAnimated() {
   stopResizing();
-  $('#editor').animate({height:$(window).height() - 228}, 500);
+  $('#editor').animate({height:$(window).height() - 227}, 500);
   $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
   $('#description').animate({height:$(window).height() - 290}, 500);
 }
