@@ -66,6 +66,38 @@
 
           <script>
 
+          // States:
+          //    - Full size
+          //    - Notification size
+
+          // Transitions:
+          //    - Full -> Notification
+          //    - Notification -> Full
+
+          var is_full_size;
+          var close_requests = 0;
+
+          function resizeToSmaller() {
+            if (is_full_size) {
+              is_full_size = false;
+              resizeEverythingWithNotification();
+            }
+          }
+
+          function resizeToFull() {
+            if (!is_full_size) {
+              is_full_size = true;
+              resizeEverythingWithoutNotification();
+            }
+          }
+
+          function resizeToFullAnimated() {
+            if (!is_full_size) {
+              is_full_size = true;
+              resizeEverythingWithoutNotificationAnimated();
+            }
+          }
+
           function resizeEverythingWithNotification() {
             $('#editor').height($(window).height() - 288);
             $('#descriptionPanel').height($(window).height() - 250);
@@ -100,7 +132,7 @@
           //    alert-warning
           //    alert-danger
           function buildAlertBox(message, alert_class) {
-            resizeEverythingWithNotification();
+            resizeToSmaller();
             autoCloseAlert();
 
             return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
@@ -126,12 +158,29 @@
             return $('.alert').length == 1;
           }
 
+          function requestClose() {
+            close_requests++;
+          }
+
+          function suppressRequest() {
+            close_requests--;
+          }
+
+          function shouldClose() {
+            return close_requests == 1;
+          }
+
           function autoCloseAlert() {
+            requestClose();
             window.setTimeout(function() {
-              $(".alert").slideUp(500, function(){
-                $(this).remove();
-              });
-              resizeEverythingWithoutNotificationAnimated();
+              if (shouldClose()) {
+                $(".alert").slideUp(500, function(){
+                  $(this).remove();
+                });
+                resizeToFullAnimated();
+              }
+
+              suppressRequest();
 
             }, 2000);
           }
@@ -140,6 +189,12 @@
           editor.$blockScrolling = Infinity;
 
           $( document ).ready(function() {
+            if (hasAlert()) {
+              is_full_size = false;
+            } else {
+              is_full_size = true;
+            }
+
             //listen for changes
             $(window).resize(function() {
               if (hasAlert()) {
