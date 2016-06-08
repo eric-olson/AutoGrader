@@ -239,6 +239,7 @@
         </div>
 
         <div class="tab-pane" id="2">
+          <p> This will overwrite any code you have saved </p>
           <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
           <%= file_field_tag 'assignment_file' %>
           <%= submit_tag("Upload") %>
@@ -246,6 +247,7 @@
         </div>
 
         <div class="tab-pane" id="3">
+          <p> This will only download the code you have saved </p>
           <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
         </div>
 
