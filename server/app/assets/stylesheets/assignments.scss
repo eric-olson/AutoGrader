@@ -11,6 +11,10 @@ a.close:focus {
   background-color: rgba(255, 255, 255, 0);
 }
 
+a.btn.btn-success:visited {
+  color: #fff;
+}
+
 .progress-bar {
   line-height: 30px;
   border-right: 1px solid #eee;
