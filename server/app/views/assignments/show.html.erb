@@ -66,19 +66,6 @@
 
           <script>
 
-          function resizeAce() {
-            return $('#editor').height($(window).height() - 285);
-          };
-
-          function resizeDescriptionPanel() {
-            return $('#descriptionPanel').height($(window).height() - 250);
-          };
-
-
-          function resizeDescription() {
-            return $('#description').height($(window).height() - 350);
-          };
-
           function resizeEverythingWithNotification() {
             $('#editor').height($(window).height() - 285);
             $('#descriptionPanel').height($(window).height() - 250);
@@ -156,9 +143,14 @@
             autoCloseAlert();
 
             //listen for changes
-            $(window).resize(resizeAce);
-            $(window).resize(resizeDescriptionPanel);
-            $(window).resize(resizeDescription);
+            $(window).resize(function() {
+              if (hasAlert()) {
+                resizeEverythingWithNotification();
+              } else {
+                resizeEverythingWithoutNotification();
+              }
+            });
+
             //set initially
             if (hasAlert()) {
               resizeEverythingWithNotification();
