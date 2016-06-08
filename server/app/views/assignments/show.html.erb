@@ -66,56 +66,34 @@
 
           <script>
 
-          // States:
-          //    - Full size
-          //    - Notification size
-
-          // Transitions:
-          //    - Full -> Notification
-          //    - Notification -> Full
-
-          var is_full_size;
           var close_requests = 0;
 
+          function stopResizing() {
+            $('#editor').stop();
+            $('#descriptionPanel').stop();
+            $('#description').stop();
+          }
+
           function resizeToSmaller() {
-            if (is_full_size) {
-              is_full_size = false;
-              resizeEverythingWithNotification();
-            }
-          }
-
-          function resizeToFull() {
-            if (!is_full_size) {
-              is_full_size = true;
-              resizeEverythingWithoutNotification();
-            }
-          }
-
-          function resizeToFullAnimated() {
-            if (!is_full_size) {
-              is_full_size = true;
-              resizeEverythingWithoutNotificationAnimated();
-            }
-          }
-
-          function resizeEverythingWithNotification() {
+            stopResizing();
             $('#editor').height($(window).height() - 288);
             $('#descriptionPanel').height($(window).height() - 250);
             $('#description').height($(window).height() - 350);
           }
 
-          function resizeEverythingWithoutNotification() {
+          function resizeToFull() {
+            stopResizing();
             $('#editor').height($(window).height() - 228);
             $('#descriptionPanel').height($(window).height() - 190);
             $('#description').height($(window).height() - 290);
           }
 
-          function resizeEverythingWithoutNotificationAnimated() {
+          function resizeToFullAnimated() {
+            stopResizing();
             $('#editor').animate({height:$(window).height() - 228}, 500);
             $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
             $('#description').animate({height:$(window).height() - 290}, 500);
           }
-
 
           function getAnimatedProgressBar() {
             return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
@@ -174,14 +152,12 @@
             requestClose();
             window.setTimeout(function() {
               if (shouldClose()) {
+                resizeToFullAnimated();
                 $(".alert").slideUp(500, function(){
                   $(this).remove();
                 });
-                resizeToFullAnimated();
               }
-
               suppressRequest();
-
             }, 2000);
           }
 
@@ -198,18 +174,18 @@
             //listen for changes
             $(window).resize(function() {
               if (hasAlert()) {
-                resizeEverythingWithNotification();
+                resizeToSmaller();
               } else {
-                resizeEverythingWithoutNotification();
+                resizeToFull();
               }
             });
 
             //set initially
             if (hasAlert()) {
               autoCloseAlert();
-              resizeEverythingWithNotification();
+              resizeToSmaller();
             } else {
-              resizeEverythingWithoutNotification();
+              resizeToFull();
             }
 
             editor.setTheme("ace/theme/chrome");
