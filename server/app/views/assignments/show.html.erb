@@ -95,7 +95,9 @@
                 Browse
                 <%= file_field_tag('assignment_file', :class => 'btn btn-info', onchange: "$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\\\|/]/).pop());") %>
               </span>
-              <span class="form-control"></span>
+              <span class="form-control">
+                <span id="default-filler">Select a file</span>
+              </span>
             </span>
           </div>
           <div class="modal-footer">
