@@ -1,204 +1,254 @@
 <div class="row" >
-<% provide(:title, @assignment.name) %>
-<div class="row" style="height: 500px;">
-  <div class="col-md-12">
-    <div id="status_div">
-      <% flash.each do |type, message| %>
+  <% provide(:title, @assignment.name) %>
+  <div class="row" style="height: 500px;">
+    <div class="col-md-12">
+      <div id="status_div">
+        <% flash.each do |type, message| %>
         <div class="alert <%= bootstrap_class_for(type) %> fade in">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
           <%= message %>
         </div>
-      <% end %>
-    </div>
-    <h4>Test Results</h4>
-    <div id="progress_bar_container" class="progress progress-bar-segmented">
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div id="descriptionPanel" class="panel panel-default" >
-
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @assignment.name %></h3>
+        <% end %>
       </div>
-      <div class="panel-body" >
+      <h4>Test Results</h4>
+      <div id="progress_bar_container" class="progress progress-bar-segmented">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="descriptionPanel" class="panel panel-default" >
 
-        <div id="description" style="overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @assignment.name %></h3>
+        </div>
+        <div class="panel-body" >
 
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-          <div class="btn-group" role="group" id="restart_btn">
-            <button type="button" class="btn btn-default">Restart</button>
-          </div>
+          <div id="description" style="overflow: scroll;"> <%= @assignment.description.html_safe %> </div>
 
-          <div class="btn-group" role="group" id="test_btn">
-            <button type="button" class="btn btn-default">Test</button>
-          </div>
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group" id="restart_btn">
+              <button type="button" class="btn btn-default">Restart</button>
+            </div>
 
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default" id="save_btn">Save</button>
-          </div>
+            <div class="btn-group" role="group" id="test_btn">
+              <button type="button" class="btn btn-default">Test</button>
+            </div>
 
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default">Submit</button>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" id="save_btn">Save</button>
+            </div>
+
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default">Submit</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-8">
+    <div class="col-md-8">
 
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#1" data-toggle="tab">Write</a>
-      </li>
-      <li>
-        <a href="#2" data-toggle="tab">Upload</a>
-      </li>
-      <li>
-        <a href="#3" data-toggle="tab">Download</a>
-      </li>
-    </ul>
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#1" data-toggle="tab">Write</a>
+        </li>
+        <li>
+          <a href="#2" data-toggle="tab">Upload</a>
+        </li>
+        <li>
+          <a href="#3" data-toggle="tab">Download</a>
+        </li>
+      </ul>
 
-    <div class="tab-content" >
-      <div class="tab-pane active" id="1">
+      <div class="tab-content" >
+        <div class="tab-pane active" id="1">
 
-        <div id="editor"><%= @editor_file_contents %></div>
+          <div id="editor"><%= @editor_file_contents %></div>
 
-        <script>
+          <script>
 
-        function resizeAce() {
-          return $('#editor').height($(window).height() - 275);
-        };
-        //listen for changes
-        $(window).resize(resizeAce);
-        //set initially
-        resizeAce();
+          var close_requests = 0;
 
-        function resizeDescriptionPanel() {
-          return $('#descriptionPanel').height($(window).height() - 240);
-        };
-        //listen for changes
-        $(window).resize(resizeDescriptionPanel);
-        //set initially
-        resizeDescriptionPanel();
+          function stopResizing() {
+            $('#editor').stop();
+            $('#descriptionPanel').stop();
+            $('#description').stop();
+          }
 
-        function resizeDescription() {
-          return $('#description').height($(window).height() - 340);
-        };
-        //listen for changes
-        $(window).resize(resizeDescription);
-        //set initially
-        resizeDescription();
+          function resizeToSmaller() {
+            stopResizing();
+            $('#editor').height($(window).height() - 288);
+            $('#descriptionPanel').height($(window).height() - 250);
+            $('#description').height($(window).height() - 350);
+          }
 
-        function getAnimatedProgressBar() {
-          return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
-        }
+          function resizeToFull() {
+            stopResizing();
+            $('#editor').height($(window).height() - 228);
+            $('#descriptionPanel').height($(window).height() - 190);
+            $('#description').height($(window).height() - 290);
+          }
 
-        function getServerErrorProgressBar() {
-          return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
-        }
+          function resizeToFullAnimated() {
+            stopResizing();
+            $('#editor').animate({height:$(window).height() - 228}, 500);
+            $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
+            $('#description').animate({height:$(window).height() - 290}, 500);
+          }
 
-        // message can be whatever
-        // alert_class must be one of:
-        //    alert-success
-        //    alert-info
-        //    alert-warning
-        //    alert-danger
-        function buildAlertBox(message, alert_class) {
-          autoCloseAlert();
-          return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
-        }
+          function getAnimatedProgressBar() {
+            return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
+          }
 
-        function buildAlertBoxSuccess(message) {
-          return buildAlertBox(message, "alert-success");
-        }
+          function getServerErrorProgressBar() {
+            return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
+          }
 
-        function buildAlertBoxInfo(message) {
-          return buildAlertBox(message, "alert-info");
-        }
+          // message can be whatever
+          // alert_class must be one of:
+          //    alert-success
+          //    alert-info
+          //    alert-warning
+          //    alert-danger
+          function buildAlertBox(message, alert_class) {
+            resizeToSmaller();
+            autoCloseAlert();
 
-        function buildAlertBoxWarning(message) {
-          return buildAlertBox(message, "alert-warning");
-        }
+            return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
+          }
 
-        function buildAlertBoxDanger(message) {
-          return buildAlertBox(message, "alert-danger");
-        }
+          function buildAlertBoxSuccess(message) {
+            return buildAlertBox(message, "alert-success");
+          }
 
-        function autoCloseAlert() {
-          window.setTimeout(function() {
-            $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-              $(this).remove();
+          function buildAlertBoxInfo(message) {
+            return buildAlertBox(message, "alert-info");
+          }
+
+          function buildAlertBoxWarning(message) {
+            return buildAlertBox(message, "alert-warning");
+          }
+
+          function buildAlertBoxDanger(message) {
+            return buildAlertBox(message, "alert-danger");
+          }
+
+          function hasAlert() {
+            return $('.alert').length == 1;
+          }
+
+          function requestClose() {
+            close_requests++;
+          }
+
+          function suppressRequest() {
+            close_requests--;
+          }
+
+          function shouldClose() {
+            return close_requests == 1;
+          }
+
+          function autoCloseAlert() {
+            requestClose();
+            window.setTimeout(function() {
+              if (shouldClose()) {
+                resizeToFullAnimated();
+                $(".alert").slideUp(500, function(){
+                  $(this).remove();
+                });
+              }
+              suppressRequest();
+            }, 2000);
+          }
+
+          var editor = ace.edit("editor");
+          editor.$blockScrolling = Infinity;
+
+          $( document ).ready(function() {
+            if (hasAlert()) {
+              is_full_size = false;
+            } else {
+              is_full_size = true;
+            }
+
+            //listen for changes
+            $(window).resize(function() {
+              if (hasAlert()) {
+                resizeToSmaller();
+              } else {
+                resizeToFull();
+              }
             });
-          }, 2000);
-        }
 
-        var editor = ace.edit("editor");
-        editor.$blockScrolling = Infinity;
-
-        $( document ).ready(function() {
-          autoCloseAlert();
-          editor.setTheme("ace/theme/chrome");
-          editor.getSession().setMode("ace/mode/c_cpp");
-        });
-
-        $('#test_btn').on('click', function() {
-          $('#progress_bar_container').html(getAnimatedProgressBar());
-
-          $.ajax({
-            type: 'post',
-            url: 'testCode',
-            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-            success: function(response) {
-              // Load the progress bar with the html from the response
-              $('#progress_bar_container').html(response.progress_bar_html);
-              // Enable popovers
-              $('[data-toggle="popover"]').popover();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              $('#progress_bar_container').html(getServerErrorProgressBar());
+            //set initially
+            if (hasAlert()) {
+              autoCloseAlert();
+              resizeToSmaller();
+            } else {
+              resizeToFull();
             }
+
+            editor.setTheme("ace/theme/chrome");
+            editor.getSession().setMode("ace/mode/c_cpp");
           });
-          return false;
-        });
 
-        $('#save_btn').on('click', function() {
-          $.ajax({
-            type: 'post',
-            url: 'saveCode',
-            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-            success: function(response) {
-              $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
-            }
+          $('#test_btn').on('click', function() {
+            $('#progress_bar_container').html(getAnimatedProgressBar());
+
+            $.ajax({
+              type: 'post',
+              url: 'testCode',
+              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+              success: function(response) {
+                // Load the progress bar with the html from the response
+                $('#progress_bar_container').html(response.progress_bar_html);
+                // Enable popovers
+                $('[data-toggle="popover"]').popover();
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                $('#progress_bar_container').html(getServerErrorProgressBar());
+              }
+            });
+            return false;
           });
-        });
 
-        $('#restart_btn').on('click', function() {
-          $.ajax({
-            type: 'post',
-            url: 'restartCode',
-            data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-            success: function(response) {
-              $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
-              editor.setValue(response.new_editor_content, -1);
-            }
+          $('#save_btn').on('click', function() {
+            $.ajax({
+              type: 'post',
+              url: 'saveCode',
+              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+              success: function(response) {
+                $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
+              }
+            });
           });
-        });
 
-        </script>
+          $('#restart_btn').on('click', function() {
+            $.ajax({
+              type: 'post',
+              url: 'restartCode',
+              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+              success: function(response) {
+                $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
+                editor.setValue(response.new_editor_content, -1);
+              }
+            });
+          });
+
+          </script>
+        </div>
+
+        <div class="tab-pane" id="2">
+          <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
+          <%= file_field_tag 'assignment_file' %>
+          <%= submit_tag("Upload") %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane" id="3">
+          <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
+        </div>
+
       </div>
-
-      <div class="tab-pane" id="2">
-        <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
-        <%= file_field_tag 'assignment_file' %>
-        <%= submit_tag("Upload") %>
-        <% end %>
-      </div>
-
-      <div class="tab-pane" id="3">
-        <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
-      </div>
-
     </div>
   </div>
-</div>
