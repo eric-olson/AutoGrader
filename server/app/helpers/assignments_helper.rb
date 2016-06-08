@@ -80,6 +80,7 @@ module AssignmentsHelper
         cutoff = inputs.rindex(':')
         expected_value = inputs[(cutoff+1)..-1]
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
+        failure_message.gsub!("\"", "&quot")
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
