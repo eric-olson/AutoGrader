@@ -46,211 +46,234 @@
     </div>
 
     <div class="col-md-8">
+      <div id="editorPanel" class="panel panel-default" >
+        <div class="panel-heading">
+          <h3 class="panel-title">Editor</h3>
+          <button type="button" class="btn" data-toggle="modal" data-target="#upload_modal">
+            <span class="glyphicon glyphicon-open"></span>
+          </button>
 
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a href="#1" data-toggle="tab">Write</a>
-        </li>
-        <li>
-          <a href="#2" data-toggle="tab">Upload</a>
-        </li>
-        <li>
-          <a href="#3" data-toggle="tab">Download</a>
-        </li>
-      </ul>
+          <button type="button" class="btn" data-toggle="modal" data-target="#download_modal">
+            <span class="glyphicon glyphicon-save"></span>
+          </button>
 
-      <div class="tab-content" >
-        <div class="tab-pane active" id="1">
-
+        </div>
+        <div class="panel-body">
           <div id="editor"><%= @editor_file_contents %></div>
-
-          <script>
-
-          var close_requests = 0;
-
-          function stopResizing() {
-            $('#editor').stop();
-            $('#descriptionPanel').stop();
-            $('#description').stop();
-          }
-
-          function resizeToSmaller() {
-            stopResizing();
-            $('#editor').height($(window).height() - 288);
-            $('#descriptionPanel').height($(window).height() - 250);
-            $('#description').height($(window).height() - 350);
-          }
-
-          function resizeToFull() {
-            stopResizing();
-            $('#editor').height($(window).height() - 228);
-            $('#descriptionPanel').height($(window).height() - 190);
-            $('#description').height($(window).height() - 290);
-          }
-
-          function resizeToFullAnimated() {
-            stopResizing();
-            $('#editor').animate({height:$(window).height() - 228}, 500);
-            $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
-            $('#description').animate({height:$(window).height() - 290}, 500);
-          }
-
-          function getAnimatedProgressBar() {
-            return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
-          }
-
-          function getServerErrorProgressBar() {
-            return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
-          }
-
-          // message can be whatever
-          // alert_class must be one of:
-          //    alert-success
-          //    alert-info
-          //    alert-warning
-          //    alert-danger
-          function buildAlertBox(message, alert_class) {
-            resizeToSmaller();
-            autoCloseAlert();
-
-            return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
-          }
-
-          function buildAlertBoxSuccess(message) {
-            return buildAlertBox(message, "alert-success");
-          }
-
-          function buildAlertBoxInfo(message) {
-            return buildAlertBox(message, "alert-info");
-          }
-
-          function buildAlertBoxWarning(message) {
-            return buildAlertBox(message, "alert-warning");
-          }
-
-          function buildAlertBoxDanger(message) {
-            return buildAlertBox(message, "alert-danger");
-          }
-
-          function hasAlert() {
-            return $('.alert').length == 1;
-          }
-
-          function requestClose() {
-            close_requests++;
-          }
-
-          function suppressRequest() {
-            close_requests--;
-          }
-
-          function shouldClose() {
-            return close_requests == 1;
-          }
-
-          function autoCloseAlert() {
-            requestClose();
-            window.setTimeout(function() {
-              if (shouldClose()) {
-                resizeToFullAnimated();
-                $(".alert").slideUp(500, function(){
-                  $(this).remove();
-                });
-              }
-              suppressRequest();
-            }, 2000);
-          }
-
-          var editor = ace.edit("editor");
-          editor.$blockScrolling = Infinity;
-
-          $( document ).ready(function() {
-            if (hasAlert()) {
-              is_full_size = false;
-            } else {
-              is_full_size = true;
-            }
-
-            //listen for changes
-            $(window).resize(function() {
-              if (hasAlert()) {
-                resizeToSmaller();
-              } else {
-                resizeToFull();
-              }
-            });
-
-            //set initially
-            if (hasAlert()) {
-              autoCloseAlert();
-              resizeToSmaller();
-            } else {
-              resizeToFull();
-            }
-
-            editor.setTheme("ace/theme/chrome");
-            editor.getSession().setMode("ace/mode/c_cpp");
-          });
-
-          $('#test_btn').on('click', function() {
-            $('#progress_bar_container').html(getAnimatedProgressBar());
-
-            $.ajax({
-              type: 'post',
-              url: 'testCode',
-              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-              success: function(response) {
-                // Load the progress bar with the html from the response
-                $('#progress_bar_container').html(response.progress_bar_html);
-                // Enable popovers
-                $('[data-toggle="popover"]').popover();
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                $('#progress_bar_container').html(getServerErrorProgressBar());
-              }
-            });
-            return false;
-          });
-
-          $('#save_btn').on('click', function() {
-            $.ajax({
-              type: 'post',
-              url: 'saveCode',
-              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-              success: function(response) {
-                $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
-              }
-            });
-          });
-
-          $('#restart_btn').on('click', function() {
-            $.ajax({
-              type: 'post',
-              url: 'restartCode',
-              data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
-              success: function(response) {
-                $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
-                editor.setValue(response.new_editor_content, -1);
-              }
-            });
-          });
-
-          </script>
         </div>
-
-        <div class="tab-pane" id="2">
-          <p> This will overwrite any code you have saved </p>
-          <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
-          <%= file_field_tag 'assignment_file' %>
-          <%= submit_tag("Upload") %>
-          <% end %>
-        </div>
-
-        <div class="tab-pane" id="3">
-          <p> This will only download the code you have saved </p>
-          <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
-        </div>
-
       </div>
+
+      <div class="modal fade" id="upload_modal" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Upload Code</h4>
+            </div>
+            <div class="modal-body">
+              <p> This will overwrite any code you have saved </p>
+
+            </div>
+            <div class="modal-footer">
+              <%= form_tag({:action => "uploadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do %>
+              <%= file_field_tag 'assignment_file' %>
+              <%= submit_tag("Upload") %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="download_modal" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Download Code</h4>
+            </div>
+            <div class="modal-body">
+              <p> This will only download the code you have saved </p>
+            </div>
+            <div class="modal-footer">
+              <%= link_to("Download Code", {:action => "downloadCode", :id => @assignment.id}, :method => 'post') %>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
+
+<script>
+
+var close_requests = 0;
+
+function stopResizing() {
+  $('#editor').stop();
+  $('#descriptionPanel').stop();
+  $('#description').stop();
+}
+
+function resizeToSmaller() {
+  stopResizing();
+  $('#editor').height($(window).height() - 288);
+  $('#descriptionPanel').height($(window).height() - 250);
+  $('#description').height($(window).height() - 350);
+}
+
+function resizeToFull() {
+  stopResizing();
+  $('#editor').height($(window).height() - 228);
+  $('#descriptionPanel').height($(window).height() - 190);
+  $('#description').height($(window).height() - 290);
+}
+
+function resizeToFullAnimated() {
+  stopResizing();
+  $('#editor').animate({height:$(window).height() - 228}, 500);
+  $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
+  $('#description').animate({height:$(window).height() - 290}, 500);
+}
+
+function getAnimatedProgressBar() {
+  return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
+}
+
+function getServerErrorProgressBar() {
+  return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
+}
+
+// message can be whatever
+// alert_class must be one of:
+//    alert-success
+//    alert-info
+//    alert-warning
+//    alert-danger
+function buildAlertBox(message, alert_class) {
+  resizeToSmaller();
+  autoCloseAlert();
+
+  return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
+}
+
+function buildAlertBoxSuccess(message) {
+  return buildAlertBox(message, "alert-success");
+}
+
+function buildAlertBoxInfo(message) {
+  return buildAlertBox(message, "alert-info");
+}
+
+function buildAlertBoxWarning(message) {
+  return buildAlertBox(message, "alert-warning");
+}
+
+function buildAlertBoxDanger(message) {
+  return buildAlertBox(message, "alert-danger");
+}
+
+function hasAlert() {
+  return $('.alert').length == 1;
+}
+
+function requestClose() {
+  close_requests++;
+}
+
+function suppressRequest() {
+  close_requests--;
+}
+
+function shouldClose() {
+  return close_requests == 1;
+}
+
+function autoCloseAlert() {
+  requestClose();
+  window.setTimeout(function() {
+    if (shouldClose()) {
+      resizeToFullAnimated();
+      $(".alert").slideUp(500, function(){
+        $(this).remove();
+      });
+    }
+    suppressRequest();
+  }, 2000);
+}
+
+var editor = ace.edit("editor");
+editor.$blockScrolling = Infinity;
+
+$( document ).ready(function() {
+  if (hasAlert()) {
+    is_full_size = false;
+  } else {
+    is_full_size = true;
+  }
+
+  //listen for changes
+  $(window).resize(function() {
+    if (hasAlert()) {
+      resizeToSmaller();
+    } else {
+      resizeToFull();
+    }
+  });
+
+  //set initially
+  if (hasAlert()) {
+    autoCloseAlert();
+    resizeToSmaller();
+  } else {
+    resizeToFull();
+  }
+
+  editor.setTheme("ace/theme/chrome");
+  editor.getSession().setMode("ace/mode/c_cpp");
+});
+
+$('#test_btn').on('click', function() {
+  $('#progress_bar_container').html(getAnimatedProgressBar());
+
+  $.ajax({
+    type: 'post',
+    url: 'testCode',
+    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    success: function(response) {
+      // Load the progress bar with the html from the response
+      $('#progress_bar_container').html(response.progress_bar_html);
+      // Enable popovers
+      $('[data-toggle="popover"]').popover();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      $('#progress_bar_container').html(getServerErrorProgressBar());
+    }
+  });
+  return false;
+});
+
+$('#save_btn').on('click', function() {
+  $.ajax({
+    type: 'post',
+    url: 'saveCode',
+    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    success: function(response) {
+      $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
+    }
+  });
+});
+
+$('#restart_btn').on('click', function() {
+  $.ajax({
+    type: 'post',
+    url: 'restartCode',
+    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    success: function(response) {
+      $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
+      editor.setValue(response.new_editor_content, -1);
+    }
+  });
+});
+
+</script>
