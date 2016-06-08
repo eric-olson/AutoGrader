@@ -67,19 +67,19 @@
           <script>
 
           function resizeEverythingWithNotification() {
-            $('#editor').height($(window).height() - 285);
+            $('#editor').height($(window).height() - 288);
             $('#descriptionPanel').height($(window).height() - 250);
             $('#description').height($(window).height() - 350);
           }
 
           function resizeEverythingWithoutNotification() {
-            $('#editor').height($(window).height() - 225);
+            $('#editor').height($(window).height() - 228);
             $('#descriptionPanel').height($(window).height() - 190);
             $('#description').height($(window).height() - 290);
           }
 
           function resizeEverythingWithoutNotificationAnimated() {
-            $('#editor').animate({height:$(window).height() - 225}, 500);
+            $('#editor').animate({height:$(window).height() - 228}, 500);
             $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
             $('#description').animate({height:$(window).height() - 290}, 500);
           }
@@ -140,8 +140,6 @@
           editor.$blockScrolling = Infinity;
 
           $( document ).ready(function() {
-            autoCloseAlert();
-
             //listen for changes
             $(window).resize(function() {
               if (hasAlert()) {
@@ -153,6 +151,7 @@
 
             //set initially
             if (hasAlert()) {
+              autoCloseAlert();
               resizeEverythingWithNotification();
             } else {
               resizeEverythingWithoutNotification();
