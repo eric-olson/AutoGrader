@@ -115,7 +115,7 @@
             <h4 class="modal-title">Download Code</h4>
           </div>
           <div class="modal-body">
-            <p>This will only download the code you have saved.</p>
+            <p>This will only download the code you have saved. Would you like to save your code first?</p>
           </div>
           <div class="modal-footer">
             <%= form_tag({:action => "downloadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do%>
