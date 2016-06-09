@@ -243,7 +243,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :google_oauth2, "669901614573-b51a5uerk9jq1qva9f8fbe7s523cc9ti.apps.googleusercontent.com", "BSDQYzFzB8FloUYTc2VD56KM"
+  # config.omniauth :google_oauth2, "669901614573-b51a5uerk9jq1qva9f8fbe7s523cc9ti.apps.googleusercontent.com", "BSDQYzFzB8FloUYTc2VD56KM"
   config.omniauth :shibboleth, {:uid_field => 'uid',
                          :info_fields => {:name => 'displayName'},
                   }
