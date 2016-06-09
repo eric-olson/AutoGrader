@@ -162,6 +162,15 @@ class AssignmentsController < ApplicationController
 
   def downloadCode
     # Downloads the code that the user has saved, if any.
+
+    # If the user wants to save their code
+    if (params["commit"] == "Yes")
+      editor_text = params["editor-text-hidden"]
+      current_user.writeToSolutionFileForAssignment(@assignment, editor_text)
+    end
+
+    puts params
+
     if current_user.hasSolutionFileForAssignment?(@assignment)
       send_file(current_user.getSolutionFilepathForAssignment(@assignment))
     else
