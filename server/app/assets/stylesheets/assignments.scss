@@ -11,6 +11,10 @@ a.close:focus {
   background-color: rgba(255, 255, 255, 0);
 }
 
+a.btn.btn-success:visited {
+  color: #fff;
+}
+
 .progress-bar {
   line-height: 30px;
   border-right: 1px solid #eee;
@@ -34,4 +38,66 @@ a.close:focus {
 .popover {
   width: 350px;
   overflow: scroll;
+}
+
+span#default-filler {
+  color: lightgray;
+}
+
+span#form-filename {
+  width: 100%;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+#editor-panel-body {
+  padding: 0px;
+}
+
+#header-button-container {
+  position: absolute;
+  width: 78px;
+  right: 15px;
+  top: 0px;
+}
+
+#btn-upload {
+  border-radius: 0px;
+  border-right: transparent;
+}
+
+#btn-download {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.btn-group-header {
+  height:39px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.input-group-btn {
+  font-size: 14px;
 }
