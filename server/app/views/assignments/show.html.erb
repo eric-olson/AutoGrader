@@ -83,7 +83,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Upload Code</h4>
           </div>
           <div class="modal-body">
@@ -111,14 +111,19 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Download Code</h4>
           </div>
           <div class="modal-body">
-            <p>This will only download the code you have saved.</p>
+            <p>This will only download the code you have saved. Would you like to save your code first?</p>
           </div>
           <div class="modal-footer">
-            <%= link_to("Download", {:action => "downloadCode", :id => @assignment.id}, :method => 'post', :class => "btn btn-success", "data-dismiss" => "modal") %>
+            <%= form_tag({:action => "downloadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do%>
+              <%= hidden_field_tag 'editor-text-hidden'%>
+              <%= submit_tag("Yes", :class => "btn btn-success", :id => "btn-download-yes") %>
+              <%= submit_tag("No", :class => "btn btn-danger", :id => "btn-download-no") %>
+            <% end %>
+            <!-- <%= link_to("Download", {:action => "downloadCode", :id => @assignment.id}, :method => 'post', :class => "btn btn-success", "data-dismiss" => "modal") %> -->
           </div>
         </div>
       </div>
@@ -131,6 +136,14 @@
 <script>
 
 var close_requests = 0;
+
+function fillHiddenEditorText() {
+  $('#editor-text-hidden').val(getEditorContents());
+}
+
+function getEditorContents() {
+  return editor.getValue();
+}
 
 function stopResizing() {
   $('#editor').stop();
@@ -265,7 +278,7 @@ $('#test_btn').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'testCode',
-    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
     success: function(response) {
       // Load the progress bar with the html from the response
       $('#progress_bar_container').html(response.progress_bar_html);
@@ -283,7 +296,7 @@ $('#save_btn').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'saveCode',
-    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
     success: function(response) {
       $('#status_div').html(buildAlertBox("File saved successfully!", "alert-success"));
     }
@@ -294,12 +307,24 @@ $('#restart_btn').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'restartCode',
-    data: {editor_text:editor.getValue(),id:<%=@assignment.id%>},
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
     success: function(response) {
       $('#status_div').html(buildAlertBox("Reset file to the default spec.", "alert-success"));
       editor.setValue(response.new_editor_content, -1);
     }
   });
+});
+
+$('#btn-download').on('click', function() {
+  fillHiddenEditorText();
+});
+
+$('#btn-download-yes').on('click', function() {
+  $('#download_modal').modal('hide');
+});
+
+$('#btn-download-no').on('click', function() {
+  $('#download_modal').modal('hide');
 });
 
 </script>
