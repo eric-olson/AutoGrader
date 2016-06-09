@@ -22,7 +22,7 @@
         </div>
         <div class="panel-body" >
 
-          <div id="description" style="overflow: scroll;">
+          <div id="description">
             <%= @assignment.description.html_safe %>
           </div>
 
@@ -142,21 +142,21 @@ function resizeToSmaller() {
   stopResizing();
   $('#editor').height($(window).height() - 287);
   $('#descriptionPanel').height($(window).height() - 250);
-  $('#description').height($(window).height() - 350);
+  $('#description').height($(window).height() - 360);
 }
 
 function resizeToFull() {
   stopResizing();
   $('#editor').height($(window).height() - 227);
   $('#descriptionPanel').height($(window).height() - 190);
-  $('#description').height($(window).height() - 290);
+  $('#description').height($(window).height() - 300);
 }
 
 function resizeToFullAnimated() {
   stopResizing();
   $('#editor').animate({height:$(window).height() - 227}, 500);
   $('#descriptionPanel').animate({height:$(window).height() - 190}, 500);
-  $('#description').animate({height:$(window).height() - 290}, 500);
+  $('#description').animate({height:$(window).height() - 300}, 500);
 }
 
 function getAnimatedProgressBar() {

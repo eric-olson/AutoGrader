@@ -50,6 +50,11 @@ span#form-filename {
   overflow: hidden;
 }
 
+div#description {
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
 #editor-panel-body {
   padding: 0px;
 }
