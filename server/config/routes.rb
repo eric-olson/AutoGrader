@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :users
   resources :assignments
 
-  get 'assignments/:assignment_id/grades' => 'assignments#grades'
+  get 'assignments/:id/grades' => 'assignments#grades'
+  get 'labs/:id/grades' => 'labs#grades'
+
 
   # For the button_to call to test code
   post 'assignments/testCode'
