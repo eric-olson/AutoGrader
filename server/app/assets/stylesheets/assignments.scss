@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$editor-button-width: 39px;
+$editor-button-size: 39px;
 
 #progress_bar_container {
   height: 30px;
@@ -79,9 +79,13 @@ button.modal-close:hover {
   padding: 0px;
 }
 
+.btn-header {
+  height: $editor-button-size;
+}
+
 #header-button-container {
   position: absolute;
-  width: $editor-button-width * 4;
+  width: $editor-button-size * 4;
   right: 15px;
   top: 0px;
 }
@@ -90,7 +94,6 @@ button.modal-close:hover {
   border-radius: 0px;
   border-right: transparent;
 }
-
 
 #btn-save {
   border-radius: 0px;
@@ -107,10 +110,6 @@ button.modal-close:hover {
   border-bottom-right-radius: 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-}
-
-.btn-group-header {
-  height: $editor-button-width;
 }
 
 .btn-file {
