@@ -24,6 +24,10 @@ module AssignmentsHelper
     TEST_TOOL_CONFIG["testing_tool_script"])
   end
 
+  def self.ruby_executable
+    TEST_TOOL_CONFIG["ruby_executable"]
+  end
+
   def self.getEditorText(user, assignment)
     if (user.hasSolutionFileForAssignment?(assignment))
       return user.getSolutionFileContentsForAssignment(assignment)

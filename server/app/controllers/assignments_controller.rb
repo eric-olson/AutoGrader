@@ -94,7 +94,8 @@ class AssignmentsController < ApplicationController
 
     test_file_path = @assignment.getTestFilePath()
 
-    json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
+    # The ruby_executable file must be authenticated as described in the test_tool.rb in order for this to work.
+    json_test_report = `#{AssignmentsHelper.ruby_executable} #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
 
     test_report = JSON.parse(json_test_report)
 
