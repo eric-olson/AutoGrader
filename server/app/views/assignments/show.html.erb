@@ -27,18 +27,9 @@
           </div>
 
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group" id="restart_btn">
-              <button type="button" class="btn btn-default" data-toggle="tooltip" title="Start over with the template">Restart</button>
-            </div>
-
             <div class="btn-group" role="group" id="test_btn">
               <button type="button" class="btn btn-default" data-toggle="tooltip" title="Test if your code works">Test</button>
             </div>
-
-            <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default" id="save_btn" data-toggle="tooltip" title="Save your code for later">Save</button>
-            </div>
-
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default" data-toggle="tooltip" title="Submit your code to be graded" data-container="body">Submit</button>
             </div>
@@ -54,7 +45,16 @@
 
 
           <div id="header-button-container">
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group btn-group-justified" id="editor-btn-group" role="group" aria-label="...">
+              <div class="btn-group" role="group">
+                <button type="button" id="btn-restart" class="btn btn-default btn-sm btn-group-header" data-toggle="tooltip" data-placement="bottom" title="Reset">
+                  <span class="glyphicon glyphicon-file"></span>
+                </button>
+              </div><div class="btn-group" role="group">
+                <button type="button" id="btn-save" class="btn btn-default btn-sm btn-group-header" data-toggle="tooltip" data-placement="bottom" title="Save">
+                  <span class="glyphicon glyphicon-floppy-save"></span>
+                </button>
+              </div>
               <div class="btn-group" role="group">
                 <span data-toggle="modal" data-target="#upload_modal">
                   <button type="button" id="btn-upload" class="btn btn-default btn-sm btn-group-header" data-toggle="tooltip" data-placement="bottom" title="Upload">
@@ -119,9 +119,9 @@
           </div>
           <div class="modal-footer">
             <%= form_tag({:action => "downloadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do%>
-              <%= hidden_field_tag 'editor-text-hidden'%>
-              <%= submit_tag("Yes", :class => "btn btn-success", :id => "btn-download-yes") %>
-              <%= submit_tag("No", :class => "btn btn-danger", :id => "btn-download-no") %>
+            <%= hidden_field_tag 'editor-text-hidden'%>
+            <%= submit_tag("Yes", :class => "btn btn-success", :id => "btn-download-yes") %>
+            <%= submit_tag("No", :class => "btn btn-danger", :id => "btn-download-no") %>
             <% end %>
             <!-- <%= link_to("Download", {:action => "downloadCode", :id => @assignment.id}, :method => 'post', :class => "btn btn-success", "data-dismiss" => "modal") %> -->
           </div>
@@ -292,7 +292,7 @@ $('#test_btn').on('click', function() {
   return false;
 });
 
-$('#save_btn').on('click', function() {
+$('#btn-save').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'saveCode',
@@ -303,7 +303,7 @@ $('#save_btn').on('click', function() {
   });
 });
 
-$('#restart_btn').on('click', function() {
+$('#btn-restart').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'restartCode',

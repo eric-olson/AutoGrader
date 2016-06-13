@@ -1,6 +1,9 @@
 // Place all the styles related to the Assignments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$editor-button-width: 39px;
+
 #progress_bar_container {
   height: 30px;
   line-height: 30px;
@@ -78,12 +81,23 @@ button.modal-close:hover {
 
 #header-button-container {
   position: absolute;
-  width: 78px;
+  width: $editor-button-width * 4;
   right: 15px;
   top: 0px;
 }
 
 #btn-upload {
+  border-radius: 0px;
+  border-right: transparent;
+}
+
+
+#btn-save {
+  border-radius: 0px;
+  border-right: transparent;
+}
+
+#btn-restart {
   border-radius: 0px;
   border-right: transparent;
 }
@@ -96,7 +110,7 @@ button.modal-close:hover {
 }
 
 .btn-group-header {
-  height:39px;
+  height: $editor-button-width;
 }
 
 .btn-file {
