@@ -6,6 +6,6 @@
 
 <p>
   <% @lab.assignments.each do |assignment| %>
-  <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg" %>
+  <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg", 'data-no-turbolink' => true %>
   <% end %>
 </p>
