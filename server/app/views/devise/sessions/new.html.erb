@@ -2,6 +2,8 @@
 <h4>In order to use this site, you need to sign in.</h4>
 <%= link_to "Sign in with MultiPass", user_shibboleth_omniauth_authorize_path, class: "btn btn-default btn-lg" %>
 
+<% if Rails.env.development? %>
 </br></br></br></br>
-<p>Links below should be removed in production version (Google sign-in is needed for local testing)</p>
+<p>Links below should be removed in production environment (Google sign-in is needed for local testing)</p>
 <%= render "devise/shared/links" %>
+<% end %>
