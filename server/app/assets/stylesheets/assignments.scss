@@ -58,6 +58,35 @@ div#description {
   margin-bottom: 10px;
 }
 
+#editor-panel-body {
+  padding: 0px;
+}
+
+// Editor header buttons
+div#header-button-container {
+  position: absolute;
+  width: $editor-button-size * 4;
+  right: 15px;
+  top: 0px;
+}
+
+.btn-editor-header {
+  height: $editor-button-size;
+}
+
+#editor-btn-group > .btn-group:not(:last-child) > span > .btn {
+  border-radius: 0px;
+  border-right: transparent;
+}
+
+#editor-btn-group > .btn-group:last-child > span > .btn {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+// Modal header restyling
 div.modal-header {
   background-color: #222;
   color: #9d9d9d;
@@ -75,43 +104,7 @@ button.modal-close:hover {
   opacity: 1;
 }
 
-#editor-panel-body {
-  padding: 0px;
-}
-
-.btn-editor-header {
-  height: $editor-button-size;
-}
-
-#header-button-container {
-  position: absolute;
-  width: $editor-button-size * 4;
-  right: 15px;
-  top: 0px;
-}
-
-#btn-upload {
-  border-radius: 0px;
-  border-right: transparent;
-}
-
-#btn-save {
-  border-radius: 0px;
-  border-right: transparent;
-}
-
-#btn-restart {
-  border-radius: 0px;
-  border-right: transparent;
-}
-
-#btn-download {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 0px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
+// Upload modal style
 .btn-file {
   position: relative;
   overflow: hidden;
