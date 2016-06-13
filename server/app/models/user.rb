@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable,
-         :omniauthable, :omniauth_providers => [:google_oauth2]
+         :omniauthable, :omniauth_providers => [:google_oauth2, :shibboleth]
   has_many :grades
 
   def self.from_omniauth(auth)
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email
-      user.multipass_id = auth.info.first_name
+      user.multipass_id = auth.uid
       user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]
     end

@@ -78,7 +78,7 @@ class AssignmentsController < ApplicationController
   end
 
   def grades
-    @assignment = Assignment.find(params[:assignment_id])
+    set_assignment
   end
 
   def testCode
