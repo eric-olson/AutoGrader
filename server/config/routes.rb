@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'assignments/:id/grades' => 'assignments#grades', as: :assignments_grades
   get 'labs/:id/grades' => 'labs#grades', as: :labs_grades
+  post 'labs/:id/toggle_hidden' => 'labs#toggle_hidden', as: :labs_toggle_hidden
 
 
   # For the button_to call to test code

@@ -4,7 +4,7 @@
 
 <div>
   <h1 class="pull-left"><%= @lab.name %></h1>
-  <% if can? :grades, @assignment %>
+  <% if can? :grades, @lab %>
     <%= link_to "View grades for this lab", labs_grades_path, class: "btn btn-default btn-sm pull-right" %>
   <% end %>
 </div>
@@ -18,3 +18,13 @@
   <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg", 'data-no-turbolink' => true %>
   <% end %>
 </p>
+
+</br>
+<% if current_user.role == "admin"%>
+  <% if @lab.hidden? %>
+    <p>This lab is currently hidden. No student users can see it.</p>
+    <%= link_to "Show lab to students", labs_toggle_hidden_path, method: :post, class: "btn btn-default btn-sm" %>
+  <% else %>
+    <%= link_to "Hide lab from students", labs_toggle_hidden_path, method: :post, class: "btn btn-default btn-sm" %>
+  <% end %>
+<% end %>
