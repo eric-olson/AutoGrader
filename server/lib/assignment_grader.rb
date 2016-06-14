@@ -15,7 +15,9 @@ class AssignmentGrader
     source_file_path = source_file.path
     test_file_path = @assignment.getTestFilePath()
 
-    json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_file_path} #{AssignmentsHelper.common_path}`
+    command_to_run = "#{AssignmentsHelper.ruby_executable} #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_file_path} #{AssignmentsHelper.common_path}"
+
+    json_test_report = `#{command_to_run}`
 
     @test_report = JSON.parse(json_test_report)
 
