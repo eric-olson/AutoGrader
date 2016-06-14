@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>MultiPass</th>
       <th>Score</th>
+      <th>Submitted</th>
     </tr>
   </thead>
 
@@ -18,6 +19,7 @@
       <td><%= link_to grade.user.name, grade.user, class: "btn btn-default btn-xs" %></td>
       <td><%= grade.user.multipass_id %></td>
       <td><%= grade.score %></td>
+      <td><%= grade.updated_at.localtime %></td>
     </tr>
     <% end %>
   </tbody>
