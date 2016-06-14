@@ -1,3 +1,12 @@
+#!/usr/bin/ruby2.3
+# Notes on chroot:
+# If you ever move to a new server, or update the python executable,
+# chances are things will stop working.  This is because chroot is not
+# allowed for most programs/users.  The fix is to go to /usr/bin and issue
+# the command:
+# sudo setcap cap_sys_chroot+ep /usr/bin/ruby2.3
+# Changing /usr/bin/ruby2.3 to the ruby executable
+
 require 'tmpdir'
 require 'fileutils'
 require 'json'
@@ -31,7 +40,7 @@ class TestEnvironment
 
   def run
     pid = Process.fork {
-      #enterChrootJail()
+      enterChrootJail()
       executeTests()
     }
     begin
@@ -75,7 +84,7 @@ class TestEnvironment
   end
 
   def executeTests
-    `./tests --gtest_output=xml 2>&1`
+    `./tests --gtest_output=xml`
   end
 
   def getTestDetailXML

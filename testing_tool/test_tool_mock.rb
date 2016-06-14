@@ -1,3 +1,5 @@
+#!/usr/bin/ruby2.3
+
 # Returns a canned xml test report from google test
 # Intended for use on non-linux development environments where the actual test tool does not work.
 
