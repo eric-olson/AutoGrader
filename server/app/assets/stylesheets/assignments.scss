@@ -9,21 +9,12 @@ $editor-button-size: 39px;
   line-height: 30px;
 }
 
-a.close:hover,
-a.close:focus {
-  background-color: rgba(255, 255, 255, 0);
-}
-
-a.btn.btn-success:visited {
-  color: #fff;
-}
-
 .progress-bar {
   line-height: 30px;
   border-right: 1px solid #eee;
 }
 
-.progress-bar:last-child {
+span:last-child > .progress-bar {
   line-height: 30px;
   border-right: none;
 }
@@ -84,6 +75,16 @@ div#header-button-container {
   border-bottom-right-radius: 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+
+// Toast message button style
+a.close:hover,
+a.close:focus {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+a.btn.btn-success:visited {
+  color: #fff;
 }
 
 // Modal header restyling

@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'assignment_grader'
 
 class AssignmentsController < ApplicationController
   load_and_authorize_resource
@@ -84,25 +85,10 @@ class AssignmentsController < ApplicationController
   def testCode
     # Runs the unit test tool with the users code (what is in the editor right now, not what is saved)
 
-    editor_text = params[:editor_text]
-    # Create tempfile and write the editor text to it
-    source_file_prefix = "solution"
-    source_file = Tempfile.new(source_file_prefix)
-    source_filepath = source_file.path
-    source_file.write(editor_text)
-    source_file.close
+    assignment_grader = AssignmentGrader.new(@assignment, params[:editor_text])
+    assignment_grader.runTests()
 
-    test_file_path = @assignment.getTestFilePath()
-
-    json_test_report = `ruby #{AssignmentsHelper.testing_tool_script} #{test_file_path} #{source_filepath} #{AssignmentsHelper.common_path}`
-
-    test_report = JSON.parse(json_test_report)
-
-    source_file.unlink
-
-    progress_bar_html = AssignmentsHelper.generateProgressBarHTMLFromTestReport(test_report)
-
-    render json: {:progress_bar_html => progress_bar_html};
+    render json: {:progress_bar_html => assignment_grader.getProgressBarHTML()}
   end
 
   def saveCode
