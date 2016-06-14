@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :users
   resources :assignments
 
-  get 'assignments/:id/grades' => 'assignments#grades'
-  get 'labs/:id/grades' => 'labs#grades'
+  get 'assignments/:id/grades' => 'assignments#grades', as: :assignments_grades
+  get 'labs/:id/grades' => 'labs#grades', as: :labs_grades
 
 
   # For the button_to call to test code

@@ -10,7 +10,13 @@
         </div>
         <% end %>
       </div>
-      <h4>Test Results</h4>
+      <div>
+        <h4 class="pull-left">Test Results</h4>
+        <% if can? :grades, @assignment %>
+          <%= link_to "View grades for this assignment", assignments_grades_path, class: "btn btn-default btn-sm pull-right" %>
+        <% end %>
+      </div>
+      <div class="clearfix"></div>
       <div id="progress_bar_container" class="progress progress-bar-segmented">
       </div>
       <div class="modal fade" id="error_modal" role="dialog">
