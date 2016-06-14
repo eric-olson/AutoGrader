@@ -19,6 +19,8 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  config.included_models = ["Lab", "Assignment", "User"]
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -42,6 +44,17 @@ RailsAdmin.config do |config|
       end
       field :lab
       field :description, :ck_editor
+    end
+  end
+
+  config.model User do
+    edit do
+      field :multipass_id do
+        required true
+      end
+      field :email
+      field :name
+      field :role
     end
   end
 end
