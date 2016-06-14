@@ -2,8 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1><%= @lab.name %><h1>
-
+<h1><%= @lab.name %></h1>
+<h5><%= @lab.due_date.localtime.strftime("Due on %B %d, %Y at %I:%M%p %Z") %></h5>
+</br>
 <p>
   <% @lab.assignments.each do |assignment| %>
   <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg", 'data-no-turbolink' => true %>
