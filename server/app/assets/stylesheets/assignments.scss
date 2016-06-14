@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+
 $editor-button-size: 39px;
 
 #progress_bar_container {
@@ -10,6 +13,7 @@ $editor-button-size: 39px;
 }
 
 .progress-bar {
+  height: 30px;
   line-height: 30px;
   border-right: 1px solid #eee;
 }
@@ -29,10 +33,10 @@ span:last-child > .progress-bar {
   background-color: dimgray;
 }
 
-.popover {
-  width: 350px;
-  overflow: scroll;
-}
+// .popover {
+//   width: 350px;
+//   overflow: scroll;
+// }
 
 span#default-filler {
   color: lightgray;

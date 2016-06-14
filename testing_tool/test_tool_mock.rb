@@ -20,12 +20,37 @@ common_file_path = ARGV[2]
 sample_xml_file = File.open(File.join(common_file_path, 'sample_output.xml'))
 xml_data = sample_xml_file.read
 
-json_result = {
-  :gtest_xml_report => xml_data,
-  :compile_errors => "",
-  :runtime_errors => "",
-  :timeout_error => false
-}.to_json
+# Just to make it easier to test the progress bar
+error_type = "compiler"
+
+if error_type == "none"
+  json_result = {
+    :gtest_xml_report => xml_data,
+    :compile_errors => "",
+    :runtime_errors => "",
+    :timeout_error => false
+  }.to_json
+elsif error_type == "compiler"
+  json_result = {
+    :gtest_xml_report => "",
+    :compile_errors => "Some GCC output",
+    :runtime_errors => "",
+    :timeout_error => false
+  }.to_json
+elsif error_type == "runtime"
+  json_result = {
+    :gtest_xml_report => "",
+    :compile_errors => "",
+    :runtime_errors => "Some backtrace from the runtime error",
+    :timeout_error => false
+  }.to_json
+elsif error_type == "timeout"
+  json_result = {
+    :gtest_xml_report => "",
+    :compile_errors => "",
+    :runtime_errors => "",
+    :timeout_error => true
+  }.to_json
+end
 
 puts json_result
-#puts '<WARNING> This has been generated from ' + $PROGRAM_NAME + ', it is not a real test report! </WARNING>'
