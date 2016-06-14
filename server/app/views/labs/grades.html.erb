@@ -2,7 +2,7 @@
 <h2><%= @lab.name %> Grades</h2>
 
 <% @lab.assignments.each do |assignment| %>
-<h4><%= assignment.name %></h4>
+<h4><%= link_to assignment.name, assignment%></h4>
 <table class="table table-hover">
   <thead>
     <tr>
