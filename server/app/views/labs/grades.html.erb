@@ -1,24 +1,27 @@
 
 <h2><%= @lab.name %> Grades</h2>
 
+<% @lab.assignments.each do |assignment| %>
+<h4><%= link_to assignment.name, assignment%></h4>
 <table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
       <th>MultiPass</th>
       <th>Score</th>
+      <th>Submitted</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @lab.assignments.each do |assignment| %>
     <% assignment.grades.each do |grade| %>
     <tr>
       <td><%= link_to grade.user.name, grade.user, class: "btn btn-default btn-xs" %></td>
       <td><%= grade.user.multipass_id %></td>
       <td><%= grade.score %></td>
+      <td><%= grade.updated_at.localtime %></td>
     </tr>
-    <% end %>
     <% end %>
   </tbody>
 </table>
+<% end %>
