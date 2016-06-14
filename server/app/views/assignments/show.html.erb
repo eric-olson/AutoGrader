@@ -30,7 +30,7 @@
             <div class="btn-group" role="group" id="test_btn">
               <button type="button" class="btn btn-default" data-toggle="tooltip" title="Test if your code works">Test</button>
             </div>
-            <div class="btn-group" role="group">
+            <div class="btn-group" role="group" id="submit_btn">
               <button type="button" class="btn btn-default" data-toggle="tooltip" title="Submit your code to be graded" data-container="body">Submit</button>
             </div>
           </div>
@@ -282,6 +282,26 @@ $('#test_btn').on('click', function() {
   $.ajax({
     type: 'post',
     url: 'testCode',
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
+    success: function(response) {
+      // Load the progress bar with the html from the response
+      $('#progress_bar_container').html(response.progress_bar_html);
+      // Enable popovers
+      $('[data-toggle="popover"]').popover();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      $('#progress_bar_container').html(getServerErrorProgressBar());
+    }
+  });
+  return false;
+});
+
+$('#submit_btn').on('click', function() {
+  $('#progress_bar_container').html(getAnimatedProgressBar());
+
+  $.ajax({
+    type: 'post',
+    url: 'submitCode',
     data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
     success: function(response) {
       // Load the progress bar with the html from the response

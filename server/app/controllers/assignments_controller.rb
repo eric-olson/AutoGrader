@@ -105,6 +105,21 @@ class AssignmentsController < ApplicationController
     render json: {:progress_bar_html => progress_bar_html};
   end
 
+  def submitCode
+    set_assignment
+    # run tests and save json result
+    result = testCode
+    # dummy score until actual score can be found
+    score = 55
+    # find or create a grade for the assignment/user combination
+    new_grade = Grade.where(:user => current_user, :assignment => @assignment).first_or_create
+
+    new_grade.score = score
+    new_grade.save
+
+    result
+  end
+
   def saveCode
     # Saves the user's code to their solution file
     editor_text = params[:editor_text]
