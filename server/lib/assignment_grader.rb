@@ -112,7 +112,25 @@ class AssignmentGrader
   end
 
   def getGrade
+    xml_result = @test_report["gtest_xml_report"]
+    xml_parse = Nokogiri::Slop(xml_result)
+    tests_array = xml_parse.xpath("//testcase")
 
+    passed_tests = 0
+    total_tests = 0
+
+    tests_array.each { |test|
+      failed = test.respond_to?(:failure)
+      if !failed
+        passed_tests += 1
+      end
+
+      total_tests += 1
+    }
+
+    grade = (passed_tests.to_f / total_tests.to_f) * 10
+    puts "Grade: " + grade.to_s
+    return grade
   end
 
 end
