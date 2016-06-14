@@ -7,6 +7,18 @@ class Ability
       can :manage, :all
     elsif user.role == "ta"
       # TA stuff
+      can :read, Lab
+      can :grades, Lab
+      can :read, Assignment
+      can :grades, Assignment
+      can :testCode, Assignment
+      can :saveCode, Assignment
+      can :restartCode, Assignment
+      can :uploadCode, Assignment
+      can :downloadCode, Assignment
+      can :read, User
+      can :index, User
+      can :manage, Grade
     else
       # Student stuff
       can :read, Lab
