@@ -1,5 +1,6 @@
 home_path: "/Users/chris/Code/AutoGrader"
 testing_tool_script: "testing_tool/test_tool_mock.rb"
+ruby_executable: "/Users/chris/.rbenv/shims/ruby"
 assignments_relative_path: "problems"
 users_relative_path: "users"
 common_relative_path: "common"
