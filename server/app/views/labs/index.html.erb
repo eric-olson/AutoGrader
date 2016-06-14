@@ -5,7 +5,7 @@
 <div id="lab-btns">
   <% @labs.each do |lab| %>
     <% if lab.hidden%>
-      <% if current_user.role == "admin" %>
+      <% if can? :toggle_hidden, lab %>
         <%= link_to lab.name, lab, class: "btn btn-warning btn-lg" %>
       <% end %>
     <% else %>

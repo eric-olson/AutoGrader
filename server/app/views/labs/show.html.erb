@@ -20,7 +20,7 @@
 </p>
 
 </br>
-<% if current_user.role == "admin"%>
+<% if can? :toggle_hidden, @lab%>
   <% if @lab.hidden? %>
     <p>This lab is currently hidden. No student users can see it.</p>
     <%= link_to "Show lab to students", labs_toggle_hidden_path, method: :post, class: "btn btn-default btn-sm" %>
