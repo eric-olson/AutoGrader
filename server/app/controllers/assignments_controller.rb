@@ -3,7 +3,7 @@ require 'assignment_grader'
 
 class AssignmentsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode, :submitCode]
 
   # GET /assignments
   # GET /assignments.json
@@ -92,18 +92,18 @@ class AssignmentsController < ApplicationController
   end
 
   def submitCode
-    set_assignment
-    # run tests and save json result
-    result = testCode
+    assignment_grader = AssignmentGrader.new(@assignment, params[:editor_text])
+    assignment_grader.runTests()
+
     # dummy score until actual score can be found
-    score = 55
+    score = assignment_grader.getGrade()
     # find or create a grade for the assignment/user combination
     new_grade = Grade.where(:user => current_user, :assignment => @assignment).first_or_create
 
     new_grade.score = score
     new_grade.save
 
-    result
+    render json: {:progress_bar_html => assignment_grader.getProgressBarHTML()}
   end
 
   def saveCode
