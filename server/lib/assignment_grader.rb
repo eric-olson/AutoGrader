@@ -184,7 +184,7 @@ class AssignmentGrader
     message_truncated = "<samp>" + message[0..100] + "...</samp>" + "<p>Click bar for more detail</p>"
     message = "<samp>" + message + "</samp>"
 
-    "<div class=\"progress-bar #{type}\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"failure-message-full\">#{message}</div></div>"
+    "<div class=\"progress-bar #{type} progress-bar-clickable\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"failure-message-full\">#{message}</div></div>"
   end
 
 end

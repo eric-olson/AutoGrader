@@ -53,7 +53,7 @@ function generateModalFor(element) {
 }
 
 // Have to use this because the progress bars have a data toggle already
-$(document).on("click", ".progress-bar", function() {
+$(document).on("click", ".progress-bar-clickable", function() {
   generateModalFor(this);
 
   $('.popover').hide();
