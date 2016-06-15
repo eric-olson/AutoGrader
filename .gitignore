@@ -21,3 +21,9 @@
 
 # Ignore the users directory
 /users/
+
+# Ignore secrets.yml
+/server/config/secrets.yml
+
+# Ignore CKEditor uploads
+/public/ckeditor_assets
