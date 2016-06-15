@@ -39,6 +39,7 @@ span:last-child > .progress-bar {
 
 #test-results-body {
   font-family: monospace;
+  word-wrap: break-word;
 }
 
 span#default-filler {

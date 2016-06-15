@@ -83,6 +83,7 @@ class AssignmentGrader
         expected_value = inputs[(cutoff+1)..-1]
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
         failure_message.gsub!("\"", "&quot")
+
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
@@ -97,6 +98,8 @@ class AssignmentGrader
           popover_title = "Passed Test"
           progress_bar_type = "progress-bar-success"
         end
+
+        failure_message = failure_message.html_safe
         progress_bar_html += "
         <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
       }
@@ -137,6 +140,8 @@ class AssignmentGrader
       popover_title = "CRITICAL ERROR"
       progress_bar_type = "progress-bar-variant(#e100ff)"
     end
+
+    failure_message = failure_message.html_safe
 
     progress_bar_html += "
     <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
