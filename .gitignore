@@ -26,4 +26,7 @@
 /server/config/secrets.yml
 
 # Ignore CKEditor uploads
-/public/ckeditor_assets
+/server/public/ckeditor_assets/*
+
+# Ignore bundled assets
+/server/vendor/bundle/*
