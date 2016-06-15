@@ -140,6 +140,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    pg (0.18.4)
     puma (3.4.0)
     rack (1.6.4)
     rack-pjax (0.8.0)
@@ -250,6 +251,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 0.4.1)
   omniauth-shibboleth (~> 1.2, >= 1.2.1)
   paperclip (~> 4.3, >= 4.3.6)
+  pg (~> 0.18.4)
   puma
   rails (= 4.2.6)
   rails_admin (~> 0.8.1)

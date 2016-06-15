@@ -10,6 +10,7 @@
 # Ignore the default SQLite database.
 /server/db/*.sqlite3
 /server/db/*.sqlite3-journal
+/server/config/database.yml
 
 # Ignore all logfiles and tempfiles.
 /server/log/*
@@ -21,3 +22,13 @@
 
 # Ignore the users directory
 /users/
+
+# Ignore secrets.yml
+/server/config/secrets.yml
+
+# Ignore CKEditor uploads
+/server/public/ckeditor_assets/*
+/server/public/assets/*
+
+# Ignore bundled assets
+/server/vendor/bundle/*
