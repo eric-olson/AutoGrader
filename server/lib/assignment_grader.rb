@@ -63,6 +63,7 @@ class AssignmentGrader
     failure_message = ""
     popover_title = ""
     progress_bar_type = ""
+    progress_bar_id = ""
     inputs = ""
     message = ""
 
@@ -97,7 +98,7 @@ class AssignmentGrader
           progress_bar_type = "progress-bar-success"
         end
         progress_bar_html += "
-        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
+        <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
       }
 
     else
@@ -107,6 +108,7 @@ class AssignmentGrader
         popover_title = "Compilation Error"
         bar_message = "Compilation Error"
         progress_bar_type = "progress-bar-danger"
+        progress_bar_id = "compile-error"
       end
 
       #Runtime error
@@ -115,6 +117,7 @@ class AssignmentGrader
         popover_title = "Runtime Error"
         bar_message = "Runtime Error"
         progress_bar_type = "progress-bar-warning"
+        progress_bar_id = "runtime-error"
       end
 
       #Timeout error
@@ -123,6 +126,7 @@ class AssignmentGrader
         popover_title = ""
         bar_message = "Timout. Infinite loop?"
         progress_bar_type = "progress-bar-info"
+        progress_bar_id = "timeout-error"
       end
     end
 
@@ -135,7 +139,7 @@ class AssignmentGrader
     end
 
     progress_bar_html += "
-    <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
+    <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
     return progress_bar_html
   end
 

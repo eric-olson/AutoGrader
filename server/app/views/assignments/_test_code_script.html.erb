@@ -47,12 +47,18 @@ $('#submit_btn').on('click', function() {
   return false;
 });
 
+function generateModalFor(element) {
+  $("#test-results-title").html($(element).attr('data-original-title'));
+  $("#test-results-body").html($(element).attr('data-content'));
+
+}
+
 // Have to use this because the progress bars have a data toggle already
 $(document).on("click", ".progress-bar", function() {
-  console.log("You clicked the progress bar");
+  generateModalFor(this);
+
   $('.popover').hide();
   $('#test-results-modal').modal('show');
 });
 
-$("#test-results-title").html("Compilation Error");
 </script>
