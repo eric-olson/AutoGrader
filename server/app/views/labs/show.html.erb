@@ -4,27 +4,32 @@
 
 <div>
   <h1 class="pull-left"><%= @lab.name %></h1>
-  <% if can? :grades, @lab %>
-    <%= link_to "View grades for this lab", labs_grades_path, class: "btn btn-default btn-sm pull-right" %>
-  <% end %>
+  <div class="btn-group pull-right">
+    <% if can? :toggle_hidden, @lab%>
+      <% if @lab.hidden? %>
+        <%= link_to 'Show To Students', labs_toggle_hidden_path, method: :post, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to 'Hide From Students', labs_toggle_hidden_path, method: :post, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+    <% if current_user.role == "admin" %>
+      <%= link_to 'Edit', rails_admin.edit_path(model_name: 'lab', id: @lab.id), class: "btn btn-danger" %>
+    <% end %>
+    <% if can? :grades, @lab %>
+      <%= link_to 'View Grades', labs_grades_path, class: "btn btn-danger" %>
+    <% end %>
+  </div>
 </div>
 <div class="clearfix"></div>
 <% if @lab.due_date != nil %>
   <h5><%= @lab.due_date.localtime.strftime("Due on %B %d, %Y at %I:%M%p %Z") %></h5>
 <% end %>
 </br>
+<% if !@lab.description.blank? %>
+  <div class="well"><%= @lab.description %></div>
+<% end %>
 <p>
   <% @lab.assignments.each do |assignment| %>
   <%= link_to assignment.name, assignment, class: "btn btn-default btn-lg", 'data-no-turbolink' => true %>
   <% end %>
 </p>
-
-</br>
-<% if can? :toggle_hidden, @lab%>
-  <% if @lab.hidden? %>
-    <p>This lab is currently hidden. No student users can see it.</p>
-    <%= link_to "Show lab to students", labs_toggle_hidden_path, method: :post, class: "btn btn-default btn-sm" %>
-  <% else %>
-    <%= link_to "Hide lab from students", labs_toggle_hidden_path, method: :post, class: "btn btn-default btn-sm" %>
-  <% end %>
-<% end %>
