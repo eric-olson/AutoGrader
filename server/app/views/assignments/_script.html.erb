@@ -55,7 +55,7 @@ function buildAlertBox(message, alert_class) {
   resizeToSmaller();
   autoCloseAlert();
 
-  return '<div class="alert ' + alert_class + ' fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + message + '</div>'
+  return '<div class="alert ' + alert_class + ' fade in">' + message + '</div>'
 }
 
 function buildAlertBoxSuccess(message) {
@@ -90,16 +90,20 @@ function shouldClose() {
   return close_requests == 1;
 }
 
+function closeAlert() {
+  if (shouldClose()) {
+    resizeToFullAnimated();
+    $(".alert").slideUp(500, function(){
+      $(this).remove();
+    });
+  }
+  suppressRequest();
+}
+
 function autoCloseAlert() {
   requestClose();
   window.setTimeout(function() {
-    if (shouldClose()) {
-      resizeToFullAnimated();
-      $(".alert").slideUp(500, function(){
-        $(this).remove();
-      });
-    }
-    suppressRequest();
+    closeAlert();
   }, 2000);
 }
 
