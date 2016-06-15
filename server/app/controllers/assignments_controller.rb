@@ -3,7 +3,7 @@ require 'assignment_grader'
 
 class AssignmentsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode, :submitCode]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode, :Code]
 
   # GET /assignments
   # GET /assignments.json
@@ -101,7 +101,7 @@ class AssignmentsController < ApplicationController
     new_grade = Grade.where(:user => current_user, :assignment => @assignment).first_or_create
 
     # only update score if it's higher than the existing one
-    if (score > new_grade.score)
+    if new_grade.score.nil? || new_grade.score < score
       new_grade.score = score
       new_grade.save
     end
