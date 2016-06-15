@@ -1,6 +1,6 @@
 class Assignment < ActiveRecord::Base
   belongs_to :lab
-  has_many :grades
+  has_many :grades, :dependent => :destroy
 
   def getPath
     File.join(AssignmentsHelper.assignments_path, getDirectoryName())
