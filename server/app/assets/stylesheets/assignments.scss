@@ -33,13 +33,22 @@ span:last-child > .progress-bar {
   background-color: dimgray;
 }
 
-.popover-content {
-  font-family: monospace;
+.popover-content p {
+  padding-top: 15px;
+  margin-bottom: 0px;
+  text-align: right;
+}
+
+.popover-content samp {
+  word-wrap: break-word;
 }
 
 #test-results-body {
-  font-family: monospace;
   word-wrap: break-word;
+}
+
+.failure-message-full {
+  display: none;
 }
 
 span#default-filler {

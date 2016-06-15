@@ -49,7 +49,7 @@ $('#submit_btn').on('click', function() {
 
 function generateModalFor(element) {
   $("#test-results-title").html($(element).attr('data-original-title'));
-  $("#test-results-body").html($(element).attr('data-content'));
+  $("#test-results-body").html($(element).find('.failure-message-full').html());
 }
 
 // Have to use this because the progress bars have a data toggle already

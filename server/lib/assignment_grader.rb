@@ -100,8 +100,12 @@ class AssignmentGrader
         end
 
         failure_message = failure_message.html_safe
-        progress_bar_html += "
-        <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
+        progress_bar_html += getSingleProgressBarHTML(progress_bar_type,
+                                                      progress_bar_id,
+                                                      popover_title,
+                                                      failure_message,
+                                                      width,
+                                                      "")
       }
 
     else
@@ -142,9 +146,14 @@ class AssignmentGrader
     end
 
     failure_message = failure_message.html_safe
+    failure_message.gsub!("\n", "<br/>")
 
-    progress_bar_html += "
-    <div class=\"progress-bar #{progress_bar_type}\" id=\"#{progress_bar_id}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
+    progress_bar_html += getSingleProgressBarHTML(progress_bar_type,
+                                                  progress_bar_id,
+                                                  popover_title,
+                                                  failure_message,
+                                                  width,
+                                                  bar_message)
     return progress_bar_html
   end
 
@@ -168,6 +177,14 @@ class AssignmentGrader
     grade = (passed_tests.to_f / total_tests.to_f) * 10
     puts "Grade: " + grade.to_s
     return grade
+  end
+
+  private
+  def getSingleProgressBarHTML(type, id, title, message, width, bar_message)
+    message_truncated = "<samp>" + message[0..100] + "...</samp>" + "<p>Click bar for more detail</p>"
+    message = "<samp>" + message + "</samp>"
+
+    "<div class=\"progress-bar #{type}\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"failure-message-full\">#{message}</div></div>"
   end
 
 end
