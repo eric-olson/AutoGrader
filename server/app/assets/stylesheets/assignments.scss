@@ -45,9 +45,15 @@ span:last-child > .progress-bar {
 
 #test-results-body {
   word-wrap: break-word;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
-.failure-message-full {
+.progress-bar > .error-title {
+  display: none;
+}
+
+.progress-bar > .failure-message-full {
   display: none;
 }
 

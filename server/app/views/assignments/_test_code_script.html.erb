@@ -48,7 +48,7 @@ $('#submit_btn').on('click', function() {
 });
 
 function generateModalFor(element) {
-  $("#test-results-title").html($(element).attr('data-original-title'));
+  $("#test-results-title").html($(element).find('.error-title').html());
   $("#test-results-body").html($(element).find('.failure-message-full').html());
 }
 

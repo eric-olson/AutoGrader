@@ -33,6 +33,7 @@ class AssignmentGrader
     @assignment = assignment
     @source_code = source_code
     @test_report = ""
+    @max_popover_message_length = 100
   end
 
   def runTests
@@ -129,9 +130,9 @@ class AssignmentGrader
 
       #Timeout error
       if @test_results.testTimeout?
-        failure_message = ""
-        popover_title = ""
-        bar_message = "Timout. Infinite loop?"
+        failure_message = "Your code exceeded the maximum execution time of 10 seconds. Check for infinite loops."
+        popover_title = "Test Timeout"
+        bar_message = "Timeout"
         progress_bar_type = "progress-bar-info"
         progress_bar_id = "timeout-error"
       end
@@ -180,11 +181,29 @@ class AssignmentGrader
   end
 
   private
+  def needsModal(message)
+    message.length > @max_popover_message_length
+  end
+
+  def truncateMessage(message)
+    if message.length > @max_popover_message_length
+      message[0..(@max_popover_message_length - 1)] + "..."
+    else
+      message[0..(@max_popover_message_length - 1)]
+    end
+  end
+
   def getSingleProgressBarHTML(type, id, title, message, width, bar_message)
-    message_truncated = "<samp>" + message[0..100] + "...</samp>" + "<p>Click bar for more detail</p>"
+
+    message_truncated = "<samp>" + truncateMessage(message) + "</samp>"
     message = "<samp>" + message + "</samp>"
 
-    "<div class=\"progress-bar #{type} progress-bar-clickable\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"failure-message-full\">#{message}</div></div>"
+    if needsModal(message)
+      type += " progress-bar-clickable"
+      message_truncated += "<p>Click bar for more detail</p>"
+    end
+
+    "<div class=\"progress-bar #{type}\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"error-title\">#{title}</div><div class=\"failure-message-full\">#{message}</div></div>"
   end
 
 end
