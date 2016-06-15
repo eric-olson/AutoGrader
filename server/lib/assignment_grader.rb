@@ -148,6 +148,7 @@ class AssignmentGrader
 
     failure_message = failure_message.html_safe
     failure_message.gsub!("\n", "<br/>")
+    failure_message.gsub!("\"", "&quot")
 
     progress_bar_html += getSingleProgressBarHTML(progress_bar_type,
                                                   progress_bar_id,
