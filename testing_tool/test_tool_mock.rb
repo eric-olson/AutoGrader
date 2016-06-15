@@ -15,22 +15,20 @@ if (ARGV.length != 3)
     exit()
 end
 
+source_file_path = ARGV[1]
 common_file_path = ARGV[2]
 
 sample_xml_file = File.open(File.join(common_file_path, 'sample_output.xml'))
 xml_data = sample_xml_file.read
 
-# Just to make it easier to test the progress bar
-error_type = "compiler"
 
-if error_type == "none"
-  json_result = {
-    :gtest_xml_report => xml_data,
-    :compile_errors => "",
-    :runtime_errors => "",
-    :timeout_error => false
-  }.to_json
-elsif error_type == "compiler"
+# Just to make it easier to test the progress bar
+error_type = "none"
+File.open(source_file_path) {|f|
+  error_type = f.readline.chomp
+}
+
+if error_type == "compiler"
   json_result = {
     :gtest_xml_report => "",
     :compile_errors => "Some GCC output",
@@ -50,6 +48,13 @@ elsif error_type == "timeout"
     :compile_errors => "",
     :runtime_errors => "",
     :timeout_error => true
+  }.to_json
+else
+  json_result = {
+    :gtest_xml_report => xml_data,
+    :compile_errors => "",
+    :runtime_errors => "",
+    :timeout_error => false
   }.to_json
 end
 
