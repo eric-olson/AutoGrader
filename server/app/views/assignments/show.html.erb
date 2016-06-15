@@ -10,7 +10,18 @@
         </div>
         <% end %>
       </div>
-      <h4>Test Results</h4>
+      <div>
+        <h4 class="pull-left">Test Results</h4>
+        <div class="btn-group pull-right">
+          <% if current_user.role == "admin" %>
+            <%= link_to 'Edit', rails_admin.edit_path(model_name: 'assignment', id: @assignment.id), class: "btn btn-danger" %>
+          <% end %>
+          <% if can? :grades, @assignment %>
+            <%= link_to 'View Grades', assignments_grades_path, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
       <div id="progress_bar_container" class="progress progress-bar-segmented">
       </div>
       <div class="modal fade" id="error_modal" role="dialog">

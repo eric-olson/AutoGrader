@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable,
          :omniauthable, :omniauth_providers => [:google_oauth2, :shibboleth]
-  has_many :grades
+  has_many :grades, :dependent => :destroy
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

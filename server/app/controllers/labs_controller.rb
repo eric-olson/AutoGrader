@@ -62,6 +62,12 @@ class LabsController < ApplicationController
     end
   end
 
+  def toggle_hidden
+    @lab.hidden = !@lab.hidden
+    @lab.save
+    redirect_to @lab
+  end
+
   def grades
     set_lab
   end

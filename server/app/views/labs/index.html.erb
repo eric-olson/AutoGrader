@@ -4,7 +4,13 @@
 </br>
 <div id="lab-btns">
   <% @labs.each do |lab| %>
-  <%= link_to lab.name, lab, class: "btn btn-default btn-lg" %>
+    <% if lab.hidden%>
+      <% if can? :toggle_hidden, lab %>
+        <%= link_to lab.name, lab, class: "btn btn-warning btn-lg" %>
+      <% end %>
+    <% else %>
+      <%= link_to lab.name, lab, class: "btn btn-default btn-lg" %>
+    <% end %>
   <% end %>
 </div>
 
