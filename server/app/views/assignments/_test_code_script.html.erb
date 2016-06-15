@@ -50,6 +50,7 @@ $('#submit_btn').on('click', function() {
 // Have to use this because the progress bars have a data toggle already
 $(document).on("click", ".progress-bar", function() {
   console.log("You clicked the progress bar");
+  $('.popover').hide();
   $('#test-results-modal').modal('show');
 });
 
