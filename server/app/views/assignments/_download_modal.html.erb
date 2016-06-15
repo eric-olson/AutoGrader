@@ -1,0 +1,20 @@
+<div class="modal fade" id="download_modal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Download Code</h4>
+      </div>
+      <div class="modal-body">
+        <p>This will only download the code you have saved. Would you like to save your code first?</p>
+      </div>
+      <div class="modal-footer">
+        <%= form_tag({:action => "downloadCode", :id => @assignment.id}, :multipart => true, :method => 'post') do%>
+        <%= hidden_field_tag 'editor-text-hidden'%>
+        <%= submit_tag("Yes", :class => "btn btn-success", :id => "btn-download-yes") %>
+        <%= submit_tag("No", :class => "btn btn-danger", :id => "btn-download-no") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
