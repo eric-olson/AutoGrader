@@ -33,10 +33,13 @@ span:last-child > .progress-bar {
   background-color: dimgray;
 }
 
-// .popover {
-//   width: 350px;
-//   overflow: scroll;
-// }
+.popover-content {
+  font-family: monospace;
+}
+
+#test-results-body {
+  font-family: monospace;
+}
 
 span#default-filler {
   color: lightgray;
