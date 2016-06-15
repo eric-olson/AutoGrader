@@ -97,7 +97,7 @@ class AssignmentGrader
           progress_bar_type = "progress-bar-success"
         end
         progress_bar_html += "
-        <span data-toggle=\"modal\" data-target=\"#error_modal\"><div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div></span>"
+        <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div>"
       }
 
     else
@@ -135,7 +135,7 @@ class AssignmentGrader
     end
 
     progress_bar_html += "
-    <span data-toggle=\"modal\" data-target=\"#error_modal\"><div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div></span>"
+    <div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div>"
     return progress_bar_html
   end
 

@@ -15,28 +15,30 @@
     <div class="col-md-8">
       <%= render 'editor_panel' %>
     </div>
-    <div id="modal-container">
-      <%= render 'upload_modal' %>
-      <%= render 'download_modal' %>
-
-      <div class="modal fade" id="error_modal" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Some error</h4>
-            </div>
-            <div class="modal-body">
-              <p>Test modal</p>
-            </div>
-            <div class="modal-footer">
-              <p>HEY</P>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
   </div>
 </div>
 
-<%= render 'script' %>
+<div id="modal-container">
+  <%= render 'upload_modal' %>
+  <%= render 'download_modal' %>
+
+  <div class="modal fade" id="test-results-modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="test-results-title">Some error</h4>
+        </div>
+        <div class="modal-body" id="test-results-body">
+          <p>Test modal</p>
+        </div>
+        <div class="modal-footer" id="test-results-footer">
+          <p>HEY</P>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<%= render 'main_script' %>
+<%= render 'test_code_script' %>
