@@ -100,8 +100,11 @@ class AssignmentsController < ApplicationController
     # find or create a grade for the assignment/user combination
     new_grade = Grade.where(:user => current_user, :assignment => @assignment).first_or_create
 
-    new_grade.score = score
-    new_grade.save
+    # only update score if it's higher than the existing one
+    if (score > new_grade.score)
+      new_grade.score = score
+      new_grade.save
+    end
 
     render json: {:progress_bar_html => assignment_grader.getProgressBarHTML()}
   end
