@@ -1,8 +1,39 @@
+class TestResults
+  def initialize(test_report)
+    @test_report = test_report
+  end
+
+  def hasXMLReport?
+    @test_report["gtest_xml_report"].length > 0
+  end
+
+  def hasCompileErrors?
+    @test_report["compile_errors"].length > 0
+  end
+
+  def hasRuntimeErrors?
+    @test_report["runtime_errors"].length > 0
+  end
+
+  def testTimeout?
+    @test_report["timeout_error"]
+  end
+
+  def getCompilerErrorMessage
+    @test_report["compile_errors"]
+  end
+
+  def getRuntimeErrorMessage
+    @test_report["runtime_errors"]
+  end
+end
+
 class AssignmentGrader
   def initialize(assignment, source_code)
     @assignment = assignment
     @source_code = source_code
     @test_report = ""
+    @max_popover_message_length = 100
   end
 
   def runTests
@@ -20,18 +51,12 @@ class AssignmentGrader
     json_test_report = `#{command_to_run}`
 
     @test_report = JSON.parse(json_test_report)
-
+    @test_results = TestResults.new(@test_report)
     source_file.unlink
   end
 
   def getProgressBarHTML
     xml_result = @test_report["gtest_xml_report"]
-    compile_errors = @test_report["compile_errors"]
-    runtime_errors = @test_report["runtime_errors"]
-    did_timeout = @test_report["timeout_error"]
-
-    xml_parse = Nokogiri::Slop(xml_result)
-    tests_array = xml_parse.xpath("//testcase")
 
     progress_bar_html = ""
     width = 100.0
@@ -39,11 +64,14 @@ class AssignmentGrader
     failure_message = ""
     popover_title = ""
     progress_bar_type = ""
+    progress_bar_id = ""
     inputs = ""
     message = ""
 
     #No errors with code
-    if xml_result.length > 0
+    if @test_results.hasXMLReport?
+      xml_parse = Nokogiri::Slop(xml_result)
+      tests_array = xml_parse.xpath("//testcase")
       width /= tests_array.size
       tests_array.each { |test|
         failed = test.respond_to?(:failure)
@@ -56,6 +84,7 @@ class AssignmentGrader
         expected_value = inputs[(cutoff+1)..-1]
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
         failure_message.gsub!("\"", "&quot")
+
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
@@ -70,33 +99,42 @@ class AssignmentGrader
           popover_title = "Passed Test"
           progress_bar_type = "progress-bar-success"
         end
-        progress_bar_html += "
-        <span data-toggle=\"modal\" data-target=\"#error_modal\"><div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \"></div></span>"
+
+        failure_message = failure_message.html_safe
+        progress_bar_html += getSingleProgressBarHTML(progress_bar_type,
+                                                      progress_bar_id,
+                                                      popover_title,
+                                                      failure_message,
+                                                      width,
+                                                      "")
       }
 
     else
       #Compilation error
-      if compile_errors.length > 0
-        failure_message = compile_errors
+      if @test_results.hasCompileErrors?
+        failure_message = @test_results.getCompilerErrorMessage
         popover_title = "Compilation Error"
         bar_message = "Compilation Error"
         progress_bar_type = "progress-bar-danger"
+        progress_bar_id = "compile-error"
       end
 
       #Runtime error
-      if runtime_errors.length > 0
-        failure_message = runtime_errors
+      if @test_results.hasRuntimeErrors?
+        failure_message = @test_results.getRuntimeErrorMessage
         popover_title = "Runtime Error"
         bar_message = "Runtime Error"
         progress_bar_type = "progress-bar-warning"
+        progress_bar_id = "runtime-error"
       end
 
       #Timeout error
-      if did_timeout
-        failure_message = ""
-        popover_title = ""
-        bar_message = "Timout. Infinite loop?"
+      if @test_results.testTimeout?
+        failure_message = "Your code exceeded the maximum execution time of 10 seconds. Check for infinite loops."
+        popover_title = "Test Timeout"
+        bar_message = "Timeout"
         progress_bar_type = "progress-bar-info"
+        progress_bar_id = "timeout-error"
       end
     end
 
@@ -108,8 +146,16 @@ class AssignmentGrader
       progress_bar_type = "progress-bar-variant(#e100ff)"
     end
 
-    progress_bar_html += "
-    <span data-toggle=\"modal\" data-target=\"#error_modal\"><div class=\"progress-bar #{progress_bar_type}\" data-toggle=\"popover\" title=\"#{popover_title}\" data-html=\"true\" data-content=\"#{failure_message}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}</div></span>"
+    failure_message = failure_message.html_safe
+    failure_message.gsub!("\n", "<br/>")
+    failure_message.gsub!("\"", "&quot")
+
+    progress_bar_html += getSingleProgressBarHTML(progress_bar_type,
+                                                  progress_bar_id,
+                                                  popover_title,
+                                                  failure_message,
+                                                  width,
+                                                  bar_message)
     return progress_bar_html
   end
 
@@ -133,6 +179,32 @@ class AssignmentGrader
     grade = (passed_tests.to_f / total_tests.to_f) * 10
     puts "Grade: " + grade.to_s
     return grade
+  end
+
+  private
+  def needsModal(message)
+    message.length > @max_popover_message_length
+  end
+
+  def truncateMessage(message)
+    if message.length > @max_popover_message_length
+      message[0..(@max_popover_message_length - 1)] + "..."
+    else
+      message[0..(@max_popover_message_length - 1)]
+    end
+  end
+
+  def getSingleProgressBarHTML(type, id, title, message, width, bar_message)
+
+    message_truncated = "<samp>" + truncateMessage(message) + "</samp>"
+    message = "<samp>" + message + "</samp>"
+
+    if needsModal(message)
+      type += " progress-bar-clickable"
+      message_truncated += "<p>Click bar for more detail</p>"
+    end
+
+    "<div class=\"progress-bar #{type}\" id=\"#{id}\" data-toggle=\"popover\" title=\"#{title}\" data-html=\"true\" data-content=\"#{message_truncated}\" data-placement=\"bottom\" data-trigger=\"hover\" style=\"width: #{width}%; \">#{bar_message}<div class=\"error-title\">#{title}</div><div class=\"failure-message-full\">#{message}</div></div>"
   end
 
 end

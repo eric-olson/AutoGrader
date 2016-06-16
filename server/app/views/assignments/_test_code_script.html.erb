@@ -1,0 +1,63 @@
+<script>
+function getAnimatedProgressBar() {
+  return '<div class="progress-bar progress-bar-striped active progress-bar-testing" role="progressbar">Running Tests</div>';
+}
+
+function getServerErrorProgressBar() {
+  return '<div class="progress-bar progress-bar-error" role="progressbar">Server Error</div>';
+}
+
+$('#test_btn').on('click', function() {
+  $('#progress_bar_container').html(getAnimatedProgressBar());
+
+  $.ajax({
+    type: 'post',
+    url: 'testCode',
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
+    success: function(response) {
+      // Load the progress bar with the html from the response
+      $('#progress_bar_container').html(response.progress_bar_html);
+      // Enable popovers
+      $('[data-toggle="popover"]').popover();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      $('#progress_bar_container').html(getServerErrorProgressBar());
+    }
+  });
+  return false;
+});
+
+$('#submit_btn').on('click', function() {
+  $('#progress_bar_container').html(getAnimatedProgressBar());
+
+  $.ajax({
+    type: 'post',
+    url: 'submitCode',
+    data: {editor_text:getEditorContents(),id:<%=@assignment.id%>},
+    success: function(response) {
+      // Load the progress bar with the html from the response
+      $('#progress_bar_container').html(response.progress_bar_html);
+      // Enable popovers
+      $('[data-toggle="popover"]').popover();
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      $('#progress_bar_container').html(getServerErrorProgressBar());
+    }
+  });
+  return false;
+});
+
+function generateModalFor(element) {
+  $("#test-results-title").html($(element).find('.error-title').html());
+  $("#test-results-body").html($(element).find('.failure-message-full').html());
+}
+
+// Have to use this because the progress bars have a data toggle already
+$(document).on("click", ".progress-bar-clickable", function() {
+  generateModalFor(this);
+
+  $('.popover').hide();
+  $('#test-results-modal').modal('show');
+});
+
+</script>
