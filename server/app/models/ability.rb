@@ -20,6 +20,7 @@ class Ability
       can :read, User
       can :index, User
       can :manage, Grade
+      can :read, Static
     else
       # Student stuff
       can :read, Lab
@@ -31,6 +32,7 @@ class Ability
       can :downloadCode, Assignment
       can :submitCode, Assignment
       can :read, User, :id => user.id
+      can :read, Static
       cannot :index, User
       cannot :index, Assignment
     end
