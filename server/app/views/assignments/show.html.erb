@@ -3,15 +3,6 @@
   <div class="row" style="height: 500px;">
     <div class="col-md-12">
       <%= render 'flash_messages' %>
-
-      <div id="status_div">
-        <% flash.each do |type, message| %>
-        <div class="alert <%= bootstrap_class_for(type) %> fade in">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <%= message %>
-        </div>
-        <% end %>
-      </div>
       <div>
         <h4 class="pull-left">Test Results</h4>
         <div class="btn-group pull-right">
