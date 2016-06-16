@@ -14,7 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ace-rails-ap
+
+//= require ace/theme-chrome
+//= require ace/theme-monokai
+//= require ace/theme-chaos
+//= require ace/theme-solarized_dark
 //= require ace/theme-xcode
+//= require ace/theme-solarized_light
+
 //= require ace/mode-c_cpp
 //= require bootstrap-sprockets
 //= require ckeditor/init
