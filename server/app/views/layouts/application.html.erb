@@ -29,6 +29,9 @@
         <% if user_signed_in? && current_user.role == "admin"  %>
           <li><%= link_to "Admin", rails_admin_path %></li>
         <% end %>
+        <% @statics.each do |static| %>
+          <li><%= link_to static.name, static %></li>
+        <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
