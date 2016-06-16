@@ -155,6 +155,20 @@ $('#btn-restart').on('click', function() {
   });
 });
 
+$('#btn-revert-to-saved').on('click', function() {
+  $.ajax({
+    type: 'post',
+    url: 'revertCodeToSaved',
+    data: {id:<%=@assignment.id%>},
+    success: function(response) {
+      $('#status_div').html(buildAlertBox("Reset file to saved version.", "alert-success"));
+      editor.setValue(response.new_editor_content, -1);
+    }
+  });
+});
+
+
+
 $('#btn-download').on('click', function() {
   fillHiddenEditorText();
 });

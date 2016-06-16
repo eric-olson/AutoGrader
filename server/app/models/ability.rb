@@ -17,6 +17,7 @@ class Ability
       can :uploadCode, Assignment
       can :downloadCode, Assignment
       can :submitCode, Assignment
+      can :revertCodeToSaved, Assignment
       can :read, User
       can :index, User
       can :manage, Grade
@@ -30,6 +31,7 @@ class Ability
       can :uploadCode, Assignment
       can :downloadCode, Assignment
       can :submitCode, Assignment
+      can :revertCodeToSaved, Assignment
       can :read, User, :id => user.id
       cannot :index, User
       cannot :index, Assignment

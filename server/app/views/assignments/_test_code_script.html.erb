@@ -39,9 +39,16 @@ $('#submit_btn').on('click', function() {
       $('#progress_bar_container').html(response.progress_bar_html);
       // Enable popovers
       $('[data-toggle="popover"]').popover();
+
+      // Show the user that it submitted successfully
+      $('#status_div').html(buildAlertBox("Code submitted for grading!", "alert-success"));
+
     },
     error: function(jqXHR, textStatus, errorThrown) {
       $('#progress_bar_container').html(getServerErrorProgressBar());
+
+      // Show the user that it submitted successfully
+      $('#status_div').html(buildAlertBox("An error occurred while submitting your code.", "alert-danger"));
     }
   });
   return false;
