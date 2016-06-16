@@ -3,7 +3,7 @@ require 'assignment_grader'
 
 class AssignmentsController < ApplicationController
   load_and_authorize_resource
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode, :Code]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy, :testCode, :saveCode, :restartCode, :uploadCode, :downloadCode, :Code, :revertCodeToSaved]
 
   # GET /assignments
   # GET /assignments.json
@@ -121,6 +121,12 @@ class AssignmentsController < ApplicationController
   def restartCode
     # Restarts the code to the default spec, does not save it to the user's solution file
     render json: {:new_editor_content => @assignment.getSpecFileContents()}
+  end
+
+  def revertCodeToSaved
+    # Restarts the code to their saved file
+    render json: {:new_editor_content => current_user.getSolutionFileContentsForAssignment(@assignment)}
+
   end
 
   def uploadCode
