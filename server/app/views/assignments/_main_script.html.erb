@@ -27,7 +27,12 @@ $( document ).ready(function() {
     resizeToFull();
   }
 
-  editor.setTheme("ace/theme/chrome");
+  editor_theme = "ace/theme/" + "<%= current_user.theme %>"
+  editor.setTheme(editor_theme);
+
+  // editor_keybinding = "ace/keyboard/" + "<%= current_user.keybind %>"
+  // editor.setKeyboardHandler(editor_keybinding);
+  
   editor.getSession().setMode("ace/mode/c_cpp");
 
   $('[data-toggle="tooltip"]').tooltip();
