@@ -19,7 +19,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.included_models = ["Lab", "Assignment", "User", "Grade"]
+  config.included_models = ["Lab", "Assignment", "User", "Grade", "Static"]
 
   config.actions do
     dashboard                     # mandatory
@@ -55,6 +55,13 @@ RailsAdmin.config do |config|
       field :email
       field :name
       field :role
+    end
+  end
+
+  config.model Static do
+    edit do
+      field :name
+      field :description, :ck_editor
     end
   end
 end
