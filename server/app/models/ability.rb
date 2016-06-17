@@ -33,6 +33,7 @@ class Ability
       can :submitCode, Assignment
       can :revertCodeToSaved, Assignment
       can :read, User, :id => user.id
+      can :update, User, :id => user.id
       cannot :index, User
       cannot :index, Assignment
     end

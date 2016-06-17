@@ -12,9 +12,9 @@ module UsersHelper
 
   def self.getValidAceKeybindingsOptionArray
     [
-      ["ace", "ace"],
-      ["vim", "vim"],
-      ["emacs", "emacs"]
+      ["Default", "ace"],
+      ["Vim", "vim"],
+      ["Emacs", "emacs"]
     ]
   end
 
