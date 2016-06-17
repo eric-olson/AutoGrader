@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'static/:id/show' => 'static#show', as: :static
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

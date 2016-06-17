@@ -1,0 +1,9 @@
+<% provide(:title, @static.name) %>
+
+<div class="btn-group pull-right">
+  <% if current_user.role == "admin" %>
+    <%= link_to 'Edit', rails_admin.edit_path(model_name: 'static', id: @static.id), class: "btn btn-danger" %>
+  <% end %>
+</div>
+
+<%= @static.description.html_safe %>
