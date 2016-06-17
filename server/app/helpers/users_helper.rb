@@ -1,12 +1,12 @@
 module UsersHelper
   def self.getValidAceThemes()
     [
-      "chrome",
-      "monokai",
-      "chaos",
-      "solarized_dark",
-      "xcode",
-      "solarized_light"
+      ["Chrome", "chrome"],
+      ["Monokai", "monokai"],
+      ["Chaos", "chaos"],
+      ["Solarized Dark", "solarized_dark"],
+      ["Xcode", "xcode"],
+      ["Solarized Light", "solarized_light"]
     ]
   end
 
