@@ -16,7 +16,7 @@
     <%= f.text_field :multipass_id %>
     <br>
     <%= f.label :theme %><br>
-    <%= f.select :theme, UsersHelper.getValidAceThemes %>
+    <%= f.select :theme, UsersHelper.getValidAceThemesOptionArray %>
   </div>
   <div class="actions">
     <%= f.submit %>
