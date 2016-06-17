@@ -22,6 +22,9 @@
 //= require ace/theme-xcode
 //= require ace/theme-solarized_light
 
+//= require ace/keybinding-emacs
+//= require ace/keybinding-vim
+
 //= require ace/mode-c_cpp
 //= require bootstrap-sprockets
 //= require ckeditor/init

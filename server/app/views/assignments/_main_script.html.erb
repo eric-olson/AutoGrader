@@ -27,12 +27,16 @@ $( document ).ready(function() {
     resizeToFull();
   }
 
-  editor_theme = "ace/theme/" + "<%= current_user.theme %>"
+  user_theme = "<%= current_user.theme %>";
+  editor_theme = "ace/theme/" + user_theme;
   editor.setTheme(editor_theme);
 
-  // editor_keybinding = "ace/keyboard/" + "<%= current_user.keybind %>"
-  // editor.setKeyboardHandler(editor_keybinding);
-  
+  user_keybinding = "<%= current_user.keybind %>";
+  if (user_keybinding != "ace") {
+    editor_keybinding = "ace/keyboard/" + user_keybinding;
+    editor.setKeyboardHandler(editor_keybinding);
+  }
+
   editor.getSession().setMode("ace/mode/c_cpp");
 
   $('[data-toggle="tooltip"]').tooltip();
