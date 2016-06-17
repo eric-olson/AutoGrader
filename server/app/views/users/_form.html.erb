@@ -17,6 +17,9 @@
     <br>
     <%= f.label :theme %><br>
     <%= f.select :theme, UsersHelper.getValidAceThemesOptionArray %>
+    <br>
+    <%= f.label :keybind %><br>
+    <%= f.select :keybind, UsersHelper.getValidAceKeybindingsOptionArray %>
   </div>
   <div class="actions">
     <%= f.submit %>
