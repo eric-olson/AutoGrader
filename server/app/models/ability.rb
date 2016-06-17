@@ -35,6 +35,7 @@ class Ability
       can :revertCodeToSaved, Assignment
       can :read, User, :id => user.id
       can :read, Static
+      can :update, User, :id => user.id
       cannot :index, User
       cannot :index, Assignment
     end

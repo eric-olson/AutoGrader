@@ -27,7 +27,16 @@ $( document ).ready(function() {
     resizeToFull();
   }
 
-  editor.setTheme("ace/theme/chrome");
+  user_theme = "<%= current_user.theme %>";
+  editor_theme = "ace/theme/" + user_theme;
+  editor.setTheme(editor_theme);
+
+  user_keybinding = "<%= current_user.keybind %>";
+  if (user_keybinding != "ace") {
+    editor_keybinding = "ace/keyboard/" + user_keybinding;
+    editor.setKeyboardHandler(editor_keybinding);
+  }
+
   editor.getSession().setMode("ace/mode/c_cpp");
 
   $('[data-toggle="tooltip"]').tooltip();
