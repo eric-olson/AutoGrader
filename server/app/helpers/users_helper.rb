@@ -1,5 +1,5 @@
 module UsersHelper
-  def self.getValidAceThemes()
+  def self.getValidAceThemesOptionArray
     [
       ["Chrome", "chrome"],
       ["Monokai", "monokai"],
@@ -10,12 +10,14 @@ module UsersHelper
     ]
   end
 
-  def self.getValidAceKeybindings()
+  def self.getValidAceKeybindingsOptionArray
     [
-      "ace",
-      "vim",
-      "emacs"
+      ["ace", "ace"],
+      ["vim", "vim"],
+      ["emacs", "emacs"]
     ]
   end
+
+  private
 
 end
