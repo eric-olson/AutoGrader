@@ -26,12 +26,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if user_signed_in? && current_user.role == "admin"  %>
+        <% if user_signed_in? && current_user.role == "admin" %>
           <li><%= link_to "Admin", rails_admin_path %></li>
         <% end %>
+	<% unless @statics.nil? %>
         <% @statics.each do |static| %>
           <li><%= link_to static.name, static %></li>
         <% end %>
+	<% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

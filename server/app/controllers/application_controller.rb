@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :before
+  before_action :authenticate_user!
+  before_action :set_statics
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -11,9 +12,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-private
-  def before
-    :authenticate_user!
+  def set_statics
     @statics = Static.all
   end
 
