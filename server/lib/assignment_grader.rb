@@ -84,7 +84,7 @@ class AssignmentGrader
         end
         cutoff = inputs.rindex(':')
         expected_value = inputs[(cutoff+1)..-1]
-        expexcted_value.gsub!("\"", "&quot")
+        expected_value.gsub!("\"", "&quot")
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
         failure_message.gsub!("\"", "&quot")
 
