@@ -84,6 +84,7 @@ class AssignmentGrader
         end
         cutoff = inputs.rindex(':')
         expected_value = inputs[(cutoff+1)..-1]
+        expexcted_value.gsub!("\"", "&quot")
         failure_message = inputs[0..(cutoff-1)] + " <br/> "
         failure_message.gsub!("\"", "&quot")
 
@@ -94,12 +95,15 @@ class AssignmentGrader
             message = message[message.index("Actual:")..(message.index("Expected: ")+9)]
           end
           message += expected_value
+          message.gsub!("\"", "&quot")
 
           failure_message += message
+          failure_message.gsub!("\"", "&quot")
           popover_title = "Failed Test"
           progress_bar_type = "progress-bar-danger"
         else
           failure_message += "Output: " + expected_value
+          failure_message.gsub!("\"", "&quot")
           popover_title = "Passed Test"
           progress_bar_type = "progress-bar-success"
         end
