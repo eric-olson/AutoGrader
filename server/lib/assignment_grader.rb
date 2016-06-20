@@ -50,6 +50,8 @@ class AssignmentGrader
 
     json_test_report = `#{command_to_run}`
 
+    puts json_test_report
+
     @test_report = JSON.parse(json_test_report)
     @test_results = TestResults.new(@test_report)
     source_file.unlink
@@ -88,7 +90,9 @@ class AssignmentGrader
         if failed
           message = test.failure[:message]
           message.gsub!("\n", "<br/>")
-          message = message[message.index("Actual:")..(message.index("Expected: ")+9)]
+          if (message.index("Actual:") && message.index("Expected"))
+            message = message[message.index("Actual:")..(message.index("Expected: ")+9)]
+          end
           message += expected_value
 
           failure_message += message
