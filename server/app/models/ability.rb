@@ -24,8 +24,8 @@ class Ability
       can :read, Static
     else
       # Student stuff
-      can :read, Lab
-      can :read, Assignment
+      can :read, Lab, :hidden => false
+      can :read, Assignment, :lab => { :hidden => false }
       can :testCode, Assignment
       can :saveCode, Assignment
       can :restartCode, Assignment
